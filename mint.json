@@ -1,29 +1,33 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "SpecStory",
   "logo": {
     "dark": "/logo/SpecStory2024Icon-1024.png",
     "light": "/logo/SpecStory2024Icon-1024.png"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#02B9D9",
+    "light": "#03d4f7",
+    "dark": "#0295b0",
+    "background": {
+      "dark": "#1C0F0D",
+      "light": "#FFFFFF"
+    },
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#02B9D9",
+      "to": "#FD6822"
     }
   },
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "name": "File issue",
+      "url": "https://github.com/specstoryai/getspecstory/issues"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Get Extension",
+    "url": "https://marketplace.visualstudio.com/items?itemName=SpecStory.specstory-vscode"
   },
   "tabs": [
     {
@@ -33,19 +37,24 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
+      "name": "Docs on GitHub",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "https://github.com/specstoryai/docs"
     },
     {
-      "name": "Community",
+      "name": "Join our Slack",
       "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "url": "https://join.slack.com/t/specstory/shared_invite/zt-2vq0274ck-MYS39rgOpDSmgfE1IeK9gg"
     },
     {
-      "name": "Blog",
+      "name": "Newsletter",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://newsletter.specstory.com/"
+    },
+    {
+      "name": "Email Support",
+      "icon": "envelope",
+      "url": "mailto:support@specstory.com"
     }
   ],
   "navigation": [
@@ -53,39 +62,12 @@
       "group": "Get Started",
       "pages": [
         "introduction",
-        "quickstart",
-        "development"
-      ]
-    },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "quickstart"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "github": "https://github.com/specstoryai",
+    "linkedin": "https://linkedin.com/company/specstory"
   }
 }
