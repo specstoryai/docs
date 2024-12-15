@@ -69,5 +69,10 @@
   "footerSocials": {
     "github": "https://github.com/specstoryai",
     "linkedin": "https://linkedin.com/company/specstory"
-  }
+  },
+  "analytics": {
+    "posthog": {
+        "apiKey": "phc_JgbJDmdcKNX1t1K1WxME30kHNMQdmXeMdqEEcSeGvHU"
+    }
+}
 }
