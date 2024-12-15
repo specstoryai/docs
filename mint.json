@@ -37,9 +37,9 @@
   ],
   "anchors": [
     {
-      "name": "Docs on GitHub",
-      "icon": "book-open-cover",
-      "url": "https://github.com/specstoryai/docs"
+      "name": "SpecStory on GitHub",
+      "icon": "github",
+      "url": "https://github.com/specstoryai/getspecstory"
     },
     {
       "name": "Join our Slack",
