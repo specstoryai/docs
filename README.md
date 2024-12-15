@@ -2,6 +2,8 @@
 
 This repo contains the source code for [Specstory's Documentation](https://docs.specstory.com).
 
+Feed all of these docs into your LLMs context window: https://docs.specstory.com/llms-full.txt
+
 Please open Pull Requests to suggest helpful changes!
 
 ## Development
@@ -20,5 +22,6 @@ mintlify dev
 
 ### Troubleshooting
 
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with mint.json
+* Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
+
+* Page loads as a 404 - Make sure you are running in a folder with mint.json
