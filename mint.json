@@ -27,7 +27,7 @@
   ],
   "topbarCtaButton": {
     "name": "Get Extension",
-    "url": "https://marketplace.visualstudio.com/items?itemName=SpecStory.specstory-vscode"
+    "url": "http://get.specstory.com/cursor-extension"
   },
   "tabs": [
     {
