@@ -27,7 +27,7 @@
   ],
   "topbarCtaButton": {
     "name": "Download Extension",
-    "url": "http://get.specstory.com/cursor-extension"
+    "url": "https://static.specstory.com/vscode-extension/releases/specstory-vscode-latest.vsix"
   },
   "tabs": [
     {
