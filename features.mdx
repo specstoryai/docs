@@ -7,47 +7,63 @@ description: 'Everything you can do with SpecStory'
 
 SpecStory automatically saves all your Cursor composer and chat history in your project's `.specstory` folder. Each conversation is saved as a separate markdown file, ensuring you never lose valuable AI interactions.
 
-- **Auto-save is enabled by default** but can be disabled via the setting `specstory.autoSave`.
-- Works seamlessly in the background.
-- Preserves your entire conversation history.
-- Compatible with standard workspaces (WSL support coming soon).
+* **Auto-save is enabled by default** but can be disabled via the setting `specstory.autoSave`.
+
+* Works seamlessly in the background.
+
+* Preserves your entire conversation history.
+
+* Compatible with standard workspaces (WSL support coming soon).
 
 ## Manual Save and Export
 
 Need more control over your saved conversations? Use the command palette (Cmd/Ctrl+Shift+P) and run `SpecStory: Save Composer and Chat History` to:
 
-- Select specific conversations to save.
-- Combine multiple conversations into a single markdown file.
+* Select specific conversations to save.
+
+* Combine multiple conversations into a single markdown file.
 
 ## Share Your and Editorialize your AI Conversations
 
-Share your composer and chat history instantly using the command palette with `SpecStory: Share Composer and Chat History`. 
+Share your composer and chat history instantly using the command palette with `SpecStory: Share Composer and Chat History`.
 
 Key sharing features:
-- Get a unique, shareable URL instantly.
-- Share anonymously - no signup required.
-- Select specific conversations to include.
-- Add markdown and edit markdown blocks, images and embed videos into to your shares.
-- Add a GitHub URL to "link" your work together.
-- Edit or remove shared content later (cookie-based authentication).
 
-## Automatically derive your Cursor Project Rules 
+* Get a unique, shareable URL instantly.
 
-In SpecStory [v0.7.0](https://marketplace.visualstudio.com/items/SpecStory.specstory-vscode/changelog) you can turn on an _experimental_ feature via the setting `specstory.derivedCursorRules`.
+* Share anonymously - no signup required.
+
+* Select specific conversations to include.
+
+* Add markdown and edit markdown blocks, images and embed videos into to your shares.
+
+* Add a GitHub URL to "link" your work together.
+
+* Edit or remove shared content later (cookie-based authentication).
+
+## Automatically derive your Cursor Project Rules
+
+In SpecStory [v0.7.0](https://marketplace.visualstudio.com/items/SpecStory.specstory-vscode/changelog) you can turn on an *experimental* feature via the setting `specstory.derivedCursorRules`.
 
 <Info>
-To use this feature you must:
-- Have Auto-save enabled.
-- Create an account and sign-in to the Specstory extension.
+  To use this feature you must:
 
-This feature is currently free. Each generation makes a call to an LLM and we require authentication to its prevent abuse. 
+  * Have Auto-save enabled.
+
+  * Create an account and sign-in to the Specstory extension.
+
+  This feature is currently free. Each generation makes a call to an LLM and we require authentication to its prevent abuse.
 </Info>
 
-Key Features 
-- Automatically create a `derived-cursor-rules.mdc` to `.cursor/rules`.
-- Back-up your previous versions to `.specstory/cursor_rules_backups`.
-- Automatically add `.specstory/cursor_rules_backups` to your `.gitignore`.
-- Allows for custom file headers to modified by the user to customize rule generation.
+Key Features
+
+* Automatically create a `derived-cursor-rules.mdc` to `.cursor/rules`.
+
+* Back-up your previous versions to `.specstory/cursor_rules_backups`.
+
+* Automatically add `.specstory/cursor_rules_backups` to your `.gitignore`.
+
+* Allows for custom file headers to be modified to customize rule generation.
 
 The system prompt currently in use is:
 
@@ -85,12 +101,3 @@ OUTPUT FORMAT:
 Content of the updated .cursorrules file
 </cursorrules>
 ```
-
-
-
-
-
-
-
-
-
