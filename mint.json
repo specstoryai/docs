@@ -63,18 +63,26 @@
       "pages": [
         "introduction",
         "quickstart",
+        "faqs"
+      ]
+    },
+    {
+      "group": "Using SpecStory",
+      "pages": [
         "features",
-        "settings"
+        "settings",
+        "privacy"
       ]
     }
   ],
   "footerSocials": {
     "github": "https://github.com/specstoryai",
-    "linkedin": "https://linkedin.com/company/specstory"
+    "linkedin": "https://linkedin.com/company/specstory",
+    "x": "https://x.com/specstoryai"
   },
   "analytics": {
     "posthog": {
         "apiKey": "phc_JgbJDmdcKNX1t1K1WxME30kHNMQdmXeMdqEEcSeGvHU"
     }
-}, "feedback.thumbsRating": true
+}
 }

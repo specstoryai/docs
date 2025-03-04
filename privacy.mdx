@@ -1,0 +1,64 @@
+---
+title: 'Data Privacy'
+description: 'Transparency into what we collect and access to deliver SpecStory'
+---
+
+## Services we use to collect data
+
+We use [PostHog](https://posthog.com/) to collect product analytics. When you install the SpecStory Extension tracking is turned on by default. You may turn it off in settings via: `specstory.helpUsImprove`.
+  - We log events including: when the extension is activated, when an auto-save occurs, when a manual save occurs, when a share occurs, when a cursorrule is derived and when errors occur.
+  - We use this telemetry to calculate total installs, active user counts and to understand other patterns like user retention.
+
+We also use [PostHog](https://posthog.com/)  to collect web analytics. Both on Specstory.com and share.specstory.com. 
+  - We use log events to understand time on site, improve usability in our share experience and monitor our own traffic and traffic to shares. 
+  - If you turn off `specstory.helpUsImprove` in the Extension settings it will not apply to the web analytics we collect.
+
+In SpecStory [v0.7.0]() for the _optional_ and _experimental_ Cursor Rules feature, we use:
+  - [Clerk.com](https://clerk.com/): for authentication and user management.
+  - [Helicone.com](https://www.helicone.ai/): for LLM observability.
+
+## What data is accessed and collected by feature 
+
+### Auto-saves and manual saves
+
+<Check>
+Usage of these features _never_ transmits your prompts or code in assistant responses to SpecStory.
+</Check>
+
+Each of these features read from your local chat history stored in a `sqlite3 state.vscdb` on your machine. These are located in different folders depending on your operating system:
+    - Windows: `%APPDATA%\Cursor\User\globalStorage\state.vscdb`
+    - MacOS: `~/Library/Application Support/Cursor/User/globalStorage/state.vscdb`
+    - Linux: `~/.config/Cursor/User/globalStorage/state.vscdb`
+
+These saves are stored in your project's `.specstory` folder.
+
+
+### Shares
+
+<Note>
+Usage of this features transmits prompts and code in assistant responses to SpecStory.
+</Note>
+
+This feature allows you to publish your local chat history to share.specstory.com. We store shares in [Cloudflare R2 Object Storage](https://www.cloudflare.com/developer-platform/products/r2/).
+
+- Shared content is anonymous in the sense that we do not require authentication to share. But it is _public_. 
+- We generate a non-guessable UUID for every share at the time of creation.
+- When you share your history, the request includes a `device_id hash` from your machine. This allows us to allow you to uniquely edit it without being authenticated.
+- As an editor, you can delete sensitive information in the share. You may also request full deletion of the object by e-mailing support the URL of the share.
+
+### Cursor Rule Derivation
+
+<Note>
+Usage of this features transmits prompts, code in assistant responses, file header informaton you supply and your project's metadata to SpecStory.
+</Note>
+
+This feature allows you to save time and improve code generation quality. 
+
+- When you authenticate into the Extension and turn on the feature, as you prompt we send your prompt history, prior cursor rules, file headers and project directory metadata to an LLM.
+- We log these requests via Helicone by user to track cost, response quality, error rates and prevent abuse.
+- We conduct aggregate analysis on the requests made by users of this feature to improve it.
+
+
+
+
+

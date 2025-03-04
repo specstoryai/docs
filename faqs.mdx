@@ -1,0 +1,61 @@
+---
+title: "FAQ"
+description: "Frequently asked questions about SpecStory's features, getting in touch and future plans.
+"
+---
+
+<AccordionGroup>
+  <Accordion title="What versions of Cursor do you support?">
+   SpecStory is tested to work with every version after `0.43.5`!
+  </Accordion>
+
+  <Accordion title="Does it cost money to use SpecStory?">
+   Nope. Today SpecStory is [free as in beer 🍺](https://opensource.stackexchange.com/questions/620/what-is-the-difference-between-free-as-in-beer-and-free-as-in-speech). Enjoy!
+  </Accordion>
+
+   <Accordion title="How can I support you?">
+   Sharing is caring! We'd absolutely love if you could:
+    - Tell your friends about SpecStory.
+    - Introduce us to a colleage at work.
+    - [Leave a review](https://marketplace.visualstudio.com/items?itemName=SpecStory.specstory-vscode&ssr=false#review-details) on the VS Code Marketplace
+    - Talk about us on [Cursor Reddit](https://www.reddit.com/r/cursor/), X.com, Bluesky and  LinkedIn.
+    - Follow us on [LinkedIn](https://www.linkedin.com/company/specstory), [X.com](https://www.x.com/specstoryai) and [BlueSky](https://bsky.app/profile/specstory.com). Star us on [GitHub](https://github.com/specstoryai/getspecstory).
+  </Accordion>
+
+
+   <Accordion title="Will you support other AI Code IDEs?">
+   We get this question a lot! Each [AI Code IDE](https://specstory.com/editor-tracker) stores chats in differing formats and locations. All are [subject to change](https://forum.cursor.com/t/questions-about-state-vscdb/47299/2) at anytime. We're currently focused on making the best possible extension for Cursor.
+  </Accordion>
+
+  <Accordion title="How does this extension work?">
+    In a nutshell, SpecStory allows you to save and share your AI conversation history. To do so it reads your local chat history directly from a `sqlite3` database. This is located in different paths depending on your operating system:
+    - Windows: `%APPDATA%\Cursor\User\globalStorage\state.vscdb`
+    - MacOS: `~/Library/Application Support/Cursor/User/globalStorage/state.vscdb`
+    - Linux: `~/.config/Cursor/User/globalStorage/state.vscdb`
+
+    For more detail about each SpecStory feature check out [our feature page](/features). For insight into what data we collect and access to deliver SpecStory look at [our data privacy page](/privacy).
+  </Accordion>
+
+  <Accordion title="If I need help how can I reach you?">
+  Don't be shy: we'd absolutely love to hear from you and promise to be extra responsive!
+
+  1. Drop us a line at [support@specstory.com](mailto:support@specstory.com).
+  2. Join our [Slack community](https://join.slack.com/t/specstory/shared_invite/zt-2vq0274ck-MYS39rgOpDSmgfE1IeK9gg) and ping us directly
+  3. File an [issue on github](https://github.com/specstoryai/getspecstory/issues).
+
+  </Accordion>
+
+  <Accordion title="Will you open source the extension?">
+   The extension is still in active development with rapid iterations. We've talked about this internally but have not made a decision. 
+
+   We do strive to be as open as possible in terms of [how it works](/features), what [data is accessed and stored](/privacy) and [what our policy is](https://specstory.com/privacy).
+
+  </Accordion>
+
+  <Accordion title="Can I import my SpecStory history back into Cursor?">
+   Not today. We do not conduct write operations on the `state.vscdb` or the [Shadow Workspace](https://www.cursor.com/blog/shadow-workspace) Cursor maintains.
+
+   You can `@` reference these files to provide context to your AI though!
+  </Accordion>
+</AccordionGroup>
+

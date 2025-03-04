@@ -7,32 +7,90 @@ description: 'Everything you can do with SpecStory'
 
 SpecStory automatically saves all your Cursor composer and chat history in your project's `.specstory` folder. Each conversation is saved as a separate markdown file, ensuring you never lose valuable AI interactions.
 
-- **Auto-save is enabled by default** but can be disabled via the setting `specstory.autoSave`
-- Works seamlessly in the background
-- Preserves your entire conversation history
-- Compatible with standard workspaces (WSL support coming soon)
+- **Auto-save is enabled by default** but can be disabled via the setting `specstory.autoSave`.
+- Works seamlessly in the background.
+- Preserves your entire conversation history.
+- Compatible with standard workspaces (WSL support coming soon).
 
 ## Manual Save and Export
 
 Need more control over your saved conversations? Use the command palette (Cmd/Ctrl+Shift+P) and run `SpecStory: Save Composer and Chat History` to:
 
-- Select specific conversations to save
-- Combine multiple conversations into a single markdown file
+- Select specific conversations to save.
+- Combine multiple conversations into a single markdown file.
 
-## Share Your AI Conversations
+## Share Your and Editorialize your AI Conversations
 
 Share your composer and chat history instantly using the command palette with `SpecStory: Share Composer and Chat History`. 
 
 Key sharing features:
-- Get a unique, shareable URL instantly
-- Share anonymously - no signup required
-- Select specific conversations to include
-- Add markdown descriptions and images to your shares
-- Edit or remove shared content later (cookie-based authentication)
+- Get a unique, shareable URL instantly.
+- Share anonymously - no signup required.
+- Select specific conversations to include.
+- Add markdown and edit markdown blocks, images and embed videos into to your shares.
+- Add a GitHub URL to "link" your work together.
+- Edit or remove shared content later (cookie-based authentication).
 
-## Privacy and Security
+## Automatically derive your Cursor Project Rules 
 
-- All local saves are stored in your project's `.specstory` folder
-- Shared content is anonymous
-- Full control over what gets shared
-- Contact support to remove shared content if needed
+In SpecStory [v0.7.0](https://marketplace.visualstudio.com/items/SpecStory.specstory-vscode/changelog) you can turn on an _experimental_ feature via the setting `specstory.derivedCursorRules`.
+
+<Info>
+To use this feature you must:
+- Have Auto-save enabled.
+- Create an account and sign-in to the Specstory extension.
+
+This feature is currently free. Each generation makes a call to an LLM and we require authentication to its prevent abuse. 
+</Info>
+
+Key Features 
+- Automatically create a `derived-cursor-rules.mdc` to `.cursor/rules`.
+- Back-up your previous versions to `.specstory/cursor_rules_backups`.
+- Automatically add `.specstory/cursor_rules_backups` to your `.gitignore`.
+- Allows for custom file headers to modified by the user to customize rule generation.
+
+The system prompt currently in use is:
+
+```
+You are an expert software engineer responsible for maintaining a "living" .cursorrules file. This file defines all project rules, coding standards, workflow guidelines, references, documentation structures, and best practices. Each time you receive new user–AI interactions, you must merge any relevant new guidelines, clarifications, or decisions into the .cursorrules file which is stored in the root of the project.
+
+Rules for Updating:
+
+1. Retain the structure of the .cursorrules file, which uses the following top-level sections:
+<cursorrules-headers/>
+
+2. Read the new user–AI interactions carefully. Identify any instructions, new rules, clarifications, or best practices that arise. Incorporate them into the correct sections. If a new rule conflicts with an existing one, note the conflict and either:
+   - Resolve it by clarifying the final, decided rule,
+   - OR highlight that further user confirmation is needed.
+
+3. Do not remove or discard existing content unless there is a clear directive to do so. If a new rule supersedes or modifies old content, replace or annotate the old content accordingly.
+
+4. Maintain consistent markdown format, with ## headings for the top-level structure.
+
+5. If version updates or references to version changes arise record them under the relevant section(s). For example, if it impacts the "TECH STACK" or "PROJECT DOCUMENTATION & CONTEXT SYSTEM", note it there.
+
+6. If any mention of new coding tools or libraries arises, add them under the correct section (e.g., "TECH STACK") but do not remove previous entries.
+
+7. If new debugging or workflow rules appear in the saved chat as a result of a user request to the AI, insert them into the correct sections (e.g., "DEBUGGING" or "WORKFLOW & RELEASE RULES").
+
+8. After merging all relevant updates, output the entire updated .cursorrules file as a single cohesive markdown document. Do not include extraneous commentary or placeholders—only the final updated .cursorrules content.
+
+---
+
+TASK: Please merge the new interactions into the .cursorrules file as specified, and return the complete updated .cursorrules content in markdown format. Ensure all headings remain in order, conflicts are addressed, and the file remains consistent and comprehensive.
+
+OUTPUT FORMAT:
+
+<cursorrules>
+Content of the updated .cursorrules file
+</cursorrules>
+```
+
+
+
+
+
+
+
+
+
