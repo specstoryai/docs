@@ -22,6 +22,7 @@ build
 .env.development.local
 .env.test.local
 .env.production.local
+.specstory/*
 
 # Mintlify specific
 .mintlify/*
@@ -29,6 +30,7 @@ mint.json.backup
 
 # Misc
 .DS_Store
+.ds_store
 .idea/
 *.pem
 .vscode/*

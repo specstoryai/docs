@@ -7,7 +7,7 @@ description: 'Transparency into what we collect and access to deliver SpecStory'
 
 We use [PostHog](https://posthog.com/) to collect product analytics. When you install the SpecStory Extension tracking is turned on by default. You may turn it off in settings via: `specstory.helpUsImprove`.
 
-* We log events including: when the extension is activated, when an auto-save occurs, when a manual save occurs, when a share occurs, when a Cursor rule is derived and when errors occur.
+* We log events including: when the extension is activated, when an auto-save occurs, when a manual save occurs, when a share occurs, when a custom rule is derived and when errors occur.
 
 * We use this telemetry to calculate total installs, active user counts and to understand other patterns like user retention.
 
@@ -17,7 +17,7 @@ We also use [PostHog](https://posthog.com/)  to collect web analytics, both on S
 
 * If you turn off `specstory.helpUsImprove` in the Extension settings it will not apply to the web analytics we collect.
 
-In SpecStory [v0.7.0]() for the *optional* and *experimental* Cursor Rules feature, we use:
+In SpecStory `v0.7.0` and later for the *optional* and Derived Rules feature, we use:
 
 * [Clerk.com](https://clerk.com/): for authentication and user management.
 
@@ -31,15 +31,26 @@ In SpecStory [v0.7.0]() for the *optional* and *experimental* Cursor Rules featu
   Usage of these features *never* transmits your prompts or code in assistant responses to SpecStory.
 </Check>
 
-Each of these features read from your local chat history stored in a `sqlite3 state.vscdb` on your machine. These are located in different folders depending on your operating system:
+Each of these features read from your local chat history stored in a `sqlite3 state.vscdb` or `chat.jsons` in different folders depending on your OS on your machine. 
 
-* Windows: `%APPDATA%\Cursor\User\globalStorage\state.vscdb`
+<Tabs>
+  <Tab title="Cursor">
+    * Windows: `%APPDATA%\Cursor\User\globalStorage\state.vscdb`
+    
+    * MacOS: `~/Library/Application Support/Cursor/User/globalStorage/state.vscdb`
+    
+    * Linux: `~/.config/Cursor/User/globalStorage/state.vscdb`
+  </Tab>
+  <Tab title="GitHub Copilot">
+    * Windows: `%APPDATA%\Code\User\workspaceStorage\{hash}\chatSessions`
+    
+    * MacOS: `~/Library/Application Support/Code/User/workspaceStorage/{hash}/chatSessions`
+    
+    * Linux: `~/.config/Code/User/workspaceStorage/{hash}/chatSessions`
+  </Tab>
+</Tabs>
 
-* MacOS: `~/Library/Application Support/Cursor/User/globalStorage/state.vscdb`
-
-* Linux: `~/.config/Cursor/User/globalStorage/state.vscdb`
-
-These saves are stored in your project's `.specstory` folder.
+These saves are then stored in your project's `.specstory` folder.
 
 ### Shares
 
@@ -57,7 +68,7 @@ This feature allows you to publish your local chat history to share.specstory.co
 
 * As an editor, you can delete sensitive information in the share. You may also request full deletion of the object by e-mailing support the URL of the share.
 
-### Derived Cursor Rules
+### Derived Rules
 
 <Note>
   Usage of this features transmits prompts, code in assistant responses, markdown header information you supply and your project's metadata to SpecStory.
@@ -65,7 +76,7 @@ This feature allows you to publish your local chat history to share.specstory.co
 
 This feature allows you to save time and improve code generation quality.
 
-* When you authenticate into the Extension and turn on the feature, as you prompt we send your prompt history, prior cursor rules, file headers and project directory metadata to an LLM.
+* When you authenticate into the Extension and turn on the feature, as you prompt we send your prompt history, prior derived rules, file headers and project directory metadata to an LLM.
 
 * We log these requests via Helicone by user to track cost, response quality, error rates and prevent abuse.
 
