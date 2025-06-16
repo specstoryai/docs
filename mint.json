@@ -62,9 +62,7 @@
       "group": "Get Started",
       "pages": [
         "started",
-        "specflow",
-        "privacy",
-        "faqs"
+        "specflow"
       ]
     },
     {
@@ -83,6 +81,13 @@
         "quickstart",
         "features",
         "settings"
+      ]
+    },
+    {
+      "group": "FAQs",
+      "pages": [
+        "faqs",
+        "privacy"
       ]
     }
   ],
