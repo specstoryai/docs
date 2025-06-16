@@ -1,17 +1,24 @@
 ---
 title: 'Settings'
-description: 'Change how SpecStory works'
+description: 'Configure BearClaude for your workflow'
 ---
 
 ## Settings
 
-Configure SpecStory through VS Code Settings → User → Extensions → SpecStory:
-- Toggle auto-save functionality
-- Toggle Derived Rules 
-   - Modify the `file headers` used as part of the system prompt to generate Derived Rules for you
-- Opt out of product analytics
-- Enable debug tools and logging
+BearClaude has simple, focused settings to get you up and running quickly.
 
-## Debugging
-- Browse, search, and copy the raw Workspace Storage and "Composer" Storage state in the left side (primary side bar) file explorer, in the VS CODE STATE panel.
-- View the OUTPUT panel and select the "SpecStory" channel from the dropdown to see debug logs.
+### Claude Code Configuration
+
+**Claude Code Path**: This tells BearClaude where to find your Claude Code installation.
+
+- **Default**: `claude` - Works with standard Claude Code installations
+- **Custom Path**: If you installed Claude Code somewhere not in your shell PATH, provide the full path here (e.g., `/Applications/Claude Code.app/Contents/MacOS/claude`)
+
+With a normal Claude Code installation, you shouldn't need to change this setting.
+
+### Application Configuration  
+
+**Appearance**: Choose your preferred theme
+- **Light** - Light mode interface
+- **Dark** - Dark mode interface  
+- **System (Auto)** - Follows your macOS system appearance setting

@@ -1,113 +1,53 @@
 ---
 title: 'Features'
-description: 'Everything you can do with SpecStory'
+description: 'Everything you can do with BearClaude'
 ---
 
-## Auto-Save Your AI Conversations
+## Write Structured Specs
 
-SpecStory automatically saves AI chat history in your project's `.specstory` folder. Each conversation is saved as a separate markdown file, ensuring you never lose valuable AI interactions.
+BearClaude is built for the upstream work that defines what you're building and why.
 
-* **Auto-save is enabled by default** but can be disabled via the setting `specstory.autoSave`.
+* **Markdown-First Approach** - Write requirements, roadmaps, and workplans in clear, structured Markdown
+* **Focus on Intent** - Describe user needs, edge cases, and behavior before jumping into code
+* **Human and AI Readable** - Your specs work for both team collaboration and AI implementation
 
-* Works seamlessly in the background.
+## Execute Cleanly with Claude Code
 
-* Preserves your entire conversation history.
+Hand off polished specs to Claude Code for fast, high-fidelity implementation.
 
-* Compatible with standard workspaces (WSL support coming soon).
+* **Seamless Integration** - Run your specs directly in Claude Code with full context preservation
+* **No Lost Context** - Your carefully crafted specifications translate directly to implementation
+* **Built-in Claude Code** - BearClaude includes Claude Code integration out of the box
 
-## Manual Save and Export
+## Auto-Save Everything Locally
 
-Need more control over your saved conversations? Use the command palette (Cmd/Ctrl+Shift+P) and run `SpecStory: Save AI Chat History` to:
+Your docs and chats are auto-saved the SpecStory way. Always local.
 
-* Select specific conversations to save.
+* **Local-First Approach** - All your work stays on your Mac
+* **Automatic Backups** - Never lose your thinking or implementation history
+* **Version Control Ready** - Files are saved in standard formats that work with Git
 
-* Combine multiple conversations into a single markdown file.
+## Iterative Workflow
 
-## Share and Editorialize Your AI Conversations
+Edit and refine as your product understanding evolves.
 
-Share your AI chat history instantly using the command palette with `SpecStory: Share AI Chat History`.
+### 1. Think
+Write requirements, roadmaps, and workplans in Markdown. Focus on the upstream work that defines what you're building and why.
 
-Key sharing features:
+### 2. Execute  
+Run your polished specs directly with Claude Code. Clean handoff means no lost context or misunderstood requirements.
 
-* Get a unique, shareable URL instantly.
+### 3. Save
+Auto-saves, the SpecStory way. Your docs and chats, always local. Never lose your thinking or implementation history.
 
-* Share anonymously - no signup required.
+### 4. Repeat
+Edit and refine as your product understanding evolves. Iterative refinement of both specs and implementation.
 
-* Select specific conversations to include.
+## Built for Minimalist AI-First Developers
 
-* Add markdown and edit markdown blocks, images and embed videos into to your shares.
+BearClaude is designed for developers who understand that clarity comes before code.
 
-* Add a GitHub URL to "link" your work together.
-
-* Edit or remove shared content later (cookie-based authentication).
-
-## Automatically Derive Rules for AI
-
-In SpecStory [v0.7.0](https://marketplace.visualstudio.com/items/SpecStory.specstory-vscode/changelog) and later you can turn on an feature via the setting `specstory.derivedRules`.
-
-<Info>
-  To use this feature you must:
-
-  * Have Auto-save enabled.
-
-  * Create an account and sign-in to the Specstory extension.
-
-  This feature is currently free. Each generation makes a call to an LLM and we require authentication to its prevent abuse.
-</Info>
-
-Key Features
-
-* Automatically create a `derived-rules.mdc` to `.cursor/rules` or `copilot-instructions.md` to `.github/`.
-
-* Back-ups your previous versions to the `.specstory/ai_rules_backups` directory.
-
-* Automatically adds backups to your `.gitignore`.
-
-* Allows for custom file headers to be modified to customize rule generation through settings.
-
-The system prompt currently in use is:
-
-```
-You are an expert software engineer responsible for maintaining a "living" and "evolving" AI coding assistant rules file. This file defines all project rules, coding standards, workflow guidelines, references, documentation structures, and best practices. Each time you receive new user–AI interactions, you must merge any relevant new guidelines, clarifications, or decisions into the file which is stored in the root of the project and is obeyed by the AI coding assistant.
-
-Rules for Updating:
-
-1. Retain the structure of the AI coding assistant rules file, which uses the following top-level sections:
-<headers/>
-
-2. Read the new user–AI interactions carefully. Identify any instructions, new rules, clarifications, or best practices that arise. Incorporate them into the correct sections. If a new rule conflicts with an existing one, note the conflict and either:
-   - Resolve it by clarifying the final, decided rule,
-   - OR highlight that further user confirmation is needed.
-
-3. Do not remove or discard existing content unless there is a clear directive to do so, but if a new rule supersedes or modifies old content, replace or annotate the old content accordingly. Don't let the rule file grow too much.
-
-4. Maintain consistent markdown format, with ## headings for the top-level structure.
-
-5. If version updates or references to version changes arise record them under the relevant section(s). For example, if it impacts the "TECH STACK" or "PROJECT DOCUMENTATION & CONTEXT SYSTEM", note it there.
-
-6. If any mention of new coding tools or libraries arises, add them under the correct section (e.g., "TECH STACK") but do not remove previous entries.
-
-7. If new debugging or workflow rules appear in the saved chat as a result of a user request to the AI, insert them into the correct sections (e.g., "DEBUGGING" or "WORKFLOW & RELEASE RULES").
-
-8. Look for signals that the user's intent is to make something a permanent rule. This includes words like "don't","must", "should", "always", "never", "all the time", "every time", "every time you see this", etc.
-
-9. Don't make ANY adjustments to the AI coding assistant rules file unless you are absolutely sure that the user's intent is rule like in nature. Err on the side of making too few adjustments, not too many. It's perfectly fine to leave the file as it is.
-
-10. After merging all relevant updates, output the entire updated AI coding assistant rules file as a single cohesive markdown document. Do not include extraneous commentary or placeholders, just the final updated file content.
-
----
-
-TASK: Please merge the new interactions into the AI coding assistant rules file as specified, and return the complete updated file content in markdown format. Ensure all headings remain in order, conflicts are addressed, and the file remains consistent and comprehensive.
-
-OUTPUT FORMAT:
-
-You must return the updated AI coding assistant rules file as a single cohesive markdown document. Do not include extraneous commentary.
-
-You must return the response inside a <rules-file> tag. Example:
-
-<rules-file>
-Content of the updated AI coding assistant rules file
-</rules-file>
-
-The MOST IMPORTANT THING is that you must return the response inside a <rules-file> tag.
-```
+* **Requirements First** - Plan before you act, think before you code
+* **Stop Building Wrong Things** - Focus on what actually matters
+* **Native macOS Experience** - Optimized for focused work on Apple Silicon
+* **No IDE Required** - Rethink your development workflow entirely
