@@ -68,19 +68,19 @@
     {
       "group": "SpecStory Extension",
       "pages": [
-        "introduction",
-        "quickstart",
-        "features",
-        "settings"
+        "specstory/introduction",
+        "specstory/quickstart",
+        "specstory/features",
+        "specstory/settings"
       ]
     },
     {
       "group": "BearClaude",
       "pages": [
-        "introduction",
-        "quickstart",
-        "features",
-        "settings"
+        "bearclaude/introduction",
+        "bearclaude/quickstart",
+        "bearclaude/features",
+        "bearclaude/settings"
       ]
     },
     {
