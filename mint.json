@@ -42,6 +42,11 @@
       "url": "https://github.com/specstoryai/getspecstory"
     },
     {
+      "name": "Try BearClaude",
+      "icon": "desktop",
+      "url": "https://bearclaude.specstory.com/#download-section"
+    },
+    {
       "name": "Join our Slack",
       "icon": "slack",
       "url": "https://join.slack.com/t/specstory/shared_invite/zt-2vq0274ck-MYS39rgOpDSmgfE1IeK9gg"
