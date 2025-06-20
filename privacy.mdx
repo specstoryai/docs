@@ -31,7 +31,7 @@ In SpecStory `v0.7.0` and later for the *optional* and Derived Rules feature, we
   Usage of these features *never* transmits your prompts or code in assistant responses to SpecStory.
 </Check>
 
-Each of these features read from your local chat history stored in a `sqlite3 state.vscdb` or `chat.jsons` in different folders depending on your OS on your machine. 
+Each of these features read from your local chat history stored in a `sqlite3 state.vscdb`, `chat.jsons`, or Claude Code session files in different folders depending on your OS on your machine. 
 
 <Tabs>
   <Tab title="Cursor">
@@ -47,6 +47,13 @@ Each of these features read from your local chat history stored in a `sqlite3 st
     * MacOS: `~/Library/Application Support/Code/User/workspaceStorage/{hash}/chatSessions`
     
     * Linux: `~/.config/Code/User/workspaceStorage/{hash}/chatSessions`
+  </Tab>
+  <Tab title="Claude Code">
+    The SpecStory CLI wrapper for Claude Code reads session files from:
+    
+    * All platforms: `~/.claude/projects/` (JSONL format)
+    
+    The CLI wrapper runs Claude Code while capturing conversations locally. No data is transmitted to SpecStory servers.
   </Tab>
 </Tabs>
 

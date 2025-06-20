@@ -61,6 +61,16 @@ description: "Frequently asked questions about SpecStory and BearClaude."
 
     * Linux: `~/.config/Code/User/workspaceStorage/{hash}/chatSessions`
 
+    For Claude Code, the SpecStory CLI wrapper acts as a launcher that:
+
+    * Runs Claude Code while capturing your conversations
+    
+    * Reads session files from `~/.claude/projects/` (JSONL format)
+    
+    * Converts them to markdown and saves to `.specstory/history/` in your project
+    
+    * Works on macOS, Linux, and Windows
+
     **BearClaude** is a standalone macOS application that provides a three-pane interface combining document management, markdown editing, and Claude Code integration. It automatically saves your Claude Code conversations to your project's `.specstory` folder.
 
     For more detail about each feature check out our feature pages. For insight into what data we collect and access look at [our data privacy page](/privacy).

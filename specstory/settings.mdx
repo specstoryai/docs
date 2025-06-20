@@ -3,15 +3,82 @@ title: 'Settings'
 description: 'Change how SpecStory works'
 ---
 
-## Settings
+<Tabs>
+  <Tab title="Cursor + VSCode" tab-id="cursor-vscode">
+    ## Extension Settings
 
-Configure SpecStory through VS Code Settings → User → Extensions → SpecStory:
-- Toggle auto-save functionality
-- Toggle Derived Rules 
-   - Modify the `file headers` used as part of the system prompt to generate Derived Rules for you
-- Opt out of product analytics
-- Enable debug tools and logging
+    Configure SpecStory through VS Code Settings → User → Extensions → SpecStory:
+    - Toggle auto-save functionality
+    - Toggle Derived Rules 
+       - Modify the `file headers` used as part of the system prompt to generate Derived Rules for you
+    - Opt out of product analytics
+    - Enable debug tools and logging
 
-## Debugging
-- Browse, search, and copy the raw Workspace Storage and "Composer" Storage state in the left side (primary side bar) file explorer, in the VS CODE STATE panel.
-- View the OUTPUT panel and select the "SpecStory" channel from the dropdown to see debug logs.
+    ### Available Settings
+
+    | Setting | Description | Default |
+    |---------|-------------|---------|
+    | `specstory.autoSave` | Enable automatic saving of AI conversations | `true` |
+    | `specstory.derivedRules` | Enable automatic rule generation | `false` |
+    | `specstory.fileHeaders` | Custom headers for rule generation | (see defaults) |
+    | `specstory.analytics` | Enable anonymous usage analytics | `true` |
+    | `specstory.debug` | Enable debug mode and verbose logging | `false` |
+
+    ## Debugging
+    - Browse, search, and copy the raw Workspace Storage and "Composer" Storage state in the left side (primary side bar) file explorer, in the VS CODE STATE panel.
+    - View the OUTPUT panel and select the "SpecStory" channel from the dropdown to see debug logs.
+  </Tab>
+  
+  <Tab title="Claude Code" tab-id="claude-code">
+    ## CLI Configuration
+
+    The SpecStory CLI wrapper is designed to work out of the box with minimal configuration:
+
+    ### Available Flags
+
+    | Flag | Description | Usage |
+    |------|-------------|-------|
+    | (default) | Run Claude Code through wrapper | `specstory` |
+    | `-s, --sync-markdown` | Convert all sessions to markdown | `specstory -s` |
+    | `-u, --session-uuid` | Convert specific session | `specstory -u <uuid>` |
+    | `-v, --verbose` | Show detailed output | `specstory -s -v` |
+    | `-c, --claude-path` | Custom Claude Code path | `specstory -c /path/to/claude` |
+    | `-h, --help` | Show help information | `specstory -h` |
+    | `-V, --version` | Show version | `specstory -V` |
+
+    ### Default Behavior
+
+    - **Session Storage:** `.specstory/history/` in current directory
+    - **Session Files:** Read from `~/.claude/projects/`
+    - **Output Format:** Markdown files with timestamps
+    - **History Tracking:** `.history.json` maintains session metadata
+
+    ### Project Configuration
+
+    When you first run SpecStory in a project, it creates:
+    - `.specstory/` directory for storing conversations
+    - `.specstory/history/` for markdown files
+    - `.specstory/history/.history.json` for session tracking
+
+    <Info>
+      Unlike the VS Code/Cursor extensions which have extensive settings, the CLI wrapper follows a "convention over configuration" approach for simplicity.
+    </Info>
+
+    ## Debugging
+
+    Use verbose mode to troubleshoot:
+
+    ```bash
+    # Run with verbose output
+    specstory -s --verbose
+    
+    # Check what sessions will be processed
+    specstory -s --verbose | grep "Parsing session"
+    ```
+
+    The verbose flag shows:
+    - Which session files are being parsed
+    - Where markdown files are being written
+    - Any errors during processing
+  </Tab>
+</Tabs>
