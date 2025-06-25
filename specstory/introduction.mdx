@@ -6,7 +6,7 @@ description: "Save, search and share your AI chat history with SpecStory."
 ## Multiplatform support is now here
 
 <Note>
-The SpecStory Extension as of `v0.11.0` [(changelog)](https://marketplace.visualstudio.com/items/SpecStory.specstory-vscode/changelog) supports both [Cursor](https://www.cursor.com/) and [GitHub Copilot](https://github.com/features/copilot). For [Claude Code](https://claude.ai/code), we offer a CLI wrapper `v0.0.2` that captures your sessions.
+  The SpecStory Extension as of `v0.11.0` [(changelog)](https://marketplace.visualstudio.com/items/SpecStory.specstory-vscode/changelog) supports both [Cursor](https://www.cursor.com/) and [GitHub Copilot](https://github.com/features/copilot). For [Claude Code](https://claude.ai/code), we offer a CLI wrapper `v0.0.2` that captures your sessions.
 </Note>
 
 SpecStory saves, organizes, and makes all your AI chats searchable in structured Markdown. Never lose a great solution, easily share interactions, and use conversation history to refine Copilot and Cursor with custom instructions and project rules.
@@ -22,39 +22,29 @@ Choose your installation method based on your IDE:
 </Info>
 
 <Tabs>
-  <Tab title="VSCode + Copilot" tab-id="vscode">
+  <Tab title="VSCode + Copilot">
     1. Open VSCode with GitHub Copilot installed and activated.
-    
     2. Search for **SpecStory** in the Extensions Marketplace (Ctrl/CMD-Shift-X).
-    
     3. Click **Install**. Consult our [Changelog](https://marketplace.visualstudio.com/items/SpecStory.specstory-vscode/changelog) to make sure you're on the latest version.
-    
     4. Once installed, SpecStory automatically saves your Copilot chats to the `.specstory` folder in your project.
   </Tab>
-  <Tab title="Cursor" tab-id="cursor">
+  <Tab title="Cursor">
     1. Open Cursor.
-    
     2. Search for **SpecStory** in the Extensions Marketplace (Ctrl/CMD-Shift-X).
-    
     3. Click **Install**. Consult our [Changelog](https://marketplace.visualstudio.com/items/SpecStory.specstory-vscode/changelog) to make sure you're on the latest version.
-
     4. Once installed, SpecStory automatically saves your Cursor chats to the `.specstory` folder in your project.
-    
+
     <Warning>
       As a Cursor user, if you try to install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=SpecStory.specstory-vscode) website banner you might find yourself in a state where VSCode has SpecStory installed but Cursor doesn't. [It makes for a bad time](https://github.com/specstoryai/getspecstory/issues/8). No one wants that.
     </Warning>
   </Tab>
-  <Tab title="Manual VSIX Install" tab-id="vsix">
+  <Tab title="Manual VSIX Install">
     <Tip>
       The SpecStory extension's VSIX works seamlessly with both GitHub Copilot and Cursor. You'll need to install it separately in each environment.
     </Tip>
-
     1. Make sure you're on the latest version of [GitHub Copilot](https://github.blog/changelog/label/copilot/) or [Cursor](https://www.cursor.com/changelog).
-    
     2. Download our extension: [specstory-vscode-latest.vsix](https://static.specstory.com/vscode-extension/releases/specstory-vscode-latest.vsix)
-    
     3. From either editor, pop open the Command Palette (Ctrl/CMD-Shift-P) and choose `Extensions: Install from VSIX…`.
-    
     4. To verify the installation, open the Command Palette again (Ctrl/CMD-Shift-P) and type `SpecStory`. You should see the available commands show up.
   </Tab>
 </Tabs>
@@ -66,34 +56,54 @@ Choose your installation method based on your IDE:
 </Info>
 
 <Tabs>
-  <Tab title="Install with Homebrew" tab-id="homebrew">
-   We recommend using Homebrew to install on Mac
+  <Tab title="Install with Homebrew">
+    We recommend using Homebrew to install on Mac
 
     ```bash
     brew tap specstoryai/tap
     brew install specstory
     ```
+
+    Once installed, verify installation with
+
+    ```bash
+    specstory --version
+    ```
+
+    Start using SpecStory
+
+    ```bash
+    # Run Claude Code through SpecStory wrapper
+    specstory
     
-    Once installed, run `specstory --version` to confirm.
+    # Or sync existing sessions to markdown
+    specstory -s
+    ```
+
+    In the future, to upgrade, use Homebrew again
+
+    ```bash
+    brew upgrade specstory
+    ```
   </Tab>
-  <Tab title="Download Linux/WSL Binary" tab-id="binary">
+  <Tab title="Download Linux/WSL Binary">
     1. Download the latest release for your platform:
        - [Linux (ARM64)](https://github.com/specstoryai/getspecstory/releases/download/v0.0.3/SpecStoryCLI_Linux_arm64.zip)
        - [Linux (x86)](https://github.com/specstoryai/getspecstory/releases/download/v0.0.3/SpecStoryCLI_Linux_x86_64.zip) (Note: If you're running WSL, download this)
-    
     2. Extract and move to your PATH:
+
        ```bash
        unzip SpecStoryCLI_*.zip
        sudo mv specstory /usr/local/bin/
        chmod +x /usr/local/bin/specstory
        ```
-    
     3. Verify installation:
+
        ```bash
        specstory --version
        ```
-    
     4. Start using SpecStory:
+
        ```bash
        # Run Claude Code through SpecStory wrapper
        specstory
@@ -101,6 +111,8 @@ Choose your installation method based on your IDE:
        # Or sync existing sessions to markdown
        specstory -s
        ```
+
+    In the future, to upgrade, just follow these instructions again.
   </Tab>
 </Tabs>
 
@@ -108,10 +120,8 @@ Choose your installation method based on your IDE:
 
 Think of [SpecStory](https://specstory.com) as your AI conversation time machine.
 
-* ⚡ Auto-save your conversations into digestible Markdown format (readable by both humans AND machines).
+- ⚡ Auto-save your conversations into digestible Markdown format (readable by both humans AND machines).
+- 🌐 Make your [vibe-coding](https://x.com/karpathy/status/1886192184808149383) adventures shareable via URLs at share.specstory.com.
+- 🧪 Auto-magically derive Copilot [custom instructions](https://code.visualstudio.com/docs/copilot/copilot-customization) and Cursor [project rules](https://docs.cursor.com/context/rules-for-ai#project-rules-recommended) to improve agent-first coding performance.
 
-* 🌐 Make your [vibe-coding](https://x.com/karpathy/status/1886192184808149383) adventures shareable via URLs at share.specstory.com.
-
-* 🧪 Auto-magically derive Copilot [custom instructions](https://code.visualstudio.com/docs/copilot/copilot-customization) and Cursor [project rules](https://docs.cursor.com/context/rules-for-ai#project-rules-recommended) to improve agent-first coding performance.
-
-🧠 Your AI companion is about to get significantly less forgetful, and you won't have to lift a finger - let's go!
+🧠 Your AI companion is about to get significantly less forgetful, and you won't have to lift a finger - let's go\!
