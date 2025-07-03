@@ -1,29 +1,25 @@
 ---
-title: 'Features'
-description: 'Everything you can do with SpecStory'
+title: "Features"
+description: "Everything you can do with SpecStory"
 ---
 
 <Tabs>
-  <Tab title="Cursor + VSCode" tab-id="cursor-vscode">
+  <Tab title="Cursor + VSCode">
     ## Auto-Save Your AI Conversations
 
     SpecStory automatically saves AI chat history in your project's `.specstory` folder. Each conversation is saved as a separate markdown file, ensuring you never lose valuable AI interactions.
 
-    * **Auto-save is enabled by default** but can be disabled via the setting `specstory.autoSave`.
-
-    * Works seamlessly in the background.
-
-    * Preserves your entire conversation history.
-
-    * Compatible with local and remote workspaces (SSH, DevContainers, WSL).
+    - **Auto-save is enabled by default** but can be disabled via the setting `specstory.autoSave`.
+    - Works seamlessly in the background.
+    - Preserves your entire conversation history.
+    - Compatible with local and remote workspaces (SSH, DevContainers, WSL).
 
     ## Manual Save and Export
 
-    Need more control over your saved conversations? Use the command palette (Cmd/Ctrl+Shift+P) and run `SpecStory: Save AI Chat History` to:
+    Need more control over your saved conversations? Use the command palette (Cmd/Ctrl\+Shift\+P) and run `SpecStory: Save AI Chat History` to:
 
-    * Select specific conversations to save.
-
-    * Combine multiple conversations into a single markdown file.
+    - Select specific conversations to save.
+    - Combine multiple conversations into a single markdown file.
 
     ## Share and Editorialize Your AI Conversations
 
@@ -31,17 +27,12 @@ description: 'Everything you can do with SpecStory'
 
     Key sharing features:
 
-    * Get a unique, shareable URL instantly.
-
-    * Share anonymously - no signup required.
-
-    * Select specific conversations to include.
-
-    * Add markdown and edit markdown blocks, images and embed videos into to your shares.
-
-    * Add a GitHub URL to "link" your work together.
-
-    * Edit or remove shared content later (cookie-based authentication).
+    - Get a unique, shareable URL instantly.
+    - Share anonymously - no signup required.
+    - Select specific conversations to include.
+    - Add markdown and edit markdown blocks, images and embed videos into to your shares.
+    - Add a GitHub URL to "link" your work together.
+    - Edit or remove shared content later (cookie-based authentication).
 
     ## Automatically Derive Rules for AI
 
@@ -50,22 +41,17 @@ description: 'Everything you can do with SpecStory'
     <Info>
       To use this feature you must:
 
-      * Have Auto-save enabled.
-
-      * Create an account and sign-in to the Specstory extension.
+      - Have Auto-save enabled.
+      - Create an account and sign-in to the Specstory extension.
 
       This feature is currently free. Each generation makes a call to an LLM and we require authentication to its prevent abuse.
     </Info>
-
     Key Features
 
-    * Automatically create a `derived-rules.mdc` to `.cursor/rules` or `copilot-instructions.md` to `.github/`.
-
-    * Back-ups your previous versions to the `.specstory/ai_rules_backups` directory.
-
-    * Automatically adds backups to your `.gitignore`.
-
-    * Allows for custom file headers to be modified to customize rule generation through settings.
+    - Automatically create a `derived-rules.mdc` to `.cursor/rules` or `copilot-instructions.md` to `.github/`.
+    - Back-ups your previous versions to the `.specstory/ai_rules_backups` directory.
+    - Automatically adds backups to your `.gitignore`.
+    - Allows for custom file headers to be modified to customize rule generation through settings.
 
     ## How Rules Derivation Works
 
@@ -73,85 +59,97 @@ description: 'Everything you can do with SpecStory'
 
     ```
     You are an expert software engineer responsible for maintaining a "living" and "evolving" AI coding assistant rules file. This file defines all project rules, coding standards, workflow guidelines, references, documentation structures, and best practices. Each time you receive new user–AI interactions, you must merge any relevant new guidelines, clarifications, or decisions into the file which is stored in the root of the project and is obeyed by the AI coding assistant.
-
+    
     Rules for Updating:
-
+    
     1. Retain the structure of the AI coding assistant rules file, which uses the following top-level sections:
     <headers/>
-
+    
     2. Read the new user–AI interactions carefully. Identify any instructions, new rules, clarifications, or best practices that arise. Incorporate them into the correct sections. If a new rule conflicts with an existing one, note the conflict and either:
        - Resolve it by clarifying the final, decided rule,
        - OR highlight that further user confirmation is needed.
-
+    
     3. Do not remove or discard existing content unless there is a clear directive to do so, but if a new rule supersedes or modifies old content, replace or annotate the old content accordingly. Don't let the rule file grow too much.
-
+    
     4. Maintain consistent markdown format, with ## headings for the top-level structure.
-
+    
     5. If version updates or references to version changes arise record them under the relevant section(s). For example, if it impacts the "TECH STACK" or "PROJECT DOCUMENTATION & CONTEXT SYSTEM", note it there.
-
+    
     6. If any mention of new coding tools or libraries arises, add them under the correct section (e.g., "TECH STACK") but do not remove previous entries.
-
+    
     7. If new debugging or workflow rules appear in the saved chat as a result of a user request to the AI, insert them into the correct sections (e.g., "DEBUGGING" or "WORKFLOW & RELEASE RULES").
-
+    
     8. Look for signals that the user's intent is to make something a permanent rule. This includes words like "don't","must", "should", "always", "never", "all the time", "every time", "every time you see this", etc.
-
+    
     9. Don't make ANY adjustments to the AI coding assistant rules file unless you are absolutely sure that the user's intent is rule like in nature. Err on the side of making too few adjustments, not too many. It's perfectly fine to leave the file as it is.
-
+    
     10. After merging all relevant updates, output the entire updated AI coding assistant rules file as a single cohesive markdown document. Do not include extraneous commentary or placeholders, just the final updated file content.
-
+    
     ---
-
+    
     TASK: Please merge the new interactions into the AI coding assistant rules file as specified, and return the complete updated file content in markdown format. Ensure all headings remain in order, conflicts are addressed, and the file remains consistent and comprehensive.
-
+    
     OUTPUT FORMAT:
-
+    
     You must return the updated AI coding assistant rules file as a single cohesive markdown document. Do not include extraneous commentary.
-
+    
     You must return the response inside a <rules-file> tag. Example:
-
+    
     <rules-file>
     Content of the updated AI coding assistant rules file
     </rules-file>
-
+    
     The MOST IMPORTANT THING is that you must return the response inside a <rules-file> tag.
     ```
   </Tab>
-  
-  <Tab title="Claude Code" tab-id="claude-code">
+  <Tab title="Claude Code">
     After installing, run the wrapper and it will start claude code.
+
     ```bash
     ## By default, specstory launches Claude Code with any additional provided arguments.
     specstory 
-
-    ## Use -h to see help for all available options
+    
+    ## Use -h to see help for all available options (all flags including below)
     specstory -h
+    
+    ## Flags:
+          --check-install           ## check if Claude Code is properly installed and can be invoked
+      -c, --claude-code-cmd string  ## optional command to execute Claude Code, with any arguments (default: 'claude')
+      -h, --help                    ## help for specstory
+          --log                     ## write verbose output to .specstory/history/debug/debug.log
+          --no-usage-analytics      ## disable usage analytics
+          --no-version-check        ## skip checking for newer versions
+      -u, --session-uuid string     ## optional session UUID to generate markdown file for
+      -s, --sync-markdown           ## create any missing markdown files for Clade Code sessions in the current working directory
+      -v, --verbose                 ## enable verbose output to stdout
+      -V, --version                 ## show version
     ```
 
     ## Auto-Save Your AI Conversations
 
     SpecStory CLI wrapper automatically captures your Claude Code conversations when you run it. Sessions are saved as markdown files in `.specstory/history/` in your current project directory.
 
-    * **Automatic capture** when running `specstory` (launches Claude Code with session tracking).
-
-    * Sessions are saved with timestamps and descriptive filenames.
-
-    * Preserves complete conversation history including code blocks and outputs.
-
-    * Markdown files are immediately available for version control or sharing.
+    - **Automatic capture** when running `specstory` (launches Claude Code with session tracking).
+    - Sessions are saved with timestamps and descriptive filenames.
+    - Preserves complete conversation history including code blocks and outputs.
+    - Markdown files are immediately available for version control or sharing.
 
     ## Export and Organize Conversations
 
     Simple flags let you manage your Claude Code conversation history:
 
     ```bash
-    # Sync all Claude Code sessions to markdown
+    # Sync any missing markdown files for Clade Code sessions in the current working directory
     specstory -s
-
+    
     # Convert a specific session to markdown
     specstory -u <session-uuid>
-
+    
     # See what's happening with verbose output
     specstory -s --verbose
+    
+    # Optional command to execute Claude Code, with any arguments (default: 'claude')
+    specstory -c 
     ```
 
     The wrapper reads Claude Code's session files from `~/.claude/projects/` and converts them to clean markdown in your project's `.specstory/history/` directory.
@@ -160,33 +158,28 @@ description: 'Everything you can do with SpecStory'
 
     The current CLI wrapper focuses on markdown generation. Your conversations are saved locally and can be shared through:
 
-    * **Git commits** - Add `.specstory/history/` to version control
-    * **Direct file sharing** - Send markdown files to teammates
-    * **Documentation** - Include conversations in project docs
-    * **Manual upload** - Use any markdown hosting service
+    - **Git commits** - Add `.specstory/history/` to version control
+    - **Direct file sharing** - Send markdown files to teammates
+    - **Documentation** - Include conversations in project docs
+    - **Manual upload** - Use any markdown hosting service
 
     <Info>
-      Direct sharing to share.specstory.com is currently available in VS Code/Cursor extensions. CLI sharing features are on the roadmap!
+      Direct sharing to share.specstory.com is currently available in VS Code/Cursor extensions. CLI sharing features are on the roadmap\!
     </Info>
-
     ## Conversation History as Documentation
 
     The SpecStory CLI wrapper transforms your Claude Code sessions into valuable documentation:
 
-    * **Learning resource** - Review past problem-solving approaches
-    * **Knowledge base** - Search through markdown files for solutions
-    * **Team sharing** - Commit conversations for team learning
-    * **Project context** - Build up domain knowledge over time
-
+    - **Learning resource** - Review past problem-solving approaches
+    - **Knowledge base** - Search through markdown files for solutions
+    - **Team sharing** - Commit conversations for team learning
+    - **Project context** - Build up domain knowledge over time
 
     The generated markdown files include:
 
-    * Complete conversation threads with context
-
-    * Code blocks with syntax highlighting
-
-    * Timestamps and session metadata
-
-    * Clean formatting for easy reading
+    - Complete conversation threads with context
+    - Code blocks with syntax highlighting
+    - Timestamps and session metadata
+    - Clean formatting for easy reading
   </Tab>
 </Tabs>
