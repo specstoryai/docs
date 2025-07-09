@@ -4,7 +4,7 @@ description: "Give your AI assistant a persistent memory. Best upgrade since cof
 ---
 
 <Tabs>
-  <Tab title="Cursor + VSCode" tab-id="cursor-vscode">
+  <Tab title="Cursor + VSCode">
     ## 🪄 Your work saves itself, no cloud required\!
 
     When you install SpecStory it begins its work in the background, **automatically saving 🗄️** your AI chat history for your active project in `./specstory/history`.
@@ -14,7 +14,6 @@ description: "Give your AI assistant a persistent memory. Best upgrade since cof
     <Frame>
       ![Autosave your history](https://share.specstory.com/extension/autosave_your_history.gif)
     </Frame>
-
     ## 🎯 Cherry pick your save worthy moments
 
     If you want to combine selected conversations into a single file, you can do that too. Just open the command palette (Cmd/Ctrl\+Shift\+P) and run `SpecStory: Save AI Chat History`.
@@ -22,12 +21,10 @@ description: "Give your AI assistant a persistent memory. Best upgrade since cof
     <Frame>
       ![Never lose your chat history](https://share.specstory.com/extension/never_lose_your_composer_history_2.gif)
     </Frame>
-
     - **📝 Presto\!** Run this command and watch your AI conversations transform into a beautiful markdown file right before your eyes\!
     - **👀 No waiting around** - it pops open instantly in your editor. (We love instant gratification\!)
     - **💾 Like what you see?** Hit that Save button and your AI wisdom is safely tucked into your project files.
     - **🌳 Feeling git-ty?** Commit it to your repo just like any other file - because your AI conversations deserve version control too\!
-
 
     ## 🌟 Share your history with a story\!
 
@@ -36,12 +33,11 @@ description: "Give your AI assistant a persistent memory. Best upgrade since cof
     <Frame>
       ![share your chat history](https://share.specstory.com/extension/share_your_history_2.gif)
     </Frame>
-
     - **🌎 Ready to share your AI coding adventures with the world?** One command sends your chat history sailing into the cloud, returning a magical URL just for you\!
     - **🎭 No signup required** - your shares are anonymous. (But hey, keep those secret API keys and passwords to yourself, okay?)
     - **🔗 Pro tip:** Bookmark that special URL like it's your favorite cat gif - you'll want it later\!
     - **✏️ As the creator, you can add a description to your share, paste images, and curate which chats to include.**
-    - **📝 Mark it down:** You can add tons of details to your share by adding sections of markdown-formatted text in between any parts of the conversation. 
+    - **📝 Mark it down:** You can add tons of details to your share by adding sections of markdown-formatted text in between any parts of the conversation.
     - **🗑️ Having second thoughts?** Need to make something disappear? Drop us a line at [support@specstory.com](mailto:support@specstory.com) **with a link to the share** and we'll take care of it faster than you can say "delete my search history."
 
     ## 🧪 Auto-magically derive Rules for AI
@@ -49,14 +45,12 @@ description: "Give your AI assistant a persistent memory. Best upgrade since cof
     <Frame>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/mN8NzRDGAb4?si=jIHZNmoXC1ICSEwe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
     </Frame>
-
     <Info>
       This is a feature that launched in SpecStory [v0.7.0](https://marketplace.visualstudio.com/items/SpecStory.specstory-vscode/changelog) for Cursor. It is updated to support both Copilot and Cursor in `v0.11.0`. Unlike all of the above features, it's use requires you to:
 
       - Have Auto-save enabled.
       - Create an account and sign-in to the SpecStory extension.
     </Info>
-
     - **❓ Unfamiliar with what rules for AI are?** Consult their respective docs:
       - Copilot [custom instructions](https://code.visualstudio.com/docs/copilot/copilot-customization)
       - Cursor [project rules](https://docs.cursor.com/context/rules-for-ai#project-rules-recommended) _or_ [Cursor101.com](https://cursor101.com/cursor/rules)_._
@@ -80,15 +74,13 @@ description: "Give your AI assistant a persistent memory. Best upgrade since cof
     <Frame>
       ![Headers](/images/headers.png)
     </Frame>
-
     **🌟 The Benefits of this Sorcery**
 
     - **🧙‍♀️ Less repetitive incantations:** Reduced need to constantly explain your preferences every time.
     - **⚡ Faster spell-casting:** AI responses align with your project from the start.
     - **🔄 Self-improving magic:** As you work, the rules evolve to match your growing expertise.
   </Tab>
-  
-  <Tab title="Claude Code" tab-id="claude-code">
+  <Tab title="Claude Code">
     ## 🪄 Your work saves itself, no cloud required\!
 
     When you run Claude Code through SpecStory, it automatically saves your conversations in `.specstory/history/` in your current project directory. The CLI acts as a wrapper, launching Claude Code while capturing all your chat sessions.
@@ -99,16 +91,16 @@ description: "Give your AI assistant a persistent memory. Best upgrade since cof
 
     ```bash
     # Run Claude Code through SpecStory wrapper (default)
-    specstory
-
+    specstory run
+    
     # Sync all Claude Code sessions to markdown files
-    specstory -s
-
+    specstory sync
+    
     # Generate markdown for a specific session
-    specstory -u <session-uuid>
-
+    specstory sync -u <session-uuid>
+    
     # Run with verbose output to see what's happening
-    specstory -s --verbose
+    specstory sync --verbose
     ```
 
     - **📝 Automatic capture:** Running `specstory` launches Claude Code and captures conversations
@@ -116,28 +108,27 @@ description: "Give your AI assistant a persistent memory. Best upgrade since cof
     - **💾 Batch conversion:** Use `-s` flag to convert all existing sessions to markdown
     - **🌳 Git-friendly:** All output is clean markdown, perfect for version control
 
-
     ## 🌟 Share your history with a story\!
 
-    Currently, the SpecStory CLI wrapper focuses on capturing and converting your Claude Code sessions to markdown. Sharing features are on the roadmap!
+    Currently, the SpecStory CLI wrapper focuses on capturing and converting your Claude Code sessions to markdown. Sharing features are on the roadmap\!
 
     For now, you can:
-    - Generate markdown files with `specstory -s`
+
+    - Generate markdown files with `specstory sync`
     - Find your conversations in `.specstory/history/`
     - Share the markdown files directly or through your preferred method
     - Commit them to git for team collaboration
 
     <Info>
-      The VS Code and Cursor extensions have built-in sharing to share.specstory.com. Similar functionality for the CLI is coming soon!
+      The VS Code and Cursor extensions have built-in sharing to share.specstory.com. Similar functionality for the CLI is coming soon\!
     </Info>
-
     ## 🧪 Auto-magically derive Rules for AI
 
     <Info>
       Rule derivation is currently available in the VS Code and Cursor extensions. The CLI wrapper focuses on session capture and markdown generation.
     </Info>
-
     While the CLI doesn't generate rules directly, your captured markdown sessions can be:
+
     - Analyzed manually to identify patterns
     - Used as context when crafting your own rules in (`claude.md`)
     - Shared with team members to establish coding conventions
