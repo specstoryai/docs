@@ -105,24 +105,51 @@ description: "Everything you can do with SpecStory"
   <Tab title="Claude Code">
     After installing, run the wrapper and it will start claude code.
 
-    ```bash
-    ## By default, specstory launches Claude Code with any additional provided arguments.
-    specstory 
+    ```
+    SpecStory is a wrapper for Claude Code that auto-saves markdown files of all your chat interactions with Claude Code.
     
-    ## Use -h to see help for all available options (all flags including below)
-    specstory -h
+      USAGE
     
-    ## Flags:
-          --check-install           ## check if Claude Code is properly installed and can be invoked
-      -c, --claude-code-cmd string  ## optional command to execute Claude Code, with any arguments (default: 'claude')
-      -h, --help                    ## help for specstory
-          --log                     ## write verbose output to .specstory/history/debug/debug.log
-          --no-usage-analytics      ## disable usage analytics
-          --no-version-check        ## skip checking for newer versions
-      -u, --session-uuid string     ## optional session UUID to generate markdown file for
-      -s, --sync-markdown           ## create any missing markdown files for Clade Code sessions in the current working directory
-      -v, --verbose                 ## enable verbose output to stdout
-      -V, --version                 ## show version
+    
+        specstory [command] [--flags]
+    
+    
+      EXAMPLES
+    
+    
+        # Check the Claude Code installation
+        specstory check
+    
+        # Run Claude Code with auto-saving
+        specstory run
+    
+        # Run Claude Code with auto-saving, specifying a custom Claude Code command
+        specstory run -c "claude --dangerously-skip-permissions"
+    
+        # Generate markdown files for all Claude Code sessions associated with the current directory
+        specstory sync
+    
+        # Generate a markdown file for a specific Claude Code session associated with the current directory
+        specstory sync -u <session-uuid>
+    
+    
+      COMMANDS
+    
+        check [--flags]       Check if Claude Code is properly installed and can be invoked by SpecStory
+        help [command]        Help about any command
+        run [--flags]         Launch Claude Code in interactive mode with auto-save markdown file generation
+        sync [--flags]        Sync markdown files for Claude Code sessions
+        version               Show SpecStory version information
+    
+      FLAGS
+    
+        -h --help             Help for specstory
+        --log                 Write verbose output to .specstory/history/debug/debug.log
+        --no-usage-analytics  Disable usage analytics
+        --no-version-check    Skip checking for newer versions
+        --silent              Suppress all non-error output
+        --verbose             Enable verbose output to stdout
+        -v --version          Version for specstory
     ```
 
     ## Auto-Save Your AI Conversations
@@ -139,17 +166,20 @@ description: "Everything you can do with SpecStory"
     Simple flags let you manage your Claude Code conversation history:
 
     ```bash
+    # Use Claude Code with auto-save of your AI chats to markdown files
+    specstory run
+    
     # Sync any missing markdown files for Clade Code sessions in the current working directory
-    specstory -s
+    specstory sync
     
     # Convert a specific session to markdown
-    specstory -u <session-uuid>
+    specstory sync -u <session-uuid>
     
     # See what's happening with verbose output
-    specstory -s --verbose
+    specstory sync --verbose
     
     # Optional command to execute Claude Code, with any arguments (default: 'claude')
-    specstory -c 
+    specstory run -c "~/.claude/local/claude --dangerously-skip-permissions" 
     ```
 
     The wrapper reads Claude Code's session files from `~/.claude/projects/` and converts them to clean markdown in your project's `.specstory/history/` directory.

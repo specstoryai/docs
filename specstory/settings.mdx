@@ -3,6 +3,8 @@ title: "Settings"
 description: "Change how SpecStory works"
 ---
 
+run 
+
 <Tabs>
   <Tab title="Cursor + VSCode">
     ## Extension Settings
@@ -35,17 +37,30 @@ description: "Change how SpecStory works"
 
     The SpecStory CLI wrapper is designed to work out of the box with minimal configuration:
 
+    ### Available Commands
+
+    | Flag      | Description                                          | Examples                                         |
+    | :-------- | :--------------------------------------------------- | :----------------------------------------------- |
+    | (default) | Show help information                                | `specstory`                                      |
+    | `run`     | Run Claude Code with auto-save to markdown           | `specstory run`                                  |
+    | `sync`    | Convert existing sessions to markdown                | `specstory sync`<br />`specstory sync -u <uuid>` |
+    | `check`   | Claude Code is installed and accessible by SpecStory | `specstory check`                                |
+    | `help`    | Show help information                                | `specstory help`<br />`specstory help <command>` |
+    | `version` | Show version                                         | `specstory version`                              |
+
     ### Available Flags
 
-    | Flag                  | Description                      | Usage                          |
-    | --------------------- | -------------------------------- | ------------------------------ |
-    | (default)             | Run Claude Code through wrapper  | `specstory`                    |
-    | `-s, --sync-markdown` | Convert all sessions to markdown | `specstory -s`                 |
-    | `-u, --session-uuid`  | Convert specific session         | `specstory -u <uuid>`          |
-    | `-v, --verbose`       | Show detailed output             | `specstory -s -v`              |
-    | `-c, --claude-path`   | Custom Claude Code path          | `specstory -c /path/to/claude` |
-    | `-h, --help`          | Show help information            | `specstory -h`                 |
-    | `-V, --version`       | Show version                     | `specstory -V`                 |
+    | Flag                   | Description                                   | Usage                                                                      |
+    | ---------------------- | --------------------------------------------- | -------------------------------------------------------------------------- |
+    | `-c, --claude-command` | Custom Claude Code command/args               | `specstory run -c "~/.claude/local/claude --dangerously-skip-permissions"` |
+    | `-u, --session-uuid`   | Sync a specific session to markdown           | `specstory sync -u <uuid>`                                                 |
+    | `--verbose`            | Show debug output to stdout                   | `specstory sync --verbose`                                                 |
+    | `--log`                | Debug output to `./specstory/debug/debug.log` | `specstory sync --log`                                                     |
+    | `--silent`             | Supress all non-error output                  | `specstory sync --silent`                                                  |
+    | `--no-usage-analytics` | Disable usage analytics                       | `specstory run --no-usage-analytics`                                       |
+    | `--no-version-check`   | Skip checking for newer version               | `specstory run --no-version-check`                                         |
+    | `-h, --help`           | Show help information                         | `specstory -h`                                                             |
+    | `-v, --version`        | Show version                                  | `specstory -v`                                                             |
 
     ### Default Behavior
 
@@ -67,17 +82,20 @@ description: "Change how SpecStory works"
     </Info>
     ## Debugging
 
-    Use verbose mode to troubleshoot:
+    Use verbose mode or logging to troubleshoot:
 
     ```bash
-    # Run with verbose output
-    specstory -s --verbose
+    # Run interactively with verbose output (noisy)
+    specstory run --verbose
+    
+    # Run interactively with logging (quiet, just as helpful)
+    specstory run --log
     
     # Check what sessions will be processed
-    specstory -s --verbose | grep "Parsing session"
+    specstory sync --verbose | grep "Parsing session"
     ```
 
-    The verbose flag shows:
+    The verbose flag and log show:
 
     - Which session files are being parsed
     - Where markdown files are being written
