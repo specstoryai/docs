@@ -3,6 +3,7 @@ title: "Features"
 description: "Everything you can do with SpecStory"
 ---
 
+
 <Tabs>
   <Tab title="Cursor + VSCode">
     ## Auto-Save Your AI Conversations
@@ -179,7 +180,10 @@ description: "Everything you can do with SpecStory"
     specstory sync --verbose
     
     # Optional command to execute Claude Code, with any arguments (default: 'claude')
-    specstory run -c "~/.claude/local/claude --dangerously-skip-permissions" 
+    specstory run -c "~/.claude/local/claude --dangerously-skip-permissions"
+    
+    # Sync markdown to a custom output directory
+    specstory sync --output-dir ~/my-claude-sessions
     ```
 
     The wrapper reads Claude Code's session files from `~/.claude/projects/` and converts them to clean markdown in your project's `.specstory/history/` directory.
