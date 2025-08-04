@@ -106,7 +106,7 @@ description: "Everything you can do with SpecStory"
     After installing, run the wrapper and it will start claude code.
 
     ```
-    SpecStory is a wrapper for Claude Code that auto-saves markdown files of all your chat interactions with Claude Code.
+      SpecStory is a wrapper for Claude Code that auto-saves markdown files of all your chat interactions with Claude Code.
     
       USAGE
     
@@ -135,21 +135,22 @@ description: "Everything you can do with SpecStory"
     
       COMMANDS
     
-        check [--flags]       Check if Claude Code is properly installed and can be invoked by SpecStory
-        help [command]        Help about any command
-        run [--flags]         Launch Claude Code in interactive mode with auto-save markdown file generation
-        sync [--flags]        Sync markdown files for Claude Code sessions
-        version               Show SpecStory version information
+        check [--flags]           Check if Claude Code is properly installed and can be invoked by SpecStory
+        help [command] [--flags]  Help about any command
+        run [--flags]             Launch Claude Code in interactive mode with auto-save markdown file generation
+        sync [--flags]            Sync markdown files for Claude Code sessions
+        version                   Show SpecStory version information
     
       FLAGS
     
-        -h --help             Help for specstory
-        --log                 Write verbose output to .specstory/history/debug/debug.log
-        --no-usage-analytics  Disable usage analytics
-        --no-version-check    Skip checking for newer versions
-        --silent              Suppress all non-error output
-        --verbose             Enable verbose output to stdout
-        -v --version          Version for specstory
+        --console                 Enable error/warn/info output to stdout
+        --debug                   Enable debug-level output (requires --console or --log)
+        -h --help                 Help for specstory
+        --log                     Write error/warn/info output to ./.specstory/debug/debug.log
+        --no-usage-analytics      Disable usage analytics
+        --no-version-check        Skip checking for newer versions
+        --silent                  Suppress all non-error output
+        -v --version              Version for specstory
     ```
 
     ## Auto-Save Your AI Conversations
@@ -175,8 +176,8 @@ description: "Everything you can do with SpecStory"
     # Convert a specific session to markdown
     specstory sync -u <session-uuid>
     
-    # See what's happening with verbose output
-    specstory sync --verbose
+    # See what's happening with log output to the console
+    specstory sync --console
     
     # Optional command to execute Claude Code, with any arguments (default: 'claude')
     specstory run -c "~/.claude/local/claude --dangerously-skip-permissions"
