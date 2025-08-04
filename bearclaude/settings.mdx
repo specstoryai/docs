@@ -1,6 +1,6 @@
 ---
-title: 'Settings'
-description: 'Configure BearClaude for your workflow'
+title: "Settings"
+description: "Configure BearClaude for your workflow"
 ---
 
 ## Settings
@@ -16,9 +16,16 @@ BearClaude has simple, focused settings to get you up and running quickly.
 
 With a normal Claude Code installation, you shouldn't need to change this setting.
 
-### Application Configuration  
+#### Debugging "Sad Bear"
+
+If BearClaude is unable to verify that Claude Code can be run, you'll see the "Sad Bear" screen. If Claude Code runs fine for you in the terminal, but not in BearClaude, try downloading the SpecStory CLI for Claude Code and running `specstory check` in your terminal.
+
+Make sure you do not have anything in your `.zshrc` or `.zprofile` that is waiting for interactive user input, as this will prevent BearClaude from starting the Claude Code session.
+
+### Application Configuration
 
 **Appearance**: Choose your preferred theme
+
 - **Light** - Light mode interface
-- **Dark** - Dark mode interface  
+- **Dark** - Dark mode interface
 - **System (Auto)** - Follows your macOS system appearance setting
