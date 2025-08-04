@@ -69,7 +69,6 @@ run
     - **Session Storage:** `.specstory/history/` in current directory
     - **Session Files:** Read from `~/.claude/projects/`
     - **Output Format:** Markdown files with timestamps
-    - **History Tracking:** `.history.json` maintains session metadata
 
     ### Project Configuration
 
@@ -77,27 +76,27 @@ run
 
     - `.specstory/` directory for storing conversations
     - `.specstory/history/` for markdown files
-    - `.specstory/history/.history.json` for session tracking
+    - `.specstory/.project.json` for project tracking
 
     <Info>
       Unlike the VS Code/Cursor extensions which have extensive settings, the CLI wrapper follows a "convention over configuration" approach for simplicity.
     </Info>
     ## Debugging
 
-    Use verbose mode or logging to troubleshoot:
+    Use console mode or logging to troubleshoot:
 
     ```bash
     # Run interactively with verbose output (noisy)
-    specstory run --verbose
+    specstory run --console --debug
     
     # Run interactively with logging (quiet, just as helpful)
     specstory run --log
     
     # Check what sessions will be processed
-    specstory sync --verbose | grep "Parsing session"
+    specstory sync --console | grep "Parsing session"
     ```
 
-    The verbose flag and log show:
+    The console and log flags show:
 
     - Which session files are being parsed
     - Where markdown files are being written
