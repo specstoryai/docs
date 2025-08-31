@@ -1,0 +1,124 @@
+---
+
+title: "Quickstart"
+description: "Install SpecStory and capture your first AI conversation in minutes."
+---
+
+SpecStory works across multiple tools. Follow the steps to setup SpecStory for your editor or workflow and get started quickly.
+
+<CardGroup cols={2}>
+  <Card title="Cursor" icon="laptop" href="#cursor">
+    Install from Cursor’s marketplace and verify autosave to <code>.specstory/history/</code>.
+  </Card>
+  <Card title="VS Code + Copilot" icon="code" href="#vs-code-copilot">
+    Install the VSIX from VS Code and confirm conversations are saved locally.
+  </Card>
+  <Card title="Claude Code / CLI" icon="terminal" href="#claude-code">
+    Install the SpecStory CLI, run or sync sessions, and inspect generated Markdown.
+  </Card>
+  <Card title="BearClaude (macOS)" icon="bear" href="#bearclaude-macOS">
+    Download the app, open a project, and confirm local autosave.
+  </Card>
+</CardGroup>
+
+
+
+## Cursor
+
+### Install
+
+1. Open **Cursor**.
+2. **Extensions** (Ctrl/Cmd+Shift+X) → search **SpecStory** → **Install**.
+3. Verify via Command Palette (Ctrl/Cmd+Shift+P) → type `SpecStory`.
+
+<Warning>
+Installing from the Visual Studio Marketplace website can leave VS Code installed but not Cursor. Install **inside Cursor**.
+</Warning>
+
+### Verify autosave
+
+1. Chat with Cursor’s AI in a workspace folder.
+2. Check `<your-project>/.specstory/history/` for a Markdown file representing your session.
+
+👉 Learn more in **[Integrations → VS Code + Copilot](/integrations/cursor)**.
+
+
+## VS Code + Copilot
+
+### Install
+
+1. Open **VS Code** with **GitHub Copilot** enabled.
+2. **Extensions** (Ctrl/Cmd+Shift+X) → search **SpecStory** → **Install**.
+3. Verify via Command Palette (Ctrl/Cmd+Shift+P): type `SpecStory`.
+
+### Verify autosave
+
+1. Start a Copilot chat in your workspace.
+2. Check `<your-project>/.specstory/history/` for a new Markdown file.
+
+👉 More details in **[Integrations → VS Code + Copilot](/integrations/vscode)**.
+
+## Claude Code
+
+### Install (macOS via Homebrew)
+
+```bash
+brew tap specstoryai/tap
+brew update
+brew install specstory
+specstory version
+```
+
+### Run & verify
+
+```bash
+# Launch Claude Code via SpecStory (captures the session)
+specstory run
+
+# Convert existing Claude Code sessions to Markdown
+specstory sync
+
+# Sync a specific session
+specstory sync -u <session-uuid>
+
+# Optional: view progress in console
+specstory sync --console
+```
+
+Generated files appear in `<your-project>/.specstory/history/`.
+
+<Tip>
+Linux/WSL: download binaries from the GitHub releases page. See **[Integrations → Claude Code / CLI](/integrations/claude-code)** for platform notes and paths.
+</Tip>
+
+👉 Learn more in **[Integrations → Claude Code](/integrations/claudecode)**.
+
+## BearClaude (macOS)
+
+### Install
+
+* Download from **[BearClaude → Introduction](/bearclaude/introduction)** (macOS 15+ on Apple Silicon).
+* Drag to Applications and open.
+
+### Use & verify
+
+1. Open a project folder in BearClaude.
+2. Write a spec in the editor, then use the Claude pane.
+3. Check `<your-project>/.specstory/history/` for Markdown files of your conversations.
+
+👉 Deep dive in **[BearClaude](/bearclaude/overview)** and **[Settings](/bearclaude/settings)**.
+
+## Troubleshooting quick checks
+
+* **No files in `.specstory/history/`**: Confirm you are inside a project folder with write permissions.
+* **Cursor VS Code not saving**: Ensure the extension is installed in the correct editor (Cursor vs VS Code) and restart the editor.
+* **CLI not capturing**: Run `specstory check` and confirm Claude Code runs from your shell (e.g., `claude --version`).
+* **Still stuck**? See **[Integrations](/integrations)** for storage paths and known issues, or open **[Support](/support)**.
+
+
+
+## Next steps
+
+* Learn the **core features**: [Auto-save, Share, Derived Rules](/features).
+* Configure **settings** and analytics: [Extension & CLI Settings](/specstory/settings).
+* Explore **editor notes and paths**: [Integrations](/integrations).

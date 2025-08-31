@@ -26,8 +26,8 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Get Started",
-    "url": "/started"
+    "name": "Getting Started",
+    "url": "/overview"
   },
   "tabs": [
     {
@@ -37,24 +37,9 @@
   ],
   "anchors": [
     {
-      "name": "SpecStory on GitHub",
-      "icon": "github",
-      "url": "https://github.com/specstoryai/getspecstory"
-    },
-    {
       "name": "Try BearClaude",
       "icon": "desktop",
       "url": "https://bearclaude.specstory.com/#download-section"
-    },
-    {
-      "name": "Join our Slack",
-      "icon": "slack",
-      "url": "https://join.slack.com/t/specstory/shared_invite/zt-2vq0274ck-MYS39rgOpDSmgfE1IeK9gg"
-    },
-    {
-      "name": "Newsletter",
-      "icon": "newspaper",
-      "url": "https://newsletter.specstory.com/"
     },
     {
       "name": "Email Support",
@@ -64,9 +49,10 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Getting Started",
       "pages": [
-        "started",
+        "overview",
+        "quickstart",
         "specflow"
       ]
     },
@@ -100,7 +86,10 @@
   "footerSocials": {
     "github": "https://github.com/specstoryai",
     "linkedin": "https://linkedin.com/company/specstory",
-    "x": "https://x.com/specstoryai"
+    "x": "https://x.com/specstoryai",
+    "slack": "https://join.slack.com/t/specstory/shared_invite/zt-2vq0274ck-MYS39rgOpDSmgfE1IeK9gg",
+    "website": "https://specstory.com/"
+
   },
   "analytics": {
     "posthog": {
