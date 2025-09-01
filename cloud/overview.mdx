@@ -1,0 +1,63 @@
+---
+title: "Overview"
+---
+
+SpecStory Cloud turns your local `.specstory/history/` into a shared knowledge system for your team.
+Locally, SpecStory captures the reasoning and decisions behind your code. With Cloud, you get seamless centralized search, sync, and sharing of those conversations across projects and teams.
+
+## Why SpecStory Cloud exists
+
+Local-first capture is great for individuals, but it leaves teams with challenges:
+
+- **Scattered knowledge**: reasoning lives on individual machines.
+- **Lost context**: onboarding or PR review requires digging through repos and commits.
+- **No global search**: finding “that one conversation about auth migrations” is slow or impossible.
+- **Fragile sharing**: copy-pasting Markdown or links doesn’t scale.
+
+Cloud addresses these gaps.
+
+## What does Cloud add
+
+- **Centralized search** across all synced projects.
+- **Organized storage** by repo, project, tags, or time.
+- **Private by default** since nothing syncs until you opt in.
+- **Team-ready workspaces** with roles and permissions.
+- **API and automation hooks** to integrate with CI, docs, or dashboards.
+
+## How It Fits Together
+
+1. **Local Tools:**  Cursor, VS Code + Copilot, Claude Code CLI, and BearClaude auto-save conversations to `.specstory/history/`.
+
+2. **Sync to Cloud:**  You choose what to sync (manual, scheduled, or per-project). Sync respects your privacy - no background uploads without consent.
+
+3. **Centralized Search & Access:**  Cloud indexes synced histories for fast search and filtering. Find past decisions and design threads in seconds.
+
+4. **Team Collaboration:**  Workspaces let teams explore reasoning, reference decisions, and keep context alive in PRs and documentation.
+
+<Tip>
+SpecStory Cloud is designed to **complement**, not replace, your local setup. If you want to stay fully local, keep using the extensions and CLI without enabling sync.
+</Tip>
+
+## What you can do with Cloud
+
+- 🔍 **Search across projects**: Full-text + semantic search, with filters for repo, author, file path, or tags.
+- 🗂️ **Organize knowledge**: Create collections, tag sessions, and group conversations by project or workspace.
+- 👥 **Collaborate with teams**: Share context in PRs, RFCs, or onboarding docs.
+- ⚙️ **Automate with the CLI and API**: Run searches, export results, or wire SpecStory into your CI/CD.
+
+## Next steps
+
+<CardGroup>
+  <Card title="Quickstart" icon="rocket" href="/cloud/quickstart">
+    Create an account, sync your first project, and run a search.
+  </Card>
+  <Card title="Sync & Store" icon="arrow-down-up-across-line" href="/cloud/sync-and-store">
+    Configure sync rules, storage, and verification.
+  </Card>
+  <Card title="Search & Organization" icon="magnifying-glass" href="/cloud/search-and-organization">
+    Master filters, saved searches, and collections.
+  </Card>
+  <Card title="Teams & Sharing" icon="users" href="/cloud/teams-and-sharing">
+    Manage workspaces, roles, and collaboration patterns.
+  </Card>
+</CardGroup>

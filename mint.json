@@ -73,6 +73,12 @@
       ]
     },
     {
+      "group": "SpecStory Cloud",
+      "pages": [
+        "cloud/overview"
+      ]
+    },
+    {
       "group": "BearClaude for macOS",
       "pages": [
         "bearclaude/introduction",
