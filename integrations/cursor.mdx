@@ -1,0 +1,75 @@
+---
+title: "Cursor"
+---
+
+SpecStory integrates seamlessly with [Cursor](https://cursor.com). Cursor already helps developers move faster with **inline edits**, **multi-line completions**, and **codebase chat**. SpecStory adds the missing layer by capturing *why* the changes were made.
+
+With SpecStory enabled, every AI conversation in Cursor is **auto-saved as Markdown** in your project. Your reasoning, tradeoffs, and design decisions live alongside your code: versioned, reusable, and shareable.
+
+
+## Install the SpecStory Extension
+
+1. Open **Cursor**.
+2. Go to **Extensions Marketplace** (`Ctrl/Cmd+Shift+X`).
+3. Search for **SpecStory** and click **Install**.
+4. Verify installation:
+   - Open the Command Palette (`Ctrl/Cmd+Shift+P`).
+   - Type `SpecStory`, the commands should appear.
+
+<Warning>
+If you install SpecStory directly from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=SpecStory.specstory-vscode) website, you may end up with VS Code having the extension but not Cursor. Always install directly from inside Cursor to avoid this issue.
+</Warning>
+
+## Verify It Works
+
+- Start a chat with Cursor’s AI.
+- Open your project folder.
+- You should now see a new `.specstory/history/` directory.
+- Inside, you should see a Markdown file of your session, named with a timestamp.
+
+<Tip>
+SpecStory is **local-first** by default. Nothing leaves your machine unless you explicitly share it.
+</Tip>
+
+## How SpecStory Enhances Cursor
+
+- **Auto-save:** Every AI conversations in Cursor are automatically stored in `.specstory/history/` as clean Markdown.
+- **Manual saves:** From the Command Palette, run `SpecStory: Save AI Chat History` to cherry-pick and combine conversations.
+- **Share conversations with a URL:** Use `SpecStory: Share AI Chat History` to generate a private, anonymous link at `share.specstory.com`.
+
+<Frame>
+  ![Share your chat history](https://share.specstory.com/extension/share_your_history_2.gif)
+</Frame>
+
+- **Derived rules for AI:** SpecStory can extract project-level rules and custom instructions from your chats, feeding them back into Cursor to improve suggestions.
+
+<Frame>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/mN8NzRDGAb4?si=jIHZNmoXC1ICSEwe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
+</Frame>
+
+<Info>
+Rule derivation requires:
+- Auto-save enabled.
+- Signed-in SpecStory extension.
+</Info>
+
+## Best Practices for Cursor Users
+
+- **Commit your history**: Include `.specstory/history/` in your repo so teammates can review reasoning in PRs.
+- **Use manual saves before big changes**: Preserve the conversation context before accepting multi-line or agent-driven edits.
+- **Leverage derived rules**: Cursor’s [Project Rules](https://docs.cursor.com/context/rules-for-ai#project-rules-recommended) evolve automatically when SpecStory is active.
+
+## Why This Matters
+
+Cursor accelerates *what* changes in your codebase. SpecStory ensures you never lose *why* those changes happened.
+Together, they give you:
+
+- Faster debugging and onboarding
+- Traceable architectural decisions
+- Cleaner collaboration on AI-assisted code
+
+## Troubleshooting
+
+- **Extension mismatch**: If VS Code shows SpecStory installed but Cursor doesn’t, uninstall and reinstall from Cursor’s built-in Marketplace.
+- **No `.specstory` folder**: Make sure you have an active project folder open. SpecStory only saves inside projects.
+- **Still stuck**? File an issue on [GitHub](https://github.com/specstoryai/getspecstory/issues) or contact [support@specstory.com](mailto:support@specstory.com).

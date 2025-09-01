@@ -1,0 +1,111 @@
+---
+title: "Claude Code / CLI"
+---
+
+SpecStory complements [Claude Code](https://docs.anthropic.com/en/docs/claude-code), Anthropic’s agentic AI coding tool that runs in your terminal. Claude Code automates coding tasks like brainstorming, editing, testing, and PR creation. SpecStory adds the missing layer: **capturing the reasoning and decisions behind those sessions as clean Markdown**.
+
+With SpecStory, every Claude Code interaction becomes a versioned, searchable, and shareable artifact you can keep alongside your code.
+
+## What is Claude Code?
+
+Claude Code runs in your terminal and understands your entire codebase via agentic AI (powered by Claude 3.7 Sonnet and Opus 4), enabling everything from full-stack edits to CI integration, all without context-switching.
+It supports:
+- Autonomous multi-file edits & PR creation
+- Intelligent file navigation and dependency awareness
+- Slash commands, GitHub CLI (`gh`), and external toolchain interoperability
+
+## Install SpecStory with Claude Code
+
+### macOS (via Homebrew)
+```bash
+brew tap specstoryai/tap
+brew update
+brew install specstory
+specstory version
+```
+
+### Linux / WSL
+Download and install the latest binaries for your platform from [our GitHub releases](https://github.com/specstoryai/getspecstory/releases) and move it into your PATH:.
+
+```bash
+sudo mv specstory /usr/local/bin/
+chmod +x /usr/local/bin/specstory
+```
+
+Verify with:
+```bash
+specstory version
+```
+
+## Usage: Capture Your Claude Code Sessions
+
+Run Claude Code through SpecStory to automatically capture your sessions:
+```bash
+# Launch Claude Code with automated capture
+specstory run
+```
+
+Conversations will be stored in `.specstory/history/` as timestamped Markdown.
+
+## Understanding `specstory sync`
+
+The `sync` command ensures you can **retroactively capture Claude Code history**, even if you didn’t start with `specstory run`.
+
+**Convert all sessions**:
+
+```bash
+specstory sync
+```
+
+Exports *all* Claude Code sessions into `.specstory/history/*.md`.
+
+**Sync a single session**:
+
+```bash
+specstory sync -u <session-uuid>
+```
+
+Converts only one session by its ID.
+
+**Debug with console output**:
+
+```bash
+specstory sync --console
+```
+
+Streams conversion logs to the terminal.
+
+This makes `specstory sync` invaluable if you ever forget to wrap a session or want to batch-export past work.
+
+## Enhancing Claude Code Workflows
+
+- **Full-history capture**: Each CLI session is saved as clean Markdown.
+- **Reusable context**: Revisit and reuse design discussions without rerunning prompts.
+- **Portable reasoning**: Sessions history stay with your repo, not locked in a terminal buffer.
+- **CLI-first logic**: Ideal for developers who prefer terminal workflows and composability.
+
+
+## Pro Tips & Best Practices
+
+- **Use `/clear` between tasks**: Keeps new sessions focused and token-efficient.
+- **Use `!command` for shell context**: Great for feeding in outputs (`!ls`, `!grep`, etc.).
+- **Enable auto-mode carefully**: Allows unattended editing (`–dangerously-skip-permissions`), but only for trusted projects.
+- **Leverage `/init` to create a CLAUDE.md**: Gives Claude persistent project knowledge.
+- **Document custom tools**: Add context for custom scripts, CI helpers, or CLI tools via `CLAUDE.md` to guide Claude intelligently.
+
+## Why This Matters
+
+Claude Code lets you **act via AI** in your terminal. SpecStory ensures you *understand why* those actions happened. This combination delivers:
+
+- Better traceability for agentic edits
+- Historical context to aid collaboration and debates
+- Easily composable workflows via Markdown rather than closed UI prompts
+
+
+## Troubleshooting
+
+- **`specstory run` not capturing**: Ensure `claude` is in your PATH and that a session starts.
+- **No output in `.specstory/history/`**: Run `specstory sync` to convert past sessions.
+- **`specstory sync` shows nothing**: Verify Claude Code has existing sessions.
+- **Permission issues on macOS/Linux**: Avoid running as root, check file permissions in your project folder.
+- **Need help**? File an issue on [GitHub](https://github.com/specstoryai/getspecstory/issues) or contact [support@specstory.com](mailto:support@specstory.com).

@@ -57,6 +57,14 @@
       ]
     },
     {
+      "group": "Integrations",
+      "pages": [
+        "integrations/cursor",
+        "integrations/vscode",
+        "integrations/claude-code"
+      ]
+    },
+    {
       "group": "SpecStory Extension",
       "pages": [
         "specstory/introduction",
