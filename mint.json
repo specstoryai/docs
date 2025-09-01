@@ -52,8 +52,7 @@
       "group": "Getting Started",
       "pages": [
         "overview",
-        "quickstart",
-        "specflow"
+        "quickstart"
       ]
     },
     {
@@ -81,6 +80,12 @@
         "bearclaude/quickstart",
         "bearclaude/features",
         "bearclaude/settings"
+      ]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        "guides/specflow"
       ]
     },
     {
