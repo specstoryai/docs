@@ -14,24 +14,25 @@ Local-first capture is great for individuals, but it leaves teams with challenge
 - **No global search**: finding “that one conversation about auth migrations” is slow or impossible.
 - **Fragile sharing**: copy-pasting Markdown or links doesn’t scale.
 
-Cloud addresses these gaps.
+Cloud solves these problems by indexing your synced sessions in one place.
 
-## What does Cloud add
+## What Cloud adds today
 
 - **Centralized search** across all synced projects.
-- **Organized storage** by repo, project, tags, or time.
-- **Private by default** since nothing syncs until you opt in.
-- **Team-ready workspaces** with roles and permissions.
-- **API and automation hooks** to integrate with CI, docs, or dashboards.
+- **Organized storage** by project and time.
+- **Private by default**, nothing uploads until you explicitly run sync.
+- **Single-user workspaces** today, team collaboration features are on the roadmap..
+- **API endpoints** for programmatic sync and search.
+
+<Tip>
+SpecStory Cloud is **opt-in**. You decide when to sync and what projects to include.
+</Tip>
 
 ## How It Fits Together
 
-1. **Local Tools:**  Cursor, VS Code + Copilot, Claude Code CLI, and BearClaude auto-save conversations to `.specstory/history/`.
-
-2. **Sync to Cloud:**  You choose what to sync (manual, scheduled, or per-project). Sync respects your privacy - no background uploads without consent.
-
+1. **Local Capture:**  Cursor, VS Code + Copilot, Claude Code CLI, and BearClaude auto-save conversations to `.specstory/history/`.
+2. **Sync to Cloud:**  Run `specstory sync` (or the equivalent editor command). The CLI sends each session securely to Cloud. No background uploads without consent.
 3. **Centralized Search & Access:**  Cloud indexes synced histories for fast search and filtering. Find past decisions and design threads in seconds.
-
 4. **Team Collaboration:**  Workspaces let teams explore reasoning, reference decisions, and keep context alive in PRs and documentation.
 
 <Tip>
@@ -40,10 +41,9 @@ SpecStory Cloud is designed to **complement**, not replace, your local setup. If
 
 ## What you can do with Cloud
 
-- 🔍 **Search across projects**: Full-text + semantic search, with filters for repo, author, file path, or tags.
-- 🗂️ **Organize knowledge**: Create collections, tag sessions, and group conversations by project or workspace.
+- 🔍 **Search across projects**: Full-text + semantic search, with filters for projects and time range.
 - 👥 **Collaborate with teams**: Share context in PRs, RFCs, or onboarding docs.
-- ⚙️ **Automate with the CLI and API**: Run searches, export results, or wire SpecStory into your CI/CD.
+- ⚙️ **Integrate with CLI & API** to script syncs or query histories.
 
 ## Next steps
 
