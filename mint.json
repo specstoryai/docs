@@ -73,7 +73,7 @@
       ]
     },
     {
-      "group": "SpecStory Cloud",
+      "group": "SpecStory Cloud (BETA)",
       "pages": [
         "cloud/overview",
         "cloud/quickstart",
