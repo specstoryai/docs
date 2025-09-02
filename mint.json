@@ -76,7 +76,9 @@
       "group": "SpecStory Cloud",
       "pages": [
         "cloud/overview",
-        "cloud/quickstart"
+        "cloud/quickstart",
+        "cloud/sync-and-store",
+        "cloud/search-and-organization"
       ]
     },
     {
