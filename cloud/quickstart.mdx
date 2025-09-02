@@ -2,6 +2,16 @@
 title: "Cloud Quickstart"
 ---
 
+<Warning>
+**Beta Release Required for Cloud Sync**
+
+To sync with SpecStory Cloud, you must download and install our beta release versions:
+- **CLI**: [https://static.specstory.com/cloud-beta/specstory](https://static.specstory.com/cloud-beta/specstory)
+- **VS Code/Cursor Extension**: [https://static.specstory.com/cloud-beta/specstory-vscode-0.19.0-beta1.vsix](https://static.specstory.com/cloud-beta/specstory-vscode-0.19.0-beta1.vsix)
+
+Regular release versions do not support cloud sync yet.
+</Warning>
+
 SpecStory Cloud helps you move from **individual capture** to **shared, searchable context** across your team.
 This guide walks you through creating an account, syncing your first project, and running your first search.
 
@@ -22,15 +32,18 @@ SpecStory is **local‑first**. Nothing is synced until you explicitly turn on s
 ## 2. Ensure local capture is working
 
 
-SpecStory Cloud builds on top of the local `.specstory/history/` your tools already write. Choose your setup and confirm you see Markdown files locally before enabling sync:
+SpecStory Cloud builds on top of the local `.specstory/history/` your tools already write. Choose your setup and confirm you see Markdown files locally before enabling sync.
 
+<Note>
+**Important:** Cloud sync requires the beta versions linked above. Standard release versions do not yet support cloud functionality.
+</Note>
 
 ### Cursor / VS Code + GitHub Copilot
 
-Install the SpecStory extension (VSIX build for Cloud beta).
+Install the SpecStory extension beta version for Cloud support.
 
 
-[Download SpecStory VSIX](https://static.specstory.com/cloud-beta/specstory-vscode-0.19.0-beta1.vsix)
+[Download SpecStory Beta VSIX](https://static.specstory.com/cloud-beta/specstory-vscode-0.19.0-beta1.vsix)
 
 
 To install from this file in **Cursor** or **VS Code**:
@@ -48,9 +61,9 @@ Once installed, open any project folder, start an AI chat, and confirm that `.sp
 
 ### Claude Code
 
-Install the SpecStory CLI and run Claude Code through it so sessions are captured locally.
+Install the SpecStory CLI beta version and run Claude Code through it so sessions are captured locally.
 
-[Download SpecStory CLI](https://static.specstory.com/cloud-beta/specstory)
+[Download SpecStory CLI Beta](https://static.specstory.com/cloud-beta/specstory)
 
 ```bash
 chmod +x specstory
