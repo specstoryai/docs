@@ -1,0 +1,146 @@
+---
+title: "Cloud Quickstart"
+---
+
+SpecStory Cloud helps you move from **individual capture** to **shared, searchable context** across your team.
+This guide walks you through creating an account, syncing your first project, and running your first search.
+
+## 1. Create your SpecStory Cloud account
+
+- Go to [cloud.specstory.com](https://cloud.specstory.com).
+- Sign up with your email or GitHub account.
+- Verify your email and log in.
+- One logged in, you’ll land on an empty dashboard until you sync a project.
+
+Once logged in, you’ll see the Cloud Dashboard. It will be empty at first until you sync your histories and project.
+
+<Info>
+SpecStory is **local‑first**. Nothing is synced until you explicitly turn on sync on your machine.
+</Info>
+
+
+## 2. Ensure local capture is working
+
+SpecStory Cloud builds on top of the local `.specstory/history/` your tools already write. Choose your setup and confirm you see Markdown files locally before enabling sync:
+
+* **Cursor**: Install the SpecStory extension from Cursor’s marketplace. Chat with AI, then check `.specstory/history/` in your project.
+* **VS Code + GitHub Copilot**: Install the SpecStory extension from VS Code Marketplace. Chat with Copilot, then check `.specstory/history/`.
+* **Claude Code**: Install the SpecStory CLI and run Claude Code through it so sessions are captured locally:
+
+```bash
+brew tap specstoryai/tap
+brew install specstory
+specstory run          # launches Claude Code and captures the session
+specstory sync         # converts existing sessions to Markdown
+```
+* **BearClaude (macOS)**: Use BearClaude to author specs and talk to Claude Code. It saves your sessions to `.specstory/history/` in the project you open.
+
+<Tip>
+If `.specstory/history/` isn’t present, complete a short AI conversation first. The first Markdown file is created on save/auto‑save.
+</Tip>
+
+
+## 3. Authenticate your device for Cloud
+
+Run once per machine to allow uploads from the CLI/extension:
+
+```bash
+specstory auth login
+```
+
+This opens a browser window to complete a secure login. Your device stores a token locally and future syncs use it automatically.
+
+<Note>
+Authentication enables sync, but **does not** upload anything by itself.
+</Note>
+
+
+## 4. Sync your first project
+
+You control what (and when) to sync. Pick the path that matches your setup.
+
+### A) From Cursor / VS Code extensions
+
+1. Open the project folder that is already using SpecStory and also contains `.specstory/history/`.
+2. Open the Command Palette (`Ctrl/Cmd+Shift+P`) and run **`SpecStory: Sync with Cloud`**.
+3. Watch for the completion toast, then visit the Cloud dashboard to verify sessions appear.
+
+### B) From the CLI (Claude Code or cross‑project)
+
+```bash
+# Sync all local sessions in the current repo/project
+specstory sync
+
+# Sync a single session by ID
+specstory sync -u <session-uuid>
+```
+
+After sync, refresh [cloud.specstory.com](https://cloud.specstory.com), you should see the project and synced sessions.
+
+
+## 5. Run your first search
+
+1. Open [cloud.specstory.com](https://cloud.specstory.com) and use the search bar.
+2. Use the search bar to query across your synced histories.
+3. Apply filters:
+
+   * **Projects** (multi‑select)
+   * **Time Range**
+4. Open a result to review the results.
+
+Search combines keyword and semantic retrieval so you can quickly resurface reasoning, tradeoffs, or design threads.
+
+<Tip>
+Search runs across **all projects you’ve synced**, so it’s ideal for cross‑repo discovery.
+</Tip>
+
+
+## 6. Current scope of collaboration
+
+SpecStory Cloud currently supports **single‑user**. Each developer can sync their own histories and search them centrally. Team workspaces, invitations, and role‑based access are on the roadmap.
+
+What you can do today:
+- Each teammate can sync their own `.specstory/history/` to Git for code‑adjacent review in PRs and docs.
+- Sessions can be exported or shared manually if needed.
+
+
+## Best practices
+
+* **Start small with one repo**: Sync one project first and validate capture → sync → search before rolling out to all repos.
+* **Be intentional about what you sync**: Version your `.specstory/history/` in Git and use Cloud for team-wide search.
+* **Tag important sessions**: Improves later search and retrieval.
+
+
+## Troubleshooting
+
+* **No sessions appear after sync**
+
+  * Confirm `.specstory/history/` exists and contains Markdown files.
+  * Run `specstory auth login` again if your token expired.
+  * Re‑run `specstory sync` from the project root.
+
+* **Command Palette action missing** (Cursor/VS Code)
+
+  * Verify the SpecStory extension is installed and enabled in that editor.
+  * Restart the editor after installation.
+
+* **CLI can’t find Claude Code sessions**
+
+  * Ensure you launched Claude Code via `specstory run` so the wrapper can capture sessions.
+  * Use `specstory sync` to convert existing session logs to Markdown.
+
+Need help? Open an issue at **github.com/specstoryai/getspecstory** or email **[support@specstory.com](mailto:support@specstory.com)**.
+
+## Where to next
+
+<CardGroup>
+  <Card title="Sync & Store" icon="arrow-down-up-across-line" href="/cloud/sync-and-store">
+    Configure sync from extensions and CLI; verify uploads.
+  </Card>
+  <Card title="Search & Organization" icon="magnifying-glass" href="/cloud/search-and-organization">
+    Master filters and result exploration.
+  </Card>
+  <Card title="Teams & Sharing" icon="users" href="/cloud/teams-and-sharing">
+    See what’s shipping next for collaboration.
+  </Card>
+</CardGroup>

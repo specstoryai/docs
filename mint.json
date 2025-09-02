@@ -75,7 +75,8 @@
     {
       "group": "SpecStory Cloud",
       "pages": [
-        "cloud/overview"
+        "cloud/overview",
+        "cloud/quickstart"
       ]
     },
     {
