@@ -6,7 +6,7 @@ title: "Cloud Quickstart"
 **Beta Release Required for Cloud Sync**
 
 To sync with SpecStory Cloud, you must download and install our beta release versions:
-- **CLI (macOS)**: [https://static.specstory.com/cloud-beta/macOS/specstory](https://static.specstory.com/cloud-beta/macOS/specstory)
+- **CLI (macOS)**: [Installation steps](#claude-code)
 - **CLI (Linux/WSL AMD64)**: [https://static.specstory.com/cloud-beta/linux-amd64/specstory](https://static.specstory.com/cloud-beta/linux-amd64/specstory)
 - **VS Code/Cursor Extension**: [https://static.specstory.com/cloud-beta/specstory-vscode-0.19.0-beta1.vsix](https://static.specstory.com/cloud-beta/specstory-vscode-0.19.0-beta1.vsix)
 
@@ -65,12 +65,21 @@ Once installed, open any project folder, start an AI chat, and confirm that `.sp
 Install the SpecStory CLI beta version and run Claude Code through it so sessions are captured locally.
 
 Download the appropriate version for your OS:
-- [macOS](https://static.specstory.com/cloud-beta/macOS/specstory)
-- [Linux/WSL AMD64](https://static.specstory.com/cloud-beta/linux-amd64/specstory)
+- [Download BETA for macOS](https://static.specstory.com/cloud-beta/macOS/specstory)
 
 ```bash
 chmod +x specstory
-mv specstory /usr/local/bin/
+xattr -r -d com.apple.quarantine specstory
+sudo mv specstory /usr/local/bin/
+brew uninstall specstory # remove the non-Beta version
+specstory version
+```
+
+- [Download BETA for Linux/WSL AMD64](https://static.specstory.com/cloud-beta/linux-amd64/specstory)
+
+```bash
+chmod +x specstory
+sudo mv specstory /usr/local/bin/
 specstory version
 ```
 
