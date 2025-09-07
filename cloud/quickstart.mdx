@@ -2,17 +2,6 @@
 title: "Cloud Quickstart"
 ---
 
-<Warning>
-**Beta Release Required for Cloud Sync**
-
-To sync with SpecStory Cloud, you must download and install our beta release versions:
-- **CLI (macOS)**: [Installation steps](#claude-code)
-- **CLI (Linux/WSL AMD64)**: [https://static.specstory.com/cloud-beta/0.10.0-beta1/linux-amd64/specstory](https://static.specstory.com/cloud-beta/0.10.0-beta1/linux-amd64/specstory)
-- **VS Code/Cursor Extension**: [https://static.specstory.com/cloud-beta/specstory-vscode-0.19.0-beta1.vsix](https://static.specstory.com/cloud-beta/specstory-vscode-0.19.0-beta1.vsix)
-
-Regular release versions do not support cloud sync yet.
-</Warning>
-
 SpecStory Cloud helps you move from **individual capture** to **shared, searchable context** across your team.
 This guide walks you through creating an account, syncing your first project, and running your first search.
 
@@ -35,53 +24,36 @@ SpecStory is **local‑first**. Nothing is synced until you explicitly turn on s
 
 SpecStory Cloud builds on top of the local `.specstory/history/` your tools already write. Choose your setup and confirm you see Markdown files locally before enabling sync.
 
-<Note>
-**Important:** Cloud sync requires the beta versions linked above. Standard release versions do not yet support cloud functionality.
-</Note>
 
 ### Cursor / VS Code + GitHub Copilot
 
-Install the SpecStory extension beta version for Cloud support.
+Install the SpecStory extension from the marketplace.
 
+1. Open **Cursor** or **VS Code**.
+2. Search for **SpecStory** in the Extensions Marketplace (Ctrl/Cmd+Shift+X).
+3. Click **Install**.
+4. Restart your editor.
 
-[Download SpecStory Beta VSIX](https://static.specstory.com/cloud-beta/specstory-vscode-0.19.0-beta1.vsix)
-
-
-To install from this file in **Cursor** or **VS Code**:
-
-
-1. Download the `.vsix` file above.
-2. Open your editor.
-3. Open the Command Palette (`View → Command Palette` or `Ctrl/Cmd + Shift + P`).
-4. Search for **“Extensions: Install from VSIX…”**.
-5. Select the downloaded file to complete installation.
-6. Restart your editor.
+For detailed installation instructions, see our [Installation Guide](/specstory/introduction).
 
 Once installed, open any project folder, start an AI chat, and confirm that `.specstory/history/` appears in your repo with Markdown files.
 
 
 ### Claude Code
 
-Install the SpecStory CLI beta version and run Claude Code through it so sessions are captured locally.
+Install the SpecStory CLI and run Claude Code through it so sessions are captured locally.
 
-Download the appropriate version for your OS:
-- [Download BETA for macOS](https://static.specstory.com/cloud-beta/0.10.0-beta1/macOS/specstory)
-
+**macOS (via Homebrew):**
 ```bash
-chmod +x specstory
-xattr -r -d com.apple.quarantine specstory
-sudo mv specstory /usr/local/bin/
-brew uninstall specstory # remove the non-Beta version
+brew tap specstoryai/tap
+brew update
+brew install specstory
 specstory version
 ```
 
-- [Download BETA for Linux/WSL AMD64](https://static.specstory.com/cloud-beta/0.10.0-beta1/linux-amd64/specstory)
+**Linux/WSL:**
 
-```bash
-chmod +x specstory
-sudo mv specstory /usr/local/bin/
-specstory version
-```
+Download the latest release from our [GitHub releases](https://github.com/specstoryai/getspecstory/releases) and follow the Linux installation instructions in our [Installation Guide](/specstory/introduction).
 
 Run Claude Code through SpecStory:
 
@@ -121,8 +93,12 @@ You control what (and when) to sync. Pick the path that matches your setup.
 ### A) From Cursor / VS Code extensions
 
 1. Open the project folder that is already using SpecStory and also contains `.specstory/history/`.
-2. Open the Command Palette (`Ctrl/Cmd+Shift+P`) and run **`SpecStory: Sync with Cloud`**.
-3. Watch for the completion toast, then visit the Cloud dashboard to verify sessions appear.
+2. Open the Command Palette (`Ctrl/Cmd+Shift+P`) and run **`SpecStory: Open Cloud Sync Configuration`**.
+3. This will open a configuration screen where you can:
+   - Ensure you're logged in
+   - Enable sync for this project
+   - Optionally enable sync for all future projects
+4. Once configured, your sessions will sync automatically. Visit the Cloud dashboard to verify sessions appear.
 
 ### B) From the CLI (Claude Code or cross‑project)
 
