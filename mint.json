@@ -84,7 +84,8 @@
     {
       "group": "BearClaude for macOS",
       "pages": [
-        "bearclaude/introduction",
+        "bearclaude/overview",
+        "bearclaude/install",
         "bearclaude/claudecode",
         "bearclaude/quickstart",
         "bearclaude/features",

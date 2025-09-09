@@ -1,25 +1,38 @@
 ---
 title: "Configure Claude Code"
-description: "BearClaude works seamlessly with Claude Code."
 ---
 
-## Get Claude Code
+BearClaude relies on [Claude Code](https://docs.anthropic.com/en/docs/claude-code) for AI‑assisted development. To function correctly, BearClaude needs to know the location of your local `claude` binary. Without this path, BearClaude cannot launch sessions or capture histories.
 
-* Follow these [instructions](https://docs.anthropic.com/en/docs/claude-code/setup) to download and setup Claude Code.
-* Make sure you can run Claude Code from a standard Mac terminal. 
-```
+## Why configuration matters
+
+Claude Code is a separate installation maintained by Anthropic. BearClaude provides the spec‑first workflow, while Claude Code executes and edits against your codebase. Configuring the binary path connects the two.
+
+## Step 1: Install Claude Code
+
+Follow Anthropic’s [official installation guide](https://docs.anthropic.com/en/docs/claude-code). Once installed, verify it works:
+
+```bash
 claude --version
 ```
+
+If successful, this prints the installed version of Claude Code.
+
 * Ensure you've got an Anthropic console billing subscription or Claude Pro/Max plan.
 * On the first run of `claude` you'll be walked through a configuration and authentication flow. You can do this in BearClaude, but it may be easier to complete these steps in your regular terminal first.
 
-## Claude Code path
+## Step 2: Point BearClaude to the binary
+
+1. Open **BearClaude → Preferences → Claude Code**.
+2. In the **Claude Binary Path** field, enter the path to your `claude` executable.
+
+   * Typical macOS (Intel): `/usr/local/bin/claude`
+   * Typical macOS (Apple Silicon/Homebrew): `/opt/homebrew/bin/claude`
+3. Use the **Browse** option if you are unsure of the path.
 
 <Note>
 Under most circumstances you shouldn't have to change this setting.
 </Note>
-
-* If `claude` is not in your default PATH, you can point BearClaude to the executable by using the `BearClaude → Settings...` menu.
 
 To find where Claude Code is installed, run this command in your terminal:
 ```bash
@@ -27,3 +40,22 @@ which claude
 ```
 
 This will show you the full path to the Claude Code executable (e.g., `/usr/local/bin/claude`), which you can then enter in BearClaude's settings.
+
+## Step 3: Verify the connection
+
+* Click **Test Connection** in Preferences.
+* BearClaude will run a short check by invoking `claude`.
+* If successful, you’ll see a confirmation message that Claude Code is ready.
+
+## Troubleshooting
+
+* **`command not found` when testing**
+  Ensure Claude Code is installed and that the binary is in your PATH.
+
+* **Installed via Homebrew but still failing**
+  On Apple Silicon Macs, binaries often live in `/opt/homebrew/bin/`. Update the path manually.
+
+* **Custom install locations**
+  If you installed Claude Code somewhere else, set that exact path in Preferences.
+
+Once configured, BearClaude can seamlessly launch Claude Code sessions, capture conversations into `.specstory/history/`, and keep your specifications tied to actual code changes.

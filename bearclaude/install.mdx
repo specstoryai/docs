@@ -1,0 +1,97 @@
+---
+title: "Installation Guide"
+---
+
+BearClaude is a spec-first macOS app that turns clear Markdown into working software with Claude Code and saves the full reasoning as Markdown alongside your project.
+
+This page gets you from zero to a verified local capture in minutes.
+
+## Requirements
+
+- macOS 15+ on Apple Silicon
+- Claude Code installed and available on your PATH
+- A local project folder where BearClaude will write to `.specstory/history/`
+
+<Note> BearClaude is **local-first**. Your specs and Claude conversations are saved to your project. Nothing is uploaded unless you later enable syncing with SpecStory Cloud. </Note>
+
+## 1. Download BearClaude
+
+- Visit [bearclaude.specstory.com](https://bearclaude.specstory.com) and download the latest `.dmg` build.
+- Double-click the downloaded file and drag **BearClaude.app** into your Applications folder.
+- Launch BearClaude from Applications or Spotlight.
+
+<Tip> On first launch, macOS Gatekeeper may ask you to confirm the app came from the internet. Choose **Open**. </Tip>
+
+## 2. Install Claude Code (if you haven’t already)
+
+BearClaude relies on the claude CLI.
+
+```bash
+# Prerequisite: Node.js 18+
+# Install Claude Code globally
+npm install -g @anthropic-ai/claude-code
+
+# Verify it’s on your PATH
+claude --version
+```
+
+If claude isn’t found, see: [Configure Claude Code Path →](/bearclaude/configure-claude-code-path).
+
+<Warning> If your organization manages Node installs or PATH hardening, you may need to ask your admin to expose `claude` to your user shell. </Warning>
+
+## 3. First Launch & Permissions
+
+On first launch, macOS will prompt you to confirm BearClaude as a trusted application:
+
+- Click **Open** when asked to confirm.
+- Grant **File System access** when prompted, this is required to save your project’s `.specstory/history/`.
+
+When BearClaude starts:
+
+1. **Choose a project folder:** This is where BearClaude will write .specstory/history/ and keep your specs.
+2. **Claude Code path:** BearClaude will try to auto-detect claude. If it can’t, you’ll be prompted to pick the executable manually.
+3. **Save location:** Default is `<project>/.specstory/history/`. You can change this in Settings later.
+
+<Note> You can manage all of these later in **BearClaude → Settings**. </Note>
+
+## 4. Verify capture (quick check)
+
+- Create a new Markdown doc (e.g., api-spec.md) and write a short spec (“Create a simple Express route for /health”).
+- Click Run with Claude Code (or the run control) to hand off the spec.
+- After Claude responds, open your project folder and confirm:
+
+```bash
+<your-project>/.specstory/history/
+  └─ YYYY-MM-DD_HH-MM-SS_<session>.md
+```
+
+You should see a timestamped Markdown session containing your conversation and context.
+
+<Tip> If you don’t see a file right away, try saving the document once or run another short prompt, the first Markdown file is created on save/auto-save. </Tip>
+
+## 4. Verify SpecStory Capture
+
+BearClaude automatically writes every conversation and spec to `.specstory/history/` in your project:
+
+- Create or open a project folder.
+- Write a short spec in Markdown and chat with Claude.
+- Check your project directory, you should see `.specstory/history/` with Markdown files created.
+
+<Info>
+Nothing is uploaded by default. BearClaude is **local-first**, and your `.specstory/history/` remains on your machine unless you explicitly sync it to SpecStory Cloud.
+</Info>
+
+## What’s Next
+
+<CardGroup>
+  <Card title="Configure Claude Code Path" icon="cog" href="/bearclaude/claudecode">
+    Point BearClaude to your Claude Code binary.
+  </Card>
+  <Card title="Use BearClaude" icon="rocket" href="/bearclaude/quickstart">
+    Learn the spec → converse → save → verify workflow.
+  </Card>
+  <Card title="Settings" icon="sliders" href="/bearclaude/settings">
+    Customize save paths, auto-save, and telemetry.
+  </Card>
+</CardGroup>
+
