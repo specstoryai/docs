@@ -1,0 +1,179 @@
+---
+title: "Devin Integration Guide for #docs Channel"
+description: "Complete guide for using Devin AI to manage SpecStory documentation"
+---
+
+# Devin Integration Guide for #docs Channel
+
+This guide explains how to use Devin AI in the #docs Slack channel to efficiently manage and update SpecStory's documentation.
+
+## 🤖 What is Devin?
+
+Devin is an AI software engineer that can:
+- Read, write, and modify code/documentation
+- Create GitHub pull requests
+- Monitor CI/CD pipelines
+- Respond to PR comments and reviews
+- Work with the entire SpecStory codebase
+
+## 🔧 Current Setup
+
+**GitHub Integration**: ✅ Fully configured
+- Authenticated as `devin-ai-integration[bot]`
+- Access to 116+ SpecStory repositories
+- Can create PRs, manage branches, and monitor CI
+
+**Documentation Repository**: `specstoryai/docs`
+- Built with Mintlify documentation platform
+- Uses MDX files for content
+- Configured via `mint.json`
+- Live site: https://docs.specstory.com
+
+## 📝 How to Request Documentation Changes
+
+### Simple Requests
+```
+@devin Update the BearClaude installation guide to include the new download link
+```
+
+### Detailed Requests
+```
+@devin Create a new integration guide for VS Code that covers:
+- Installation steps
+- Configuration options
+- Troubleshooting common issues
+- Include screenshots if needed
+```
+
+### Structural Changes
+```
+@devin Reorganize the navigation in mint.json to move all integration guides under a single "Integrations" section
+```
+
+## 🔄 Mintlify Preview Workflow
+
+### 1. Request Changes
+- Tag @devin in #docs with your documentation request
+- Be specific about what needs to be updated/created
+
+### 2. Devin Creates PR
+- Devin will create a feature branch (format: `devin/{timestamp}-{description}`)
+- Submit a pull request with your requested changes
+- Include detailed PR description with changes made
+
+### 3. Mintlify Preview Generation
+- Mintlify automatically generates preview deployments for each PR
+- Preview URL will be available in the PR comments/checks
+- Live preview shows exactly how changes will look on docs.specstory.com
+
+### 4. Review Process
+- Team reviews the PR and live preview
+- Leave comments directly on GitHub PR
+- Devin can respond to feedback and make additional changes
+- Approve when ready to merge
+
+### 5. Deployment
+- Merge PR to main branch
+- Changes automatically deploy to https://docs.specstory.com
+- Usually takes 1-2 minutes for live site to update
+
+## 📁 Documentation Structure
+
+```
+docs/
+├── mint.json              # Mintlify configuration & navigation
+├── overview.mdx           # Main overview page
+├── quickstart.mdx         # Getting started guide
+├── integrations/          # Editor integrations
+│   ├── cursor.mdx
+│   ├── vscode.mdx
+│   └── claude-code.mdx
+├── specstory/            # SpecStory extension docs
+├── bearclaude/           # BearClaude app docs
+├── cloud/                # SpecStory Cloud features
+├── guides/               # How-to guides
+└── images/               # Screenshots and assets
+```
+
+## 💡 Best Practices
+
+### When Requesting Changes
+- **Be specific**: Include exact page names, sections, or content
+- **Provide context**: Explain why the change is needed
+- **Include examples**: Share links, screenshots, or sample text
+- **Mention urgency**: Let Devin know if it's time-sensitive
+
+### For New Content
+- **Specify location**: Where should the new page/section go?
+- **Define audience**: Who is this content for?
+- **Include requirements**: What must be covered?
+- **Reference style**: Point to similar existing pages
+
+### For Updates
+- **Identify outdated info**: What specifically needs updating?
+- **Provide new information**: Share the correct/current details
+- **Check dependencies**: Are other pages affected?
+
+## 🚀 Advanced Capabilities
+
+### Multi-Repository Updates
+```
+@devin Update the installation instructions in both docs and the main website to reflect the new download process
+```
+
+### Content Migration
+```
+@devin Move the FAQ section from the main website to the docs site and update all internal links
+```
+
+### Bulk Updates
+```
+@devin Update all references to "SpecStory v1.0" to "SpecStory v2.0" across all documentation files
+```
+
+## 🔍 Monitoring & Feedback
+
+### PR Reviews
+- Devin monitors PR comments and can respond to feedback
+- Tag @devin in PR comments for specific requests
+- Devin will push additional commits to address feedback
+
+### CI/CD Integration
+- Devin monitors build status and deployment
+- Will report if there are any issues with Mintlify builds
+- Can fix common build errors automatically
+
+### Quality Assurance
+- Devin checks for broken links
+- Validates MDX syntax
+- Ensures navigation structure is correct
+- Verifies images and assets are properly referenced
+
+## 📞 Getting Help
+
+### In #docs Channel
+- Tag @devin with questions about documentation
+- Ask for status updates on pending changes
+- Request explanations of documentation structure
+
+### Common Commands
+```
+@devin What's the status of the BearClaude docs update?
+@devin Show me the current navigation structure
+@devin Check for any broken links in the integration guides
+@devin Create a preview of how the new FAQ section will look
+```
+
+## 🎯 Quick Reference
+
+| Task | Example Request |
+|------|----------------|
+| Fix typo | `@devin Fix the typo in bearclaude/install.mdx line 23` |
+| Add new page | `@devin Create a troubleshooting guide for common Cursor issues` |
+| Update navigation | `@devin Add the new API reference section to the main navigation` |
+| Bulk update | `@devin Update all screenshots to use the new UI design` |
+| Review PR | `@devin Address the feedback in PR #123` |
+
+---
+
+**Questions?** Tag @devin in #docs or reach out to the team for additional support!

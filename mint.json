@@ -95,7 +95,8 @@
     {
       "group": "Guides",
       "pages": [
-        "guides/specflow"
+        "guides/specflow",
+        "devin-integration-guide"
       ]
     },
     {
