@@ -1,0 +1,201 @@
+---
+title: "AIrgap"
+description: "Lightweight, Git-native guardrails for AI-assisted coding and open source contributions."
+---
+
+AIrgap is a **lightweight, Git-native guardrail system** for your codebase that enforces **modification boundaries** so developers and AI assistants only change what they're supposed to.
+
+## Why AIrgap Exists
+
+Software development has changed dramatically with two key trends:
+
+1. **AI-assisted coding is everywhere** - GitHub Copilot, Claude Code, Cursor, and others are now part of daily workflows. Over 75% of developers use them, but studies show around one-third of AI-generated code contains security vulnerabilities.
+
+2. **Open Source contributions are surging** - Events like Hacktoberfest drive thousands of new contributors to projects every year. While exciting for growth, it's challenging for maintainers who face spam PRs, edits to production configs, or risky changes to authentication logic.
+
+Without guardrails, AI can "helpfully" rewrite your authentication logic or tweak production configs without you noticing. Existing tools like `CODEOWNERS`, GitHub's rulesets, or branch protections help, but they don't catch unsafe changes early—they operate at review or merge time.
+
+<CardGroup>
+  <Card title="3-Step Setup" icon="rocket" href="#getting-started">
+    Install, configure, and validate in under 5 minutes
+  </Card>
+  <Card title="Protection Levels" icon="shield" href="#protection-levels">
+    Full, existing-only, and allow patterns for flexible control
+  </Card>
+  <Card title="AI Integration" icon="robot" href="#ai-assistant-integration">
+    Works directly with Cursor, Copilot, and Claude Code
+  </Card>
+</CardGroup>
+
+## How AIrgap Works
+
+AIrgap runs `git diff` to detect changes in **sub-second time** even on large repos, then validates changes against your rules defined in a `.airgap` file using patterns similar to `.gitignore`.
+
+### Protection Levels
+
+- **`!pattern`** → **Full Protection** (no add/modify/delete)
+- **`~pattern`** → **Protect Existing** (cannot modify/delete existing files, but can add new ones)  
+- **`pattern`** → **Allow** (changes are safe)
+
+This makes it flexible enough for everything from critical-path protection to feature-branch isolation.
+
+## Getting Started
+
+### 1. Install AIrgap
+
+```bash
+curl -L [release-path] -o airgap
+chmod +x airgap
+sudo mv airgap /usr/local/bin/
+```
+
+### 2. Create a `.airgap` file
+
+AIrgap uses `.airgap` config files with familiar gitignore-style patterns:
+
+```bash
+# Protect sensitive areas (no changes allowed here)
+!src/auth/**
+!src/payments/**
+!config/prod/**
+
+# Don't touch legacy code, but allow new files in the directory
+~src/legacy/**
+
+# Safe areas for development
+src/features/**
+tests/**
+```
+
+### 3. Validate your changes
+
+```bash
+airgap                   # Check staged changes against HEAD
+airgap --base main       # Compare with main branch
+airgap --json            # JSON output for CI
+```
+
+Now try editing in the features directory and then the auth directory. For changes in the features directory you'll see:
+
+```
+✅ Change allowed: src/features/search/index.js
+```
+
+But any changes in the auth directory will throw this error:
+
+```
+❌ Protected file modified: src/auth/login.js (rule: !src/auth/**)
+```
+
+## Enforcement Everywhere
+
+AIrgap is flexible and can run anywhere code is written or reviewed, catching violations as early as possible.
+
+### Local Git Hooks
+
+Catch problems before a commit even lands in Git history:
+
+```bash
+# .git/hooks/pre-commit
+#!/bin/bash
+if ! airgap; then
+    echo "❌ Protected files modified!"
+    exit 1
+fi
+```
+
+### CI/CD Pipelines
+
+Integrate into GitHub Actions, GitLab CI, or any CI system:
+
+```yaml
+- name: Validate Code Changes
+  run: |
+    airgap --base ${{ github.base_ref }} --json
+```
+
+Example JSON output for CI integration:
+
+```json
+{
+  "status": "fail",
+  "violations": [
+    {
+      "file": "src/auth/login.js",
+      "rule": "!src/auth/**",
+      "reason": "Protected file modified"
+    }
+  ]
+}
+```
+
+### AI Assistant Integration
+
+Wire AIrgap directly into your AI assistant's workflow. For Claude Code with SpecStory, you can configure a validation hook that runs after each AI interaction:
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [{
+      "matcher": "",
+      "hooks": [{
+        "type": "command",
+        "command": "airgap"
+      }]
+    }]
+  }
+}
+```
+
+This means the moment an AI coding assistant tries to generate code in a protected path, the operation is stopped through guardrails.
+
+### Feature-Specific Validation
+
+Create named config files for different contexts:
+
+```bash
+# .airgap.search-feature
+!**                  # Lock everything
+src/search/**        # Allow only search module
+tests/search/**      # And its tests
+docs/search.md       # And documentation
+```
+
+Then validate changes against it:
+
+```bash
+airgap search-feature
+```
+
+## AIrgap vs. Existing Tools
+
+| Feature | **AIrgap** | **CODEOWNERS** | **Branch Protection** | **Push Rules** |
+|---------|------------|----------------|----------------------|----------------|
+| **Instant feedback** | Pre-commit & CI | Only after PR | After push | After push |
+| **Works locally** | ✅ Dev machine + AI tools | ❌ | ❌ | ❌ |
+| **AI assistant integration** | ✅ Native hooks | ❌ | ❌ | ❌ |
+| **Granular protection** | ✅ Full/existing/allow | ❌ Review routing only | ❌ Binary toggle | ✅ Path restrictions |
+| **Setup time** | 2 minutes | ~10 minutes | ~20 minutes | Org-admin setup |
+| **VCS agnostic** | ✅ Works anywhere Git runs | ❌ GitHub only | ❌ GitHub only | ❌ Platform-specific |
+
+AIrgap is not a replacement but a **complement**. Think of AIrgap as the *first line of defense*, with CODEOWNERS and rulesets as your *second line*. AIrgap catches issues early and keeps developers productive while providing layered protection.
+
+## Perfect Complement to SpecStory
+
+AIrgap works seamlessly with SpecStory's AI conversation management:
+
+- **SpecStory captures the "why"** behind code changes through AI conversation history
+- **AIrgap ensures the "what"** happens within safe boundaries through modification rules
+- Together, they provide complete visibility and control over AI-assisted development
+
+When using SpecStory with Cursor, VS Code + Copilot, or Claude Code, AIrgap can validate that the code changes resulting from your captured AI conversations don't violate your project's protection rules.
+
+## Learn & Contribute
+
+- 📖 **Documentation:** Complete setup guides and advanced configuration options
+- 🤝 **Contribute on GitHub:** AIrgap is open source - contribute examples, report issues, or submit improvements
+- 🧭 **See it in action:** Try protecting your critical paths with AIrgap and experience how it changes your development flow
+
+---
+
+*AIrgap is open source. Use it, adapt it, and help build safer AI-assisted development for everyone.*
