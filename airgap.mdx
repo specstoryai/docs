@@ -43,24 +43,11 @@ This makes it flexible enough for everything from critical-path protection to fe
 
 ### 1. Install AIrgap
 
-<Tabs>
-  <Tab title="macOS (Homebrew)">
-    ```bash
-    brew tap airgap/tap
-    brew install airgap
-    ```
-  </Tab>
-  <Tab title="Linux/WSL">
-    ```bash
-    curl -L https://github.com/airgap/releases/latest/download/airgap-linux -o airgap
-    chmod +x airgap
-    sudo mv airgap /usr/local/bin/
-    ```
-  </Tab>
-  <Tab title="Manual Download">
-    Download the latest release for your platform from the [releases page](https://github.com/airgap/releases), extract, and add to your PATH.
-  </Tab>
-</Tabs>
+```bash
+curl -L [release-path] -o airgap
+chmod +x airgap
+sudo mv airgap /usr/local/bin/
+```
 
 ### 2. Create a `.airgap` file
 
