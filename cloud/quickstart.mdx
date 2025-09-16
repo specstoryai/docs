@@ -76,7 +76,7 @@ If `.specstory/history/` isn’t present, complete a short AI conversation first
 Run once per machine to allow uploads from the CLI/extension:
 
 ```bash
-specstory auth login
+specstory login
 ```
 
 This opens a browser window to complete a secure login. Your device stores a token locally and future syncs use it automatically.
@@ -151,7 +151,7 @@ What you can do today:
 * **No sessions appear after sync**
 
   * Confirm `.specstory/history/` exists and contains Markdown files.
-  * Run `specstory auth login` again if your token expired.
+  * Run `specstory login` again if your token expired.
   * Re‑run `specstory sync` from the project root.
 
 * **Command Palette action missing** (Cursor/VS Code)
