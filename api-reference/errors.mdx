@@ -1,0 +1,448 @@
+---
+title: "Error Handling"
+description: "Understand SpecStory Cloud API error responses, status codes, and troubleshooting guidance"
+---
+
+# Error Handling
+
+The SpecStory Cloud API uses conventional HTTP response codes to indicate the success or failure of an API request. Error responses include detailed information to help you understand and resolve issues.
+
+## HTTP Status Codes
+
+### Success Codes
+
+| Code | Status | Description |
+|------|--------|-------------|
+| `200` | OK | Request succeeded |
+| `304` | Not Modified | Resource hasn't changed (ETag match) |
+
+### Client Error Codes
+
+| Code | Status | Description |
+|------|--------|-------------|
+| `400` | Bad Request | Invalid request format or parameters |
+| `401` | Unauthorized | Missing or invalid authentication |
+| `403` | Forbidden | Insufficient permissions |
+| `404` | Not Found | Resource doesn't exist |
+| `429` | Too Many Requests | Rate limit exceeded |
+
+### Server Error Codes
+
+| Code | Status | Description |
+|------|--------|-------------|
+| `500` | Internal Server Error | Unexpected server error |
+| `502` | Bad Gateway | Temporary server issue |
+| `503` | Service Unavailable | Server temporarily unavailable |
+
+## Error Response Format
+
+All error responses follow a consistent JSON structure:
+
+```json
+{
+  "success": false,
+  "error": "Descriptive error message"
+}
+```
+
+### Example Error Responses
+
+<CodeGroup>
+
+```json 401 Unauthorized
+{
+  "success": false,
+  "error": "Invalid session token"
+}
+```
+
+```json 403 Forbidden
+{
+  "success": false,
+  "error": "Insufficient permissions to access this project"
+}
+```
+
+```json 404 Not Found
+{
+  "success": false,
+  "error": "Project not found"
+}
+```
+
+```json 429 Rate Limited
+{
+  "success": false,
+  "error": "Rate limit exceeded. Try again in 60 seconds."
+}
+```
+
+</CodeGroup>
+
+## Authentication Errors
+
+### 401 Unauthorized
+
+**Causes:**
+- Missing `Authorization` header
+- Invalid or expired API key
+- Malformed Bearer token
+
+**Solutions:**
+- Verify your API key is correct
+- Check the Authorization header format: `Bearer YOUR_API_KEY`
+- Generate a new API key if the current one is expired
+
+<CodeGroup>
+
+```bash Correct Format
+curl -H "Authorization: Bearer sk_live_abc123..." \
+  https://cloud.specstory.com/api/v1/projects
+```
+
+```bash Incorrect Format
+curl -H "Authorization: abc123..." \
+  https://cloud.specstory.com/api/v1/projects
+```
+
+</CodeGroup>
+
+### 403 Forbidden
+
+**Causes:**
+- Attempting to access another user's resources
+- API key lacks required permissions
+- Resource access restrictions
+
+**Solutions:**
+- Verify you're accessing your own projects/sessions
+- Check API key permissions in the dashboard
+- Ensure the resource ID is correct
+
+## Resource Errors
+
+### 404 Not Found
+
+**Common scenarios:**
+
+<AccordionGroup>
+  <Accordion title="Project Not Found">
+    ```json
+    {
+      "success": false,
+      "error": "Project not found"
+    }
+    ```
+    
+    **Causes:**
+    - Invalid project ID
+    - Project was deleted
+    - No access to the project
+    
+    **Solutions:**
+    - Verify the project ID exists
+    - Check if you have access to the project
+    - Use `GET /api/v1/projects` to list available projects
+  </Accordion>
+
+  <Accordion title="Session Not Found">
+    ```json
+    {
+      "success": false,
+      "error": "Session not found"
+    }
+    ```
+    
+    **Causes:**
+    - Invalid session ID
+    - Session was deleted
+    - Session belongs to a different project
+    
+    **Solutions:**
+    - Verify the session ID and project ID combination
+    - Use `GET /api/v1/projects/{projectId}/sessions` to list sessions
+    - Check if the session was recently deleted
+  </Accordion>
+</AccordionGroup>
+
+## Rate Limiting
+
+### 429 Too Many Requests
+
+The API implements rate limiting to ensure service quality:
+
+- **REST API**: 1000 requests per hour
+- **GraphQL API**: 500 queries per hour
+
+**Rate limit headers:**
+```http
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Reset: 1640995200
+```
+
+**Handling rate limits:**
+
+<CodeGroup>
+
+```javascript JavaScript
+async function makeRequest(url, options) {
+  const response = await fetch(url, options);
+  
+  if (response.status === 429) {
+    const resetTime = response.headers.get('X-RateLimit-Reset');
+    const waitTime = (resetTime * 1000) - Date.now();
+    
+    console.log(`Rate limited. Waiting ${waitTime}ms`);
+    await new Promise(resolve => setTimeout(resolve, waitTime));
+    
+    // Retry the request
+    return makeRequest(url, options);
+  }
+  
+  return response;
+}
+```
+
+```python Python
+import time
+import requests
+
+def make_request(url, headers):
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 429:
+        reset_time = int(response.headers.get('X-RateLimit-Reset', 0))
+        wait_time = max(0, reset_time - int(time.time()))
+        
+        print(f"Rate limited. Waiting {wait_time} seconds")
+        time.sleep(wait_time)
+        
+        # Retry the request
+        return make_request(url, headers)
+    
+    return response
+```
+
+</CodeGroup>
+
+## GraphQL Errors
+
+GraphQL errors are returned in the `errors` array alongside any partial data:
+
+```json
+{
+  "data": {
+    "project": null
+  },
+  "errors": [
+    {
+      "message": "Project not found",
+      "locations": [{"line": 2, "column": 3}],
+      "path": ["project"],
+      "extensions": {
+        "code": "NOT_FOUND",
+        "projectId": "invalid-id"
+      }
+    }
+  ]
+}
+```
+
+### Common GraphQL Error Codes
+
+| Code | Description | Solution |
+|------|-------------|----------|
+| `UNAUTHENTICATED` | Missing or invalid authentication | Check Authorization header |
+| `FORBIDDEN` | Insufficient permissions | Verify resource access |
+| `NOT_FOUND` | Resource doesn't exist | Check resource ID |
+| `VALIDATION_ERROR` | Invalid query or variables | Review query syntax |
+| `RATE_LIMITED` | Too many requests | Implement backoff strategy |
+
+## Validation Errors
+
+### 400 Bad Request
+
+**Request validation failures:**
+
+<AccordionGroup>
+  <Accordion title="Invalid JSON">
+    ```json
+    {
+      "success": false,
+      "error": "Invalid JSON in request body"
+    }
+    ```
+    
+    **Causes:**
+    - Malformed JSON syntax
+    - Missing required Content-Type header
+    
+    **Solutions:**
+    - Validate JSON syntax
+    - Include `Content-Type: application/json` header
+  </Accordion>
+
+  <Accordion title="Missing Required Fields">
+    ```json
+    {
+      "success": false,
+      "error": "Missing required field: name"
+    }
+    ```
+    
+    **Causes:**
+    - Required parameters not provided
+    - Incorrect parameter names
+    
+    **Solutions:**
+    - Check API documentation for required fields
+    - Verify parameter spelling and case
+  </Accordion>
+
+  <Accordion title="Invalid Parameter Values">
+    ```json
+    {
+      "success": false,
+      "error": "Invalid value for color. Must be one of: rose, pink, orange, amber, emerald, cyan, blue, purple, slate, gray"
+    }
+    ```
+    
+    **Causes:**
+    - Parameter values outside allowed range
+    - Incorrect data types
+    
+    **Solutions:**
+    - Check allowed values in API documentation
+    - Verify data types match expected format
+  </Accordion>
+</AccordionGroup>
+
+## Error Handling Best Practices
+
+### Implement Retry Logic
+
+```javascript
+async function apiRequest(url, options, maxRetries = 3) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await fetch(url, options);
+      
+      // Success
+      if (response.ok) {
+        return await response.json();
+      }
+      
+      // Client errors (4xx) - don't retry
+      if (response.status >= 400 && response.status < 500) {
+        const error = await response.json();
+        throw new Error(error.error);
+      }
+      
+      // Server errors (5xx) - retry with backoff
+      if (attempt === maxRetries) {
+        throw new Error(`Request failed after ${maxRetries} attempts`);
+      }
+      
+      // Exponential backoff
+      const delay = Math.pow(2, attempt) * 1000;
+      await new Promise(resolve => setTimeout(resolve, delay));
+      
+    } catch (error) {
+      if (attempt === maxRetries) {
+        throw error;
+      }
+    }
+  }
+}
+```
+
+### Log Errors for Debugging
+
+```javascript
+function handleApiError(error, context) {
+  console.error('API Error:', {
+    message: error.message,
+    context: context,
+    timestamp: new Date().toISOString(),
+    stack: error.stack
+  });
+  
+  // Report to error tracking service
+  // errorTracker.captureException(error, { context });
+}
+```
+
+### Graceful Degradation
+
+```javascript
+async function getProjectSessions(projectId) {
+  try {
+    const response = await fetch(`/api/v1/projects/${projectId}/sessions`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
+    return await response.json();
+    
+  } catch (error) {
+    console.warn('Failed to load sessions:', error.message);
+    
+    // Return empty state instead of crashing
+    return {
+      success: true,
+      data: {
+        sessions: [],
+        total: 0,
+        projectId: projectId
+      }
+    };
+  }
+}
+```
+
+## Troubleshooting Checklist
+
+When encountering API errors:
+
+1. **Check Authentication**
+   - Verify API key is valid and not expired
+   - Ensure proper Authorization header format
+   - Test with a simple request like `GET /api/v1/projects`
+
+2. **Validate Request Format**
+   - Check JSON syntax and structure
+   - Verify required fields are included
+   - Ensure parameter values are within allowed ranges
+
+3. **Review Resource Access**
+   - Confirm resource IDs exist and are accessible
+   - Check if you have permissions for the operation
+   - Verify project/session relationships
+
+4. **Monitor Rate Limits**
+   - Check rate limit headers in responses
+   - Implement appropriate backoff strategies
+   - Consider caching frequently accessed data
+
+5. **Test with GraphQL Playground**
+   - Use the interactive playground to test queries
+   - Validate GraphQL syntax and variables
+   - Explore schema documentation for available fields
+
+## Getting Help
+
+If you're still experiencing issues:
+
+- **Check our status page** for service incidents
+- **Search existing issues** on [GitHub](https://github.com/specstoryai/getspecstory/issues)
+- **Contact support** at [support@specstory.com](mailto:support@specstory.com)
+- **Join our community** on [Slack](https://join.slack.com/t/specstory/shared_invite/zt-2vq0274ck-MYS39rgOpDSmgfE1IeK9gg)
+
+Include the following information when reporting issues:
+- Request URL and method
+- Request headers and body
+- Response status code and body
+- Timestamp of the request
+- Your API key ID (not the full key)

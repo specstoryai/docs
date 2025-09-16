@@ -1,0 +1,106 @@
+---
+title: "API Reference"
+description: "Complete reference for the SpecStory Cloud API - manage your AI conversation projects and sessions programmatically"
+---
+
+# SpecStory Cloud API
+
+The SpecStory Cloud API provides programmatic access to your AI conversation data, enabling you to build custom integrations, automate workflows, and create powerful applications on top of your SpecStory ecosystem.
+
+## Base URL
+
+All API requests should be made to:
+
+```
+https://cloud.specstory.com
+```
+
+## API Overview
+
+SpecStory Cloud offers two complementary interfaces:
+
+### REST API
+Perfect for standard CRUD operations on projects and sessions:
+- **Projects**: Manage workspaces and organize your AI conversations
+- **Sessions**: Access, retrieve, and manage individual AI conversation sessions
+- **Metadata**: Rich context including git branches, LLM models, client information, and tags
+
+### GraphQL API
+Advanced querying interface for complex operations:
+- **Complex Queries**: Multi-entity queries with relationships
+- **Advanced Filtering**: Filter sessions by metadata, tags, dates, and more
+- **Full-Text Search**: Search across session content with relevance ranking
+- **Efficient Data Fetching**: Request exactly the data you need
+
+<Card title="Interactive GraphQL Explorer" icon="play" href="/api/v1/graphql">
+  Explore the GraphQL schema and test queries in real-time with our interactive playground
+</Card>
+
+## Key Features
+
+### ETag Support
+Efficient caching and conditional requests using ETags for optimal performance when working with session data.
+
+### Multiple Content Types
+- **JSON**: Structured data for programmatic access
+- **Markdown**: Raw conversation content for direct consumption
+
+### Rich Metadata
+Every session includes comprehensive metadata:
+- **Client Information**: Name, version, and device details
+- **Git Context**: Branch information for code-related conversations
+- **LLM Models**: Track which AI models were used
+- **Custom Tags**: Organize and categorize your conversations
+
+## Rate Limits
+
+The SpecStory Cloud API implements reasonable rate limits to ensure service quality:
+
+- **REST API**: 1000 requests per hour per API key
+- **GraphQL API**: 500 queries per hour per API key
+
+Rate limit headers are included in all responses:
+- `X-RateLimit-Limit`: Your rate limit ceiling for that given request
+- `X-RateLimit-Remaining`: Number of requests left for the time window
+- `X-RateLimit-Reset`: UTC epoch seconds when the rate limit resets
+
+## Getting Started
+
+1. **Get your API key** from the [SpecStory Cloud Dashboard](https://cloud.specstory.com/settings/api-keys)
+2. **Authenticate** your requests using Bearer token authentication
+3. **Start with projects** to understand your workspace organization
+4. **Explore sessions** to access your AI conversation data
+5. **Try GraphQL** for advanced querying and search capabilities
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/api-reference/authentication">
+    Learn how to authenticate your API requests
+  </Card>
+  <Card title="Projects" icon="folder" href="/api-reference/projects">
+    Manage your SpecStory workspaces
+  </Card>
+  <Card title="Sessions" icon="message" href="/api-reference/sessions">
+    Access your AI conversation data
+  </Card>
+  <Card title="GraphQL" icon="code" href="/api-reference/graphql">
+    Advanced querying and search
+  </Card>
+</CardGroup>
+
+## SDKs and Libraries
+
+While the SpecStory Cloud API is REST and GraphQL based, we're working on official SDKs:
+
+- **JavaScript/TypeScript**: Coming soon
+- **Python**: Coming soon
+- **Go**: Coming soon
+
+In the meantime, you can use any HTTP client or GraphQL library with the API endpoints documented here.
+
+## Support
+
+Need help with the API? We're here to assist:
+
+- **Documentation Issues**: [File an issue](https://github.com/specstoryai/getspecstory/issues) on GitHub
+- **API Support**: Email us at [support@specstory.com](mailto:support@specstory.com)
+- **Community**: Join our [Slack community](https://join.slack.com/t/specstory/shared_invite/zt-2vq0274ck-MYS39rgOpDSmgfE1IeK9gg)
