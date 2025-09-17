@@ -110,33 +110,38 @@
       "group": "API Reference",
       "pages": [
         "api-reference/introduction",
-        "api-reference/authentication",
-        {
-          "group": "Projects",
-          "pages": [
-            "api-reference/projects/list-projects",
-            "api-reference/projects/update-project",
-            "api-reference/projects/delete-project"
-          ]
-        },
-        {
-          "group": "Sessions",
-          "pages": [
-            "api-reference/sessions/list-sessions",
-            "api-reference/sessions/get-recent-sessions",
-            "api-reference/sessions/get-session",
-            "api-reference/sessions/check-session",
-            "api-reference/sessions/delete-session"
-          ]
-        },
-        {
-          "group": "GraphQL",
-          "pages": [
-            "api-reference/graphql",
-            "api-reference/graphql-endpoint",
-            "api-reference/graphql-examples"
-          ]
-        },
+        "api-reference/authentication"
+      ]
+    },
+    {
+      "group": "Projects",
+      "pages": [
+        "api-reference/projects/list-projects",
+        "api-reference/projects/update-project",
+        "api-reference/projects/delete-project"
+      ]
+    },
+    {
+      "group": "Sessions",
+      "pages": [
+        "api-reference/sessions/list-sessions",
+        "api-reference/sessions/get-recent-sessions",
+        "api-reference/sessions/get-session",
+        "api-reference/sessions/check-session",
+        "api-reference/sessions/delete-session"
+      ]
+    },
+    {
+      "group": "GraphQL",
+      "pages": [
+        "api-reference/graphql",
+        "api-reference/graphql-endpoint",
+        "api-reference/graphql-examples"
+      ]
+    },
+    {
+      "group": "Error Handling",
+      "pages": [
         "api-reference/errors"
       ]
     }
