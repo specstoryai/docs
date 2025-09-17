@@ -1,0 +1,195 @@
+---
+title: "Get Session"
+api: "GET /api/v1/projects/{projectId}/sessions/{sessionId}"
+description: "Retrieve a specific session with its content and metadata"
+---
+
+## Request
+
+<ParamField path="projectId" type="string" required>
+  The unique identifier of the project
+</ParamField>
+
+<ParamField path="sessionId" type="string" required>
+  The unique identifier of the session
+</ParamField>
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication
+</ParamField>
+
+<ParamField header="Accept" type="string">
+  Content type for response. Options:
+  - `application/json` (default) - Returns structured JSON
+  - `text/markdown` - Returns raw markdown content
+</ParamField>
+
+<ParamField header="If-None-Match" type="string">
+  ETag value for conditional requests
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean">
+  Indicates if the request was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <Expandable title="data">
+    <ResponseField name="session" type="object">
+      <Expandable title="session">
+        <ResponseField name="id" type="string">
+          Unique session identifier
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Session name
+        </ResponseField>
+        <ResponseField name="markdownContent" type="string">
+          Full markdown content of the session
+        </ResponseField>
+        <ResponseField name="markdownSize" type="number">
+          Size of markdown content in bytes
+        </ResponseField>
+        <ResponseField name="metadata" type="object">
+          <Expandable title="metadata">
+            <ResponseField name="clientName" type="string">
+              Name of the client application
+            </ResponseField>
+            <ResponseField name="clientVersion" type="string">
+              Version of the client application
+            </ResponseField>
+            <ResponseField name="agentName" type="string">
+              Name of the agent
+            </ResponseField>
+            <ResponseField name="deviceId" type="string">
+              Unique device identifier
+            </ResponseField>
+            <ResponseField name="gitBranches" type="array">
+              Array of git branches
+            </ResponseField>
+            <ResponseField name="llmModels" type="array">
+              Array of LLM models used
+            </ResponseField>
+            <ResponseField name="tags" type="array">
+              Array of session tags
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="createdAt" type="string">
+          ISO 8601 creation timestamp
+        </ResponseField>
+        <ResponseField name="updatedAt" type="string">
+          ISO 8601 last update timestamp
+        </ResponseField>
+        <ResponseField name="startedAt" type="string">
+          ISO 8601 timestamp when session started
+        </ResponseField>
+        <ResponseField name="endedAt" type="string">
+          ISO 8601 timestamp when session ended
+        </ResponseField>
+        <ResponseField name="project" type="object">
+          <Expandable title="project">
+            <ResponseField name="id" type="string">
+              Project ID
+            </ResponseField>
+            <ResponseField name="name" type="string">
+              Project name
+            </ResponseField>
+            <ResponseField name="icon" type="string">
+              Project icon
+            </ResponseField>
+            <ResponseField name="color" type="string">
+              Project color
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Accept: application/json" \
+  https://cloud.specstory.com/api/v1/projects/proj_abc123/sessions/550e8400-e29b-41d4-a716-446655440000
+```
+
+```javascript JavaScript
+const response = await fetch(
+  'https://cloud.specstory.com/api/v1/projects/proj_abc123/sessions/550e8400-e29b-41d4-a716-446655440000',
+  {
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY',
+      'Accept': 'application/json'
+    }
+  }
+);
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://cloud.specstory.com/api/v1/projects/proj_abc123/sessions/550e8400-e29b-41d4-a716-446655440000',
+    headers={
+        'Authorization': 'Bearer YOUR_API_KEY',
+        'Accept': 'application/json'
+    }
+)
+
+data = response.json()
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "success": true,
+  "data": {
+    "session": {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "name": "Bug Fix Discussion",
+      "markdownContent": "## Session Summary\n\n**User**: I'm having an issue with authentication...\n\n**Assistant**: Let me help you debug that...",
+      "markdownSize": 15420,
+      "metadata": {
+        "clientName": "Cursor",
+        "clientVersion": "2.0.0",
+        "agentName": "SpecStory Agent",
+        "deviceId": "device123",
+        "gitBranches": ["main", "feature-auth"],
+        "llmModels": ["claude-3-opus"],
+        "tags": ["bug-fix", "authentication"]
+      },
+      "createdAt": "2024-01-15T10:30:00.000Z",
+      "updatedAt": "2024-01-15T14:45:30.000Z",
+      "startedAt": "2024-01-15T10:30:00.000Z",
+      "endedAt": "2024-01-15T14:45:30.000Z",
+      "project": {
+        "id": "proj_abc123",
+        "name": "My Web App",
+        "icon": "Code2",
+        "color": "blue"
+      }
+    }
+  }
+}
+```
+
+```json 304 Not Modified
+// No body - session hasn't changed since If-None-Match ETag
+```
+
+```json 404 Not Found
+{
+  "success": false,
+  "error": "Session not found"
+}
+```
+
+</ResponseExample>
