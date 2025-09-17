@@ -1,0 +1,292 @@
+---
+title: "GraphQL"
+description: "Advanced querying interface for complex operations, filtering, and full-text search"
+---
+
+# GraphQL API
+
+The GraphQL API provides advanced querying capabilities for complex operations, relationship queries, and full-text search across your SpecStory data. Unlike the REST API which is designed for simple CRUD operations, GraphQL excels at retrieving exactly the data you need in a single request.
+
+<Card title="Interactive GraphQL Explorer" icon="play" href="/api/v1/graphql">
+  Explore the GraphQL schema and test queries in real-time with our interactive playground
+</Card>
+
+## POST /api/v1/graphql
+
+Execute GraphQL queries for advanced data retrieval, filtering, and search operations.
+
+### Authentication
+
+All GraphQL requests require the same Bearer token authentication as the REST API:
+
+```bash
+curl -X POST \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "{ projects { id name } }"}' \
+  https://cloud.specstory.com/api/v1/graphql
+```
+
+### Basic Query Structure
+
+GraphQL requests are sent as JSON with a `query` field:
+
+<CodeGroup>
+
+```bash cURL
+curl -X POST \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "{ projects { id name sessionCount } }"}' \
+  https://cloud.specstory.com/api/v1/graphql
+```
+
+```javascript JavaScript
+const response = await fetch('https://cloud.specstory.com/api/v1/graphql', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    query: `{
+      projects {
+        id
+        name
+        sessionCount
+      }
+    }`
+  })
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+headers = {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+}
+
+query = """
+{
+  projects {
+    id
+    name
+    sessionCount
+  }
+}
+"""
+
+response = requests.post(
+    'https://cloud.specstory.com/api/v1/graphql',
+    headers=headers,
+    json={'query': query}
+)
+
+data = response.json()
+```
+
+</CodeGroup>
+
+### Response Format
+
+GraphQL responses follow a standard format:
+
+```json
+{
+  "data": {
+    "projects": [
+      {
+        "id": "proj_123",
+        "name": "My Web App",
+        "sessionCount": 15
+      },
+      {
+        "id": "proj_789",
+        "name": "Mobile App",
+        "sessionCount": 8
+      }
+    ]
+  }
+}
+```
+
+### Variables and Operations
+
+For complex queries, use variables to make your queries reusable:
+
+<CodeGroup>
+
+```bash cURL with Variables
+curl -X POST \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "query GetProject($projectId: ID!) { project(id: $projectId) { id name sessions(limit: 5) { id name } } }",
+    "variables": {"projectId": "proj_123"}
+  }' \
+  https://cloud.specstory.com/api/v1/graphql
+```
+
+```javascript JavaScript with Variables
+const response = await fetch('https://cloud.specstory.com/api/v1/graphql', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    query: `
+      query GetProject($projectId: ID!) {
+        project(id: $projectId) {
+          id
+          name
+          sessions(limit: 5) {
+            id
+            name
+          }
+        }
+      }
+    `,
+    variables: {
+      projectId: 'proj_123'
+    }
+  })
+});
+```
+
+</CodeGroup>
+
+### Key Advantages Over REST
+
+**Single Request, Multiple Resources**
+```graphql
+{
+  projects {
+    id
+    name
+    sessions(limit: 3) {
+      id
+      name
+      metadata {
+        llmModels
+        tags
+      }
+    }
+  }
+}
+```
+
+**Precise Field Selection**
+```graphql
+{
+  sessions(limit: 10) {
+    id
+    name
+    # Only get the fields you need
+    createdAt
+  }
+}
+```
+
+**Advanced Filtering**
+```graphql
+{
+  searchSessions(
+    query: "React components"
+    filters: {
+      llmModels: ["claude-3-opus"]
+      dateRange: {
+        start: "2024-01-01T00:00:00Z"
+        end: "2024-01-31T23:59:59Z"
+      }
+    }
+  ) {
+    total
+    results {
+      id
+      name
+      rank
+      snippet
+    }
+  }
+}
+```
+
+### Error Handling
+
+GraphQL errors are returned in the `errors` array alongside any successful data:
+
+```json
+{
+  "data": {
+    "projects": [...]
+  },
+  "errors": [
+    {
+      "message": "Project not found",
+      "locations": [{"line": 2, "column": 3}],
+      "path": ["project"],
+      "extensions": {
+        "code": "NOT_FOUND",
+        "projectId": "invalid-id"
+      }
+    }
+  ]
+}
+```
+
+### Schema Introspection
+
+GraphQL is self-documenting. You can query the schema itself:
+
+```graphql
+{
+  __schema {
+    types {
+      name
+      description
+    }
+  }
+}
+```
+
+Or get information about specific types:
+
+```graphql
+{
+  __type(name: "Session") {
+    name
+    fields {
+      name
+      type {
+        name
+      }
+    }
+  }
+}
+```
+
+## When to Use GraphQL vs REST
+
+### Use GraphQL for:
+- **Complex queries** involving multiple related entities
+- **Search operations** with filtering and ranking
+- **Dashboard data** where you need specific fields from multiple resources
+- **Mobile applications** where bandwidth efficiency matters
+- **Exploratory data analysis** where requirements change frequently
+
+### Use REST for:
+- **Simple CRUD operations** on individual resources
+- **File uploads** or binary data operations
+- **Caching scenarios** where HTTP caching is important
+- **Third-party integrations** that expect REST endpoints
+
+## Advanced Queries
+
+For comprehensive examples of complex GraphQL operations, including search, filtering, aggregations, and real-world use cases, see our [GraphQL Examples](/api-reference/graphql-examples) page.
+
+The interactive [GraphQL playground](/api/v1/graphql) provides the best way to explore the schema, test queries, and understand the full capabilities of the SpecStory GraphQL API.

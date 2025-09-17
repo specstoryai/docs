@@ -1,0 +1,500 @@
+---
+title: "Sessions"
+description: "Access and manage your AI conversation sessions with full content retrieval and metadata"
+---
+
+# Sessions
+
+Access and manage your AI conversation sessions. Sessions contain the complete conversation history between you and AI assistants, including code blocks, metadata, and contextual information like git branches and LLM models used.
+
+<Tabs>
+  <Tab title="Recent Sessions">
+    ## GET /api/v1/sessions/recent
+
+    Get your most recent AI conversation sessions across all projects. This endpoint is perfect for building dashboards or recent activity feeds.
+
+    ### Request
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl -H "Authorization: Bearer YOUR_API_KEY" \
+      "https://cloud.specstory.com/api/v1/sessions/recent?limit=10"
+    ```
+
+    ```javascript JavaScript
+    const response = await fetch('https://cloud.specstory.com/api/v1/sessions/recent?limit=10', {
+      headers: {
+        'Authorization': 'Bearer YOUR_API_KEY',
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const data = await response.json();
+    ```
+
+    ```python Python
+    import requests
+
+    headers = {
+        'Authorization': 'Bearer YOUR_API_KEY',
+        'Content-Type': 'application/json'
+    }
+
+    params = {'limit': 10}
+
+    response = requests.get(
+        'https://cloud.specstory.com/api/v1/sessions/recent',
+        headers=headers,
+        params=params
+    )
+
+    data = response.json()
+    ```
+
+    </CodeGroup>
+
+    ### Query Parameters
+
+    | Parameter | Type | Default | Description |
+    |-----------|------|---------|-------------|
+    | `limit` | integer | 5 | Number of sessions to return (1-100) |
+
+    ### Response
+
+    ```json
+    {
+      "success": true,
+      "data": {
+        "sessions": [
+          {
+            "id": "sess_789",
+            "projectId": "proj_123",
+            "name": "React component refactoring",
+            "markdownSize": 2048,
+            "rawDataSize": 4096,
+            "createdAt": "2024-01-15T10:30:00Z",
+            "updatedAt": "2024-01-15T10:35:00Z",
+            "metadata": {
+              "clientName": "cursor",
+              "llmModels": ["claude-3-opus"],
+              "tags": ["react", "refactoring"]
+            }
+          },
+          {
+            "id": "sess_456",
+            "projectId": "proj_789",
+            "name": "API endpoint debugging",
+            "markdownSize": 1536,
+            "rawDataSize": 3072,
+            "createdAt": "2024-01-15T09:15:00Z",
+            "updatedAt": "2024-01-15T09:20:00Z",
+            "metadata": {
+              "clientName": "vscode",
+              "llmModels": ["gpt-4"],
+              "tags": ["api", "debugging", "backend"]
+            }
+          }
+        ],
+        "total": 2
+      }
+    }
+    ```
+
+    ### Response Fields
+
+    | Field | Type | Description |
+    |-------|------|-------------|
+    | `id` | string | Unique session identifier |
+    | `projectId` | string | ID of the project containing this session |
+    | `name` | string | Human-readable session name |
+    | `markdownSize` | number | Size of markdown content in bytes |
+    | `rawDataSize` | number | Size of raw session data in bytes |
+    | `createdAt` | string | ISO 8601 timestamp of session creation |
+    | `updatedAt` | string | ISO 8601 timestamp of last update |
+    | `metadata.clientName` | string | AI client used (cursor, vscode, claude-code) |
+    | `metadata.llmModels` | array | List of LLM models used in the session |
+    | `metadata.tags` | array | Custom tags associated with the session |
+
+  </Tab>
+  
+  <Tab title="List by Project">
+    ## GET /api/v1/projects/{projectId}/sessions
+
+    List all sessions for a specific project. This endpoint includes ETag support for efficient caching.
+
+    ### Request
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl -H "Authorization: Bearer YOUR_API_KEY" \
+      https://cloud.specstory.com/api/v1/projects/proj_123/sessions
+    ```
+
+    ```javascript JavaScript
+    const response = await fetch('https://cloud.specstory.com/api/v1/projects/proj_123/sessions', {
+      headers: {
+        'Authorization': 'Bearer YOUR_API_KEY',
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const data = await response.json();
+    ```
+
+    ```python Python
+    import requests
+
+    headers = {
+        'Authorization': 'Bearer YOUR_API_KEY',
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.get(
+        'https://cloud.specstory.com/api/v1/projects/proj_123/sessions',
+        headers=headers
+    )
+
+    data = response.json()
+    ```
+
+    </CodeGroup>
+
+    ### Response
+
+    ```json
+    {
+      "success": true,
+      "data": {
+        "sessions": [
+          {
+            "id": "sess_789",
+            "projectId": "proj_123",
+            "name": "React component refactoring",
+            "markdownSize": 2048,
+            "rawDataSize": 4096,
+            "createdAt": "2024-01-15T10:30:00Z",
+            "updatedAt": "2024-01-15T10:35:00Z",
+            "metadata": {
+              "clientName": "cursor",
+              "llmModels": ["claude-3-opus"],
+              "tags": ["react", "refactoring"]
+            },
+            "etag": "\"abc123def456\""
+          }
+        ],
+        "total": 1,
+        "projectId": "proj_123"
+      }
+    }
+    ```
+
+    ### ETag Support
+
+    Each session includes an `etag` field for efficient caching. Use this with conditional requests to avoid unnecessary data transfer when session content hasn't changed.
+
+  </Tab>
+  
+  <Tab title="Get Session">
+    ## GET /api/v1/projects/{projectId}/sessions/{sessionId}
+
+    Retrieve a specific session with full content and metadata. Supports both JSON and Markdown content types.
+
+    ### Request
+
+    <CodeGroup>
+
+    ```bash cURL (JSON)
+    curl -H "Authorization: Bearer YOUR_API_KEY" \
+      -H "Accept: application/json" \
+      https://cloud.specstory.com/api/v1/projects/proj_123/sessions/sess_789
+    ```
+
+    ```bash cURL (Markdown)
+    curl -H "Authorization: Bearer YOUR_API_KEY" \
+      -H "Accept: text/markdown" \
+      https://cloud.specstory.com/api/v1/projects/proj_123/sessions/sess_789
+    ```
+
+    ```javascript JavaScript
+    const response = await fetch('https://cloud.specstory.com/api/v1/projects/proj_123/sessions/sess_789', {
+      headers: {
+        'Authorization': 'Bearer YOUR_API_KEY',
+        'Accept': 'application/json'
+      }
+    });
+
+    const data = await response.json();
+    ```
+
+    ```python Python
+    import requests
+
+    headers = {
+        'Authorization': 'Bearer YOUR_API_KEY',
+        'Accept': 'application/json'
+    }
+
+    response = requests.get(
+        'https://cloud.specstory.com/api/v1/projects/proj_123/sessions/sess_789',
+        headers=headers
+    )
+
+    data = response.json()
+    ```
+
+    </CodeGroup>
+
+    ### Content Types
+
+    | Accept Header | Response Format |
+    |---------------|-----------------|
+    | `application/json` | Structured JSON with metadata |
+    | `text/markdown` | Raw markdown content only |
+
+    ### Response (JSON)
+
+    ```json
+    {
+      "success": true,
+      "data": {
+        "session": {
+          "id": "sess_789",
+          "name": "React component refactoring",
+          "markdownContent": "# React Component Refactoring\n\n## Problem\n\nThe current UserProfile component...",
+          "markdownSize": 2048,
+          "metadata": {
+            "clientName": "cursor",
+            "llmModels": ["claude-3-opus"],
+            "tags": ["react", "refactoring"]
+          },
+          "createdAt": "2024-01-15T10:30:00Z",
+          "project": {
+            "id": "proj_123",
+            "name": "My Web App",
+            "icon": "Code2",
+            "color": "blue"
+          }
+        }
+      }
+    }
+    ```
+
+    ### ETag Support
+
+    Sessions support ETag caching for efficient content retrieval:
+
+    ```bash
+    curl -H "Authorization: Bearer YOUR_API_KEY" \
+      -H "If-None-Match: \"abc123def456\"" \
+      https://cloud.specstory.com/api/v1/projects/proj_123/sessions/sess_789
+    ```
+
+    If the session hasn't changed, you'll receive a `304 Not Modified` response, saving bandwidth and improving performance.
+
+    ### Error Responses
+
+    **404 Not Found** - Session doesn't exist:
+    ```json
+    {
+      "success": false,
+      "error": "Session not found"
+    }
+    ```
+
+  </Tab>
+  
+  <Tab title="Check Existence">
+    ## HEAD /api/v1/projects/{projectId}/sessions/{sessionId}
+
+    Check if a session exists and get metadata without downloading the full content. This is useful for verifying session existence or checking ETags before making full requests.
+
+    ### Request
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl -I -H "Authorization: Bearer YOUR_API_KEY" \
+      https://cloud.specstory.com/api/v1/projects/proj_123/sessions/sess_789
+    ```
+
+    ```javascript JavaScript
+    const response = await fetch('https://cloud.specstory.com/api/v1/projects/proj_123/sessions/sess_789', {
+      method: 'HEAD',
+      headers: {
+        'Authorization': 'Bearer YOUR_API_KEY'
+      }
+    });
+
+    // Check response status and headers
+    console.log('Status:', response.status);
+    console.log('ETag:', response.headers.get('ETag'));
+    ```
+
+    ```python Python
+    import requests
+
+    headers = {
+        'Authorization': 'Bearer YOUR_API_KEY'
+    }
+
+    response = requests.head(
+        'https://cloud.specstory.com/api/v1/projects/proj_123/sessions/sess_789',
+        headers=headers
+    )
+
+    print('Status:', response.status_code)
+    print('ETag:', response.headers.get('ETag'))
+    ```
+
+    </CodeGroup>
+
+    ### Response
+
+    The HEAD request returns only headers, no body content:
+
+    ```
+    HTTP/1.1 200 OK
+    ETag: "abc123def456"
+    Content-Type: application/json
+    Content-Length: 2048
+    Last-Modified: Mon, 15 Jan 2024 10:35:00 GMT
+    ```
+
+    ### Response Headers
+
+    | Header | Description |
+    |--------|-------------|
+    | `ETag` | Current ETag value for the session |
+    | `Content-Length` | Size of the session content |
+    | `Last-Modified` | When the session was last updated |
+
+    ### Status Codes
+
+    | Code | Description |
+    |------|-------------|
+    | `200` | Session exists |
+    | `304` | Not modified (when using If-None-Match) |
+    | `401` | Unauthorized |
+    | `404` | Session not found |
+
+    ### Use Cases
+
+    - **Existence checks**: Verify a session exists before attempting to retrieve it
+    - **ETag validation**: Check if cached content is still valid
+    - **Metadata retrieval**: Get session size and modification time without downloading content
+    - **Batch operations**: Efficiently check multiple sessions before processing
+
+  </Tab>
+  
+  <Tab title="Delete Session">
+    ## DELETE /api/v1/projects/{projectId}/sessions/{sessionId}
+
+    Permanently delete a session and all its associated content.
+
+    <Warning>
+      **This action cannot be undone.** The session content will be permanently deleted from SpecStory Cloud.
+    </Warning>
+
+    ### Request
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl -X DELETE \
+      -H "Authorization: Bearer YOUR_API_KEY" \
+      https://cloud.specstory.com/api/v1/projects/proj_123/sessions/sess_789
+    ```
+
+    ```javascript JavaScript
+    const response = await fetch('https://cloud.specstory.com/api/v1/projects/proj_123/sessions/sess_789', {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer YOUR_API_KEY'
+      }
+    });
+
+    const data = await response.json();
+    ```
+
+    ```python Python
+    import requests
+
+    headers = {
+        'Authorization': 'Bearer YOUR_API_KEY'
+    }
+
+    response = requests.delete(
+        'https://cloud.specstory.com/api/v1/projects/proj_123/sessions/sess_789',
+        headers=headers
+    )
+
+    data = response.json()
+    ```
+
+    </CodeGroup>
+
+    ### Response
+
+    ```json
+    {
+      "success": true,
+      "data": {
+        "success": true
+      }
+    }
+    ```
+
+    ### Error Responses
+
+    **403 Forbidden** - You don't have permission to delete this session:
+    ```json
+    {
+      "success": false,
+      "error": "Insufficient permissions"
+    }
+    ```
+
+    **404 Not Found** - Session doesn't exist:
+    ```json
+    {
+      "success": false,
+      "error": "Session not found"
+    }
+    ```
+
+    ### Best Practices
+
+    Before deleting sessions:
+    - **Export content** if you need to preserve the conversation for future reference
+    - **Verify session details** by retrieving the session first to confirm you're deleting the right content
+    - **Consider archiving** instead of deletion for important conversations
+    - **Use batch operations carefully** when deleting multiple sessions
+
+  </Tab>
+</Tabs>
+
+## Session Metadata
+
+Sessions automatically capture rich metadata about your AI conversations:
+
+### Client Information
+- **Client Name**: The AI assistant interface used (Cursor, VS Code, Claude Code)
+- **Client Version**: Version information when available
+- **Device Details**: Operating system and environment context
+
+### AI Model Tracking
+- **LLM Models**: List of AI models used during the conversation
+- **Model Switching**: Track when different models were used within the same session
+
+### Contextual Data
+- **Git Branches**: Active git branches during the conversation
+- **Tags**: Custom tags for organizing and categorizing sessions
+- **Timestamps**: Precise creation and modification times
+
+### Content Metrics
+- **Markdown Size**: Size of the formatted conversation content
+- **Raw Data Size**: Size of the complete session data including metadata
+
+This metadata makes it easy to search, filter, and organize your AI conversations using the GraphQL API or build custom analytics on top of your SpecStory data.

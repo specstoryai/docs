@@ -111,15 +111,9 @@
       "pages": [
         "api-reference/introduction",
         "api-reference/authentication",
-        "GET /api/v1/projects",
-        "PATCH /api/v1/projects/{projectId}",
-        "DELETE /api/v1/projects/{projectId}",
-        "GET /api/v1/sessions/recent",
-        "GET /api/v1/projects/{projectId}/sessions",
-        "GET /api/v1/projects/{projectId}/sessions/{sessionId}",
-        "HEAD /api/v1/projects/{projectId}/sessions/{sessionId}",
-        "DELETE /api/v1/projects/{projectId}/sessions/{sessionId}",
-        "POST /api/v1/graphql",
+        "api-reference/projects",
+        "api-reference/sessions",
+        "api-reference/graphql",
         "api-reference/graphql-examples",
         "api-reference/errors"
       ]
