@@ -1,0 +1,126 @@
+---
+title: "Delete Project"
+api: "DELETE /api/v1/projects/{projectId}"
+description: "Permanently delete a project and all its sessions"
+---
+
+<Warning>
+  This action cannot be undone. All sessions within the project will be permanently deleted.
+</Warning>
+
+## Request
+
+<ParamField path="projectId" type="string" required>
+  The unique identifier of the project to delete
+</ParamField>
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean">
+  Indicates if the request was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <Expandable title="data">
+    <ResponseField name="deletedProject" type="object">
+      <Expandable title="deletedProject">
+        <ResponseField name="id" type="string">
+          Project ID
+        </ResponseField>
+        <ResponseField name="ownerId" type="string">
+          Owner ID
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Project name
+        </ResponseField>
+        <ResponseField name="icon" type="string">
+          Project icon identifier
+        </ResponseField>
+        <ResponseField name="color" type="string">
+          Project color theme
+        </ResponseField>
+        <ResponseField name="createdAt" type="string">
+          Creation timestamp
+        </ResponseField>
+        <ResponseField name="updatedAt" type="string">
+          Last updated timestamp
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="deletedAt" type="string">
+      ISO 8601 timestamp of deletion
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl -X DELETE \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  https://cloud.specstory.com/api/v1/projects/proj_abc123
+```
+
+```javascript JavaScript
+const response = await fetch('https://cloud.specstory.com/api/v1/projects/proj_abc123', {
+  method: 'DELETE',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY'
+  }
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.delete(
+    'https://cloud.specstory.com/api/v1/projects/proj_abc123',
+    headers={'Authorization': 'Bearer YOUR_API_KEY'}
+)
+
+data = response.json()
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "success": true,
+  "data": {
+    "deletedProject": {
+      "id": "proj_abc123",
+      "ownerId": "user_def456",
+      "name": "My Web App",
+      "icon": "Code2",
+      "color": "blue",
+      "createdAt": "2024-01-10T08:00:00.000Z",
+      "updatedAt": "2024-01-15T10:30:00.000Z"
+    },
+    "deletedAt": "2024-01-15T11:00:00.000Z"
+  }
+}
+```
+
+```json 403 Forbidden
+{
+  "success": false,
+  "error": "You do not have permission to delete this project"
+}
+```
+
+```json 404 Not Found
+{
+  "success": false,
+  "error": "Project not found"
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,165 @@
+---
+title: "GraphQL Endpoint"
+api: "POST /api/v1/graphql"
+description: "Execute GraphQL queries for advanced data retrieval and search"
+---
+
+## Request
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication
+</ParamField>
+
+<ParamField body="query" type="string" required>
+  The GraphQL query string
+</ParamField>
+
+<ParamField body="variables" type="object">
+  Variables for the GraphQL query
+</ParamField>
+
+<ParamField body="operationName" type="string">
+  Name of the operation to execute (for queries with multiple operations)
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Query results (structure depends on the query)
+</ResponseField>
+
+<ResponseField name="errors" type="array">
+  Array of error objects if any errors occurred
+  <Expandable title="error">
+    <ResponseField name="message" type="string">
+      Error message
+    </ResponseField>
+    <ResponseField name="locations" type="array">
+      Location in the query where error occurred
+    </ResponseField>
+    <ResponseField name="path" type="array">
+      Path to the field that caused the error
+    </ResponseField>
+    <ResponseField name="extensions" type="object">
+      Additional error information
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "query SearchSessions($query: String!) { searchSessions(query: $query, limit: 10) { total results { id name rank } } }",
+    "variables": {"query": "authentication bug fix"}
+  }' \
+  https://cloud.specstory.com/api/v1/graphql
+```
+
+```javascript JavaScript
+const response = await fetch('https://cloud.specstory.com/api/v1/graphql', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    query: `
+      query SearchSessions($query: String!) {
+        searchSessions(query: $query, limit: 10) {
+          total
+          results {
+            id
+            name
+            rank
+          }
+        }
+      }
+    `,
+    variables: {
+      query: 'authentication bug fix'
+    }
+  })
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+query = """
+query SearchSessions($query: String!) {
+  searchSessions(query: $query, limit: 10) {
+    total
+    results {
+      id
+      name
+      rank
+    }
+  }
+}
+"""
+
+variables = {
+    "query": "authentication bug fix"
+}
+
+response = requests.post(
+    'https://cloud.specstory.com/api/v1/graphql',
+    headers={'Authorization': 'Bearer YOUR_API_KEY'},
+    json={'query': query, 'variables': variables}
+)
+
+data = response.json()
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "data": {
+    "searchSessions": {
+      "total": 3,
+      "results": [
+        {
+          "id": "550e8400-e29b-41d4-a716-446655440001",
+          "name": "Fix authentication token validation",
+          "rank": 0.95
+        },
+        {
+          "id": "550e8400-e29b-41d4-a716-446655440002",
+          "name": "Debug login authentication flow",
+          "rank": 0.87
+        },
+        {
+          "id": "550e8400-e29b-41d4-a716-446655440003",
+          "name": "Implement OAuth authentication",
+          "rank": 0.72
+        }
+      ]
+    }
+  }
+}
+```
+
+```json 400 Bad Request
+{
+  "success": false,
+  "error": "Invalid GraphQL query or variables"
+}
+```
+
+```json 401 Unauthorized
+{
+  "success": false,
+  "error": "Invalid or missing authentication token"
+}
+```
+
+</ResponseExample>

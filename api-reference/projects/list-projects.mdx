@@ -1,0 +1,121 @@
+---
+title: "List Projects"
+api: "GET /api/v1/projects"
+description: "Retrieve all projects in your workspace"
+---
+
+## Request
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean">
+  Indicates if the request was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <Expandable title="data">
+    <ResponseField name="projects" type="array">
+      Array of project objects
+      <Expandable title="project">
+        <ResponseField name="id" type="string">
+          Unique project identifier
+        </ResponseField>
+        <ResponseField name="ownerId" type="string">
+          ID of the project owner
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Project name
+        </ResponseField>
+        <ResponseField name="icon" type="string">
+          Project icon identifier
+        </ResponseField>
+        <ResponseField name="color" type="string">
+          Project color theme
+        </ResponseField>
+        <ResponseField name="createdAt" type="string">
+          ISO 8601 creation timestamp
+        </ResponseField>
+        <ResponseField name="updatedAt" type="string">
+          ISO 8601 last update timestamp
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="total" type="number">
+      Total number of projects
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+  https://cloud.specstory.com/api/v1/projects
+```
+
+```javascript JavaScript
+const response = await fetch('https://cloud.specstory.com/api/v1/projects', {
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY'
+  }
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://cloud.specstory.com/api/v1/projects',
+    headers={'Authorization': 'Bearer YOUR_API_KEY'}
+)
+
+data = response.json()
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "success": true,
+  "data": {
+    "projects": [
+      {
+        "id": "proj_abc123xyz789",
+        "ownerId": "user_def456uvw012",
+        "name": "My Web App",
+        "icon": "Code2",
+        "color": "blue",
+        "createdAt": "2024-01-15T10:30:00.000Z",
+        "updatedAt": "2024-01-20T14:45:30.000Z"
+      },
+      {
+        "id": "proj_ghi789rst345",
+        "ownerId": "user_def456uvw012",
+        "name": "Mobile App Development",
+        "icon": "Rocket",
+        "color": "emerald",
+        "createdAt": "2024-01-10T14:20:00.000Z",
+        "updatedAt": "2024-01-18T09:15:00.000Z"
+      }
+    ],
+    "total": 2
+  }
+}
+```
+
+```json 401 Unauthorized
+{
+  "success": false,
+  "error": "Invalid or missing authentication token"
+}
+```
+
+</ResponseExample>

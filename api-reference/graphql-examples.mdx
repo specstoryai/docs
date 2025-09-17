@@ -1,0 +1,520 @@
+---
+title: "GraphQL Examples"
+description: "Practical GraphQL query examples for the SpecStory Cloud API - search, filter, and retrieve your AI conversation data efficiently"
+---
+
+# GraphQL Query Examples
+
+The SpecStory Cloud GraphQL API provides powerful querying capabilities for complex operations, advanced filtering, and full-text search across your AI conversation data.
+
+<Card title="Interactive GraphQL Playground" icon="play" href="/api/v1/graphql">
+  Test these queries and explore the schema in our interactive playground
+</Card>
+
+## Basic Queries
+
+### List All Projects
+
+```graphql
+query GetProjects {
+  projects {
+    id
+    name
+    icon
+    color
+    createdAt
+    updatedAt
+    sessionCount
+  }
+}
+```
+
+### Get Project with Sessions
+
+```graphql
+query GetProjectWithSessions($projectId: ID!) {
+  project(id: $projectId) {
+    id
+    name
+    icon
+    color
+    sessions(limit: 10) {
+      id
+      name
+      createdAt
+      markdownSize
+      metadata {
+        clientName
+        llmModels
+        tags
+      }
+    }
+  }
+}
+```
+
+**Variables:**
+```json
+{
+  "projectId": "your-project-id"
+}
+```
+
+## Search Queries
+
+### Full-Text Search Across Sessions
+
+```graphql
+query SearchSessions($query: String!, $limit: Int = 10) {
+  searchSessions(query: $query, limit: $limit) {
+    total
+    results {
+      id
+      name
+      project {
+        id
+        name
+      }
+      rank
+      snippet
+      createdAt
+      metadata {
+        llmModels
+        tags
+      }
+    }
+  }
+}
+```
+
+**Variables:**
+```json
+{
+  "query": "React components",
+  "limit": 20
+}
+```
+
+### Search with Filters
+
+```graphql
+query FilteredSearch($query: String!, $filters: SessionFilters!) {
+  searchSessions(query: $query, filters: $filters, limit: 15) {
+    total
+    results {
+      id
+      name
+      project { name }
+      rank
+      snippet
+      createdAt
+      metadata {
+        clientName
+        llmModels
+        gitBranches
+        tags
+      }
+    }
+  }
+}
+```
+
+**Variables:**
+```json
+{
+  "query": "API documentation",
+  "filters": {
+    "projectIds": ["project-1", "project-2"],
+    "llmModels": ["claude-3-opus", "gpt-4"],
+    "tags": ["documentation", "api"],
+    "dateRange": {
+      "start": "2024-01-01T00:00:00Z",
+      "end": "2024-12-31T23:59:59Z"
+    }
+  }
+}
+```
+
+## Advanced Filtering
+
+### Sessions by LLM Model
+
+```graphql
+query SessionsByModel($model: String!, $projectId: ID) {
+  sessions(
+    filters: {
+      llmModels: [$model]
+      projectId: $projectId
+    }
+    orderBy: CREATED_AT_DESC
+    limit: 25
+  ) {
+    id
+    name
+    createdAt
+    markdownSize
+    project {
+      name
+      icon
+    }
+    metadata {
+      llmModels
+      clientName
+      gitBranches
+    }
+  }
+}
+```
+
+**Variables:**
+```json
+{
+  "model": "claude-3-opus",
+  "projectId": "your-project-id"
+}
+```
+
+### Recent Sessions with Git Context
+
+```graphql
+query RecentSessionsWithGit($days: Int = 7) {
+  sessions(
+    filters: {
+      createdAfter: $days
+      hasGitBranches: true
+    }
+    orderBy: CREATED_AT_DESC
+    limit: 20
+  ) {
+    id
+    name
+    createdAt
+    project {
+      name
+      color
+    }
+    metadata {
+      gitBranches
+      llmModels
+      clientName
+      tags
+    }
+  }
+}
+```
+
+**Variables:**
+```json
+{
+  "days": 14
+}
+```
+
+## Aggregation Queries
+
+### Project Statistics
+
+```graphql
+query ProjectStats($projectId: ID!) {
+  project(id: $projectId) {
+    id
+    name
+    stats {
+      totalSessions
+      totalMarkdownSize
+      totalRawDataSize
+      uniqueLLMModels
+      uniqueGitBranches
+      sessionsByDay(days: 30) {
+        date
+        count
+      }
+      topTags(limit: 10) {
+        tag
+        count
+      }
+    }
+  }
+}
+```
+
+### Usage Analytics
+
+```graphql
+query UsageAnalytics($timeRange: TimeRange!) {
+  analytics(timeRange: $timeRange) {
+    totalSessions
+    totalProjects
+    sessionsByModel {
+      model
+      count
+      totalSize
+    }
+    sessionsByClient {
+      client
+      count
+      averageSize
+    }
+    activityByDay {
+      date
+      sessions
+      projects
+    }
+  }
+}
+```
+
+**Variables:**
+```json
+{
+  "timeRange": {
+    "start": "2024-01-01T00:00:00Z",
+    "end": "2024-01-31T23:59:59Z"
+  }
+}
+```
+
+## Practical Use Cases
+
+### Building a Dashboard
+
+```graphql
+query DashboardData {
+  # Recent activity
+  recentSessions: sessions(limit: 5, orderBy: CREATED_AT_DESC) {
+    id
+    name
+    createdAt
+    project { name icon color }
+    metadata { llmModels }
+  }
+  
+  # Project overview
+  projects {
+    id
+    name
+    icon
+    color
+    sessionCount
+    lastActivity
+  }
+  
+  # Quick stats
+  stats {
+    totalSessions
+    totalProjects
+    sessionsThisWeek
+    topLLMModels(limit: 3) {
+      model
+      count
+    }
+  }
+}
+```
+
+### Export Sessions for Analysis
+
+```graphql
+query ExportSessions($projectId: ID!, $cursor: String) {
+  project(id: $projectId) {
+    name
+    sessions(first: 100, after: $cursor) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        node {
+          id
+          name
+          createdAt
+          markdownContent
+          metadata {
+            clientName
+            clientVersion
+            llmModels
+            gitBranches
+            tags
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### Find Related Sessions
+
+```graphql
+query RelatedSessions($sessionId: ID!, $limit: Int = 5) {
+  session(id: $sessionId) {
+    id
+    name
+    relatedSessions(limit: $limit) {
+      id
+      name
+      similarity
+      project { name }
+      createdAt
+      metadata {
+        llmModels
+        tags
+      }
+    }
+  }
+}
+```
+
+## Error Handling
+
+GraphQL errors are returned in the `errors` array:
+
+```json
+{
+  "data": null,
+  "errors": [
+    {
+      "message": "Project not found",
+      "locations": [{"line": 2, "column": 3}],
+      "path": ["project"],
+      "extensions": {
+        "code": "NOT_FOUND",
+        "projectId": "invalid-id"
+      }
+    }
+  ]
+}
+```
+
+## Performance Tips
+
+### Use Fragments for Reusable Fields
+
+```graphql
+fragment SessionBasics on Session {
+  id
+  name
+  createdAt
+  markdownSize
+  metadata {
+    llmModels
+    tags
+  }
+}
+
+query GetSessions {
+  recentSessions: sessions(limit: 10) {
+    ...SessionBasics
+  }
+  
+  searchResults: searchSessions(query: "React") {
+    results {
+      ...SessionBasics
+      rank
+      snippet
+    }
+  }
+}
+```
+
+### Pagination for Large Datasets
+
+```graphql
+query PaginatedSessions($cursor: String, $limit: Int = 20) {
+  sessions(first: $limit, after: $cursor) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    edges {
+      cursor
+      node {
+        id
+        name
+        createdAt
+        project { name }
+      }
+    }
+  }
+}
+```
+
+### Field Selection
+
+Only request the fields you need to minimize response size and improve performance:
+
+```graphql
+# Good - specific fields
+query OptimizedQuery {
+  projects {
+    id
+    name
+    sessionCount
+  }
+}
+
+# Avoid - requesting unnecessary data
+query UnoptimizedQuery {
+  projects {
+    id
+    name
+    icon
+    color
+    createdAt
+    updatedAt
+    sessionCount
+    sessions {
+      id
+      name
+      markdownContent  # Large field
+      metadata
+    }
+  }
+}
+```
+
+## Schema Introspection
+
+Explore the available types and fields:
+
+```graphql
+query IntrospectSchema {
+  __schema {
+    types {
+      name
+      description
+      fields {
+        name
+        type {
+          name
+        }
+      }
+    }
+  }
+}
+```
+
+Query specific type information:
+
+```graphql
+query SessionType {
+  __type(name: "Session") {
+    name
+    description
+    fields {
+      name
+      description
+      type {
+        name
+        kind
+      }
+    }
+  }
+}
+```
+
+<Note>
+  The interactive GraphQL playground provides built-in schema exploration with autocomplete and documentation. Visit `/api/v1/graphql` to explore the full schema interactively.
+</Note>
