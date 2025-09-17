@@ -135,8 +135,7 @@
       "group": "GraphQL",
       "pages": [
         "api-reference/graphql",
-        "api-reference/graphql-endpoint",
-        "api-reference/graphql-examples"
+        "api-reference/graphql-endpoint"
       ]
     },
     {
