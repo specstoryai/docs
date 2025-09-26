@@ -2,14 +2,13 @@
 title: "Claude Code / Cursor CLI"
 ---
 
-SpecStory complements [Claude Code](https://docs.anthropic.com/en/docs/claude-code), Anthropic’s agentic AI coding tool that runs in your terminal. Claude Code automates coding tasks like brainstorming, editing, testing, and PR creation. SpecStory adds the missing layer: **capturing the reasoning and decisions behind those sessions as clean Markdown**.
+SpecStory complements [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and [Cursor CLI](https://cursor.com/cli), agentic AI coding tools that run in your terminal. These agents automate coding tasks like brainstorming, editing, testing, and PR creation. SpecStory adds the missing layer: **capturing the reasoning and decisions behind those sessions as clean Markdown**.
 
-With SpecStory, every Claude Code interaction becomes a versioned, searchable, and shareable artifact you can keep alongside your code.
+With SpecStory, every interaction with an agent becomes a versioned, searchable, and shareable artifact you can keep alongside your code.
 
-## What is Claude Code?
+## What are Claude Code and Cursor CLI?
 
-Claude Code runs in your terminal and understands your entire codebase via agentic AI (powered by Claude 3.7 Sonnet and Opus 4), enabling everything from full-stack edits to CI integration, all without context-switching.
-It supports:
+Claude Code and Cursor CLI run in your terminal and understand your entire codebase via agentic AI (powered by foundation models such as  Sonnet 4, Opus 4.1 and GPT-5), enabling everything from full-stack edits to CI integration, all without context-switching. They support:
 
 - Autonomous multi-file edits & PR creation
 - Intelligent file navigation and dependency awareness
@@ -19,7 +18,7 @@ It supports:
   Prefer a native macOS experience? Check out [BearClaude](/bearclaude/overview), our standalone app that integrates Claude Code with SpecStory out of the box.
 </Info>
 
-## Install SpecStory with Claude Code
+## Install SpecStory CLI
 
 ### macOS (via Homebrew)
 
@@ -28,6 +27,7 @@ brew tap specstoryai/tap
 brew update
 brew install specstory
 specstory version
+specstory check
 ```
 
 ### Linux / WSL
@@ -43,6 +43,7 @@ Verify with:
 
 ```bash
 specstory version
+specstory check
 ```
 
 ## Usage: Capture Your Claude Code Sessions
@@ -51,7 +52,10 @@ Run Claude Code through SpecStory to automatically capture your sessions:
 
 ```bash
 # Launch Claude Code with automated capture
-specstory run
+specstory run claude
+
+# Launch Cursor CLI with automated capture
+specstory run cursor
 ```
 
 Conversations will be stored in `.specstory/history/` as timestamped Markdown.
@@ -60,35 +64,35 @@ Conversations will be stored in `.specstory/history/` as timestamped Markdown.
 
 The `sync` command ensures you can **retroactively capture Claude Code history**, even if you didn’t start with `specstory run`.
 
+This makes `specstory sync` invaluable if you ever forget to wrap a session or want to batch-export past work.
+
 **Convert all sessions**:
 
 ```bash
 specstory sync
 ```
 
-Exports _all_ Claude Code sessions into `.specstory/history/*.md`.
+Exports _all_ Claude Code and Cursor CLI sessions into `.specstory/history/*.md`.
 
 **Sync a single session**:
 
 ```bash
-specstory sync -u <session-uuid>
+specstory sync claude -s <session-uuid>
+
+specstory sync cursor -s <session-uuid>
 ```
 
 Converts only one session by its ID.
 
-**Debug with console output**:
+**Debug with log output**:
 
 ```bash
-specstory sync --console
+specstory sync --debug --log
 ```
 
-Streams conversion logs to the terminal.
+## Enhancing AI Coding Workflows
 
-This makes `specstory sync` invaluable if you ever forget to wrap a session or want to batch-export past work.
-
-## Enhancing Claude Code Workflows
-
-- **Full-history capture**: Each CLI session is saved as clean Markdown.
+- **Full-history capture**: Each agent session is saved as clean Markdown.
 - **Reusable context**: Revisit and reuse design discussions without rerunning prompts.
 - **Portable reasoning**: Sessions history stay with your repo, not locked in a terminal buffer.
 - **CLI-first logic**: Ideal for developers who prefer terminal workflows and composability.
@@ -98,12 +102,12 @@ This makes `specstory sync` invaluable if you ever forget to wrap a session or w
 - **`Use /clear between tasks`**: Keeps new sessions focused and token-efficient.
 - **`Use !command for shell context`**: Great for feeding in outputs (`!ls`, `!grep`, etc.).
 - **Enable auto-mode carefully**: Allows unattended editing (`–dangerously-skip-permissions`), but only for trusted projects.
-- **`Leverage /init to create a CLAUDE.md`**: Gives Claude persistent project knowledge.
+- `Leverage /init to create a CLAUDE.md`: Gives Claude Code persistent project knowledge.
 - **Document custom tools**: Add context for custom scripts, CI helpers, or CLI tools via `CLAUDE.md` to guide Claude intelligently.
 
 ## Why This Matters
 
-Claude Code lets you **act via AI** in your terminal. SpecStory ensures you _understand why_ those actions happened. This combination delivers:
+Claude Code and Cursor CLI let you **act via AI** in your terminal. SpecStory ensures you _understand why_ those actions happened. This combination delivers:
 
 - Better traceability for agentic edits
 - Historical context to aid collaboration and debates
@@ -111,8 +115,8 @@ Claude Code lets you **act via AI** in your terminal. SpecStory ensures you _und
 
 ## Troubleshooting
 
-- **`specstory run not capturing`**: Ensure `claude` is in your PATH and that a session starts.
-- **`No output in .specstory/history/`**: Run `specstory sync` to convert past sessions.
-- **`specstory sync shows nothing`**: Verify Claude Code has existing sessions.
+- `specstory run` not capturing: Ensure `claude` and/or `cursor-agent` are in your PATH and that a session starts.
+- `.specstory/history/` has no output: Run `specstory sync` to convert past sessions.
+- `specstory sync` shows nothing: Verify Claude Code has existing sessions.
 - **Permission issues on macOS/Linux**: Avoid running as root, check file permissions in your project folder.
 - **Need help**? File an issue on [GitHub](https://github.com/specstoryai/getspecstory/issues) or contact [support@specstory.com](mailto:support@specstory.com).
