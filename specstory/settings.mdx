@@ -51,7 +51,7 @@ description: "Change how SpecStory works."
     | Flag                   | Description                                                     | Usage                                                                             |
     | ---------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------- |
     | `-c, --command`        | Custom Claude Code command/args                                 | `specstory run claude -c "~/.claude/local/claude --dangerously-skip-permissions"` |
-    | `-u, --session-uuid`   | Sync a specific session to markdown                             | `specstory sync -u <uuid>`                                                        |
+    | `-s, --session`        | Sync a specific session to markdown                             | `specstory sync cursor -s <sessionId>`                                            |
     | `--console`            | Show log output to stdout                                       | `specstory sync --console`                                                        |
     | `--log`                | Debug output to `./specstory/debug/debug.log`                   | `specstory sync --log`                                                            |
     | `--debug`              | Enable debug level output for `--log` or `--console`            | `specstory sync --log --debug`                                                    |
@@ -65,7 +65,7 @@ description: "Change how SpecStory works."
     ### Default Behavior
 
     - **Session Storage:** `.specstory/history/` in current directory
-    - **Session Files:** Read from `~/.claude/projects/`
+    - **Session Files:** Read from `` ~/.claude/projects/ and `~/.cursor/chats/ ``
     - **Output Format:** Markdown files with timestamps
 
     ### Project Configuration
