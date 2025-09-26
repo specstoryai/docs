@@ -37,30 +37,30 @@ description: "Change how SpecStory works."
 
     ### Available Commands
 
-    | Flag      | Description                                              | Examples                                           |
-    | :-------- | :------------------------------------------------------- | :------------------------------------------------- |
-    | (default) | Show help information                                    | `specstory`                                        |
-    | `run`     | Run Claude Code or Cursor CLI with auto-save to markdown | `specstory run claude`<br />`specstory run cursor` |
-    | `sync`    | Convert existing sessions to markdown                    | `specstory sync`<br />`specstory sync -u <uuid>`   |
-    | `check`   | Claude Code is installed and accessible by SpecStory     | `specstory check`                                  |
-    | `help`    | Show help information                                    | `specstory help`<br />`specstory help <command>`   |
-    | `version` | Show version                                             | `specstory version`                                |
+    | Flag      | Description                                                 | Examples                                              |
+    | :-------- | :---------------------------------------------------------- | :---------------------------------------------------- |
+    | (default) | Show help information                                       | `specstory`                                           |
+    | `run`     | Run Claude Code or Cursor CLI with auto-save to markdown    | `specstory run claude`<br />`specstory run cursor`    |
+    | `sync`    | Convert existing sessions to markdown                       | `specstory sync`<br />`specstory sync -s <sessionId>` |
+    | `check`   | Terminal agent(s) are installed and accessible by SpecStory | `specstory check`                                     |
+    | `help`    | Show help information                                       | `specstory help`<br />`specstory help <command>`      |
+    | `version` | Show version                                                | `specstory version`                                   |
 
     ### Available Flags
 
-    | Flag                   | Description                                                     | Usage                                                                      |
-    | ---------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------- |
-    | `-c, --claude-command` | Custom Claude Code command/args                                 | `specstory run -c "~/.claude/local/claude --dangerously-skip-permissions"` |
-    | `-u, --session-uuid`   | Sync a specific session to markdown                             | `specstory sync -u <uuid>`                                                 |
-    | `--console`            | Show log output to stdout                                       | `specstory sync --console`                                                 |
-    | `--log`                | Debug output to `./specstory/debug/debug.log`                   | `specstory sync --log`                                                     |
-    | `--debug`              | Enable debug level output for `--log` or `--console`            | `specstory sync --log --debug`                                             |
-    | `--silent`             | Supress all non-error output                                    | `specstory sync --silent`                                                  |
-    | `--no-usage-analytics` | Disable usage analytics                                         | `specstory run --no-usage-analytics`                                       |
-    | `--no-version-check`   | Skip checking for newer version                                 | `specstory run --no-version-check`                                         |
-    | `--output-dir`         | Use a custom output directory for markdown from `run` or `sync` | `specstory sync --output-dir ~/my-claude-sessions`                         |
-    | `-h, --help`           | Show help information                                           | `specstory -h`                                                             |
-    | `-v, --version`        | Show version                                                    | `specstory -v`                                                             |
+    | Flag                   | Description                                                     | Usage                                                                             |
+    | ---------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+    | `-c, --command`        | Custom Claude Code command/args                                 | `specstory run claude -c "~/.claude/local/claude --dangerously-skip-permissions"` |
+    | `-u, --session-uuid`   | Sync a specific session to markdown                             | `specstory sync -u <uuid>`                                                        |
+    | `--console`            | Show log output to stdout                                       | `specstory sync --console`                                                        |
+    | `--log`                | Debug output to `./specstory/debug/debug.log`                   | `specstory sync --log`                                                            |
+    | `--debug`              | Enable debug level output for `--log` or `--console`            | `specstory sync --log --debug`                                                    |
+    | `--silent`             | Supress all non-error output                                    | `specstory sync --silent`                                                         |
+    | `--no-usage-analytics` | Disable usage analytics                                         | `specstory run --no-usage-analytics`                                              |
+    | `--no-version-check`   | Skip checking for newer version                                 | `specstory run --no-version-check`                                                |
+    | `--output-dir`         | Use a custom output directory for markdown from `run` or `sync` | `specstory sync --output-dir ~/my-claude-sessions`                                |
+    | `-h, --help`           | Show help information                                           | `specstory -h`                                                                    |
+    | `-v, --version`        | Show version                                                    | `specstory -v`                                                                    |
 
     ### Default Behavior
 
