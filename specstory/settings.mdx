@@ -37,14 +37,16 @@ description: "Change how SpecStory works."
 
     ### Available Commands
 
-    | Flag      | Description                                                 | Examples                                              |
-    | :-------- | :---------------------------------------------------------- | :---------------------------------------------------- |
-    | (default) | Show help information                                       | `specstory`                                           |
-    | `run`     | Run Claude Code or Cursor CLI with auto-save to markdown    | `specstory run claude`<br />`specstory run cursor`    |
-    | `sync`    | Convert existing sessions to markdown                       | `specstory sync`<br />`specstory sync -s <sessionId>` |
-    | `check`   | Terminal agent(s) are installed and accessible by SpecStory | `specstory check`                                     |
-    | `help`    | Show help information                                       | `specstory help`<br />`specstory help <command>`      |
-    | `version` | Show version                                                | `specstory version`                                   |
+    | Flag      | Description                                                                                                  | Examples                                              |
+    | :-------- | :----------------------------------------------------------------------------------------------------------- | :---------------------------------------------------- |
+    | (default) | Show help information                                                                                        | `specstory`                                           |
+    | `run`     | Run Claude Code or Cursor CLI with auto-save to to local markdown files, and to SpecStory Cloud if logged in | `specstory run claude`<br />`specstory run cursor`    |
+    | `sync`    | Convert existing sessions to local markdown files, and sync them to SpecStory Cloud if logged in             | `specstory sync`<br />`specstory sync -s <sessionId>` |
+    | `check`   | Terminal agent(s) are installed and accessible by SpecStory                                                  | `specstory check`                                     |
+    | `login`   | Login to SpecStory Cloud                                                                                     | `specstory login`                                     |
+    | `logout`  | Logout of SpecStory Cloud                                                                                    | `specstory logout`                                    |
+    | `help`    | Show help information                                                                                        | `specstory help`<br />`specstory help <command>`      |
+    | `version` | Show version                                                                                                 | `specstory version`                                   |
 
     ### Available Flags
 
@@ -85,10 +87,10 @@ description: "Change how SpecStory works."
 
     ```bash
     # Run interactively with verbose output (noisy)
-    specstory run --console --debug
+    specstory run claude --console --debug
     
     # Run interactively with logging (quiet, just as helpful)
-    specstory run --log
+    specstory run cursor --log
     
     # Check what sessions will be processed
     specstory sync --console | grep "Parsing session"
