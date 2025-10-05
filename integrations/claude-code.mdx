@@ -17,7 +17,16 @@ specstory check
 ```
 
 <Info>
-  Linux / WSL users: download the latest binary from the [SpecStory releases](https://github.com/specstoryai/getspecstory/releases), mark it executable, and move it into your `PATH`.
+  Need Linux or WSL binaries or installing manually? Download the archive that matches your OS and architecture (for example `SpecStoryCLI_Linux_x86_64.tar.gz` or `SpecStoryCLI_Darwin_arm64.zip`) from the [latest release](https://github.com/specstoryai/getspecstory/releases), make them executable, and move them into your `PATH`.
+
+  ```bash
+  tar -xzf SpecStoryCLI_Linux_x86_64.tar.gz   # unzip the Darwin archive on macOS
+  sudo mv specstory /usr/local/bin/
+  sudo chmod +x /usr/local/bin/specstory
+  specstory version
+  ```
+
+  Swap the archive name for the asset you downloaded and repeat when upgrading.
 </Info>
 
 ## Run Claude Code with auto-save
