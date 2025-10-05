@@ -4,34 +4,28 @@ description: "Frequently asked questions about SpecStory and BearClaude."
 ---
 
 <AccordionGroup>
-  <Accordion title="What versions of Cursor, Copilot, and Claude Code do you support?">
+  <Accordion title="What versions of AI coding tools do you support?">
     SpecStory is tested to work with:
+
     - Cursor: every version after `v0.43.5`
     - Copilot: every version after `v1.300.0`
+    - Codex CLI: every version after `0.42.0`
+    - Cursor CLI: every version after `2025.09.18-7ae6800`
     - Claude Code: every version after `v1.0.27`
   </Accordion>
-
   <Accordion title="Does it cost money to use SpecStory? BearClaude?">
-    The SpecStory Extension is [free as in beer 🍺](https://opensource.stackexchange.com/questions/620/what-is-the-difference-between-free-as-in-beer-and-free-as-in-speech). Enjoy!
-    BearClaude is available for free during the Alpha, but will have [paid tiers](https://bearclaude.specstory.com/pricing) when we launch.
+    The SpecStory Extension is [free as in beer 🍺](https://opensource.stackexchange.com/questions/620/what-is-the-difference-between-free-as-in-beer-and-free-as-in-speech). Enjoy! BearClaude is available for free during the Alpha, but will have [paid tiers](https://bearclaude.specstory.com/pricing) when we launch.
   </Accordion>
-
   <Accordion title="How can I support you?">
     Sharing is caring! We'd absolutely love if you could:
 
-    * Tell your friends about SpecStory.
-
-    * Introduce us to a colleague at work.
-
-    * Consider [purchasing](https://bearclaude.specstory.com/pricing) BearClaude when it launches.
-
-    * [Leave a review](https://marketplace.visualstudio.com/items?itemName=SpecStory.specstory-vscode\&ssr=false#review-details) on the VS Code Marketplace
-
-    * Talk about us on [Cursor Reddit](https://www.reddit.com/r/cursor/), [Cursor Forums](https://forum.cursor.com/), [GitHub Copilot Reddit](https://www.reddit.com/r/GithubCopilot/), X.com, BlueSky and  LinkedIn.
-
-    * Follow us on [LinkedIn](https://www.linkedin.com/company/specstory), [X.com](https://www.x.com/specstoryai) and [BlueSky](https://bsky.app/profile/specstory.com). Star us on [GitHub](https://github.com/specstoryai/getspecstory).
+    - Tell your friends about SpecStory.
+    - Introduce us to a colleague at work.
+    - Consider [purchasing](https://bearclaude.specstory.com/pricing) BearClaude when it launches.
+    - [Leave a review](https://marketplace.visualstudio.com/items?itemName=SpecStory.specstory-vscode&ssr=false#review-details) on the VS Code Marketplace
+    - Talk about us on [Cursor Reddit](https://www.reddit.com/r/cursor/), [Cursor Forums](https://forum.cursor.com/), [GitHub Copilot Reddit](https://www.reddit.com/r/GithubCopilot/), X.com, BlueSky and  LinkedIn.
+    - Follow us on [LinkedIn](https://www.linkedin.com/company/specstory), [X.com](https://www.x.com/specstoryai) and [BlueSky](https://bsky.app/profile/specstory.com). Star us on [GitHub](https://github.com/specstoryai/getspecstory).
   </Accordion>
-
   <Accordion title="Will you support other AI Code IDEs?">
     We get this question a lot! Each [AI Code IDE](https://specstory.com/editor-tracker) stores chats in differing formats and locations. All are [subject to change](https://forum.cursor.com/t/questions-about-state-vscdb/47299/2) at anytime. We're currently focused on making the best possible extension for GitHub Copilot & Cursor with **SpecStory**.
 
@@ -41,57 +35,44 @@ description: "Frequently asked questions about SpecStory and BearClaude."
 
     Curious about the hype around the different AI code editors? Us too. That's why we created the [AI Editor Tracker](https://specstory.com/editor-tracker) to follow the sentiment.
   </Accordion>
-
   <Accordion title="How does this extension work?">
-    In a nutshell, SpecStory allows you to save and share your AI conversation history. 
-    
+    In a nutshell, SpecStory allows you to save and share your AI conversation history.
+
     For Cursor, it reads your local chat history directly from a `sqlite3` database. This is located in different paths depending on your operating system:
 
-    * Windows: `%APPDATA%\Cursor\User\globalStorage\state.vscdb`
-
-    * MacOS: `~/Library/Application Support/Cursor/User/globalStorage/state.vscdb`
-
-    * Linux: `~/.config/Cursor/User/globalStorage/state.vscdb`
+    - Windows: `%APPDATA%\Cursor\User\globalStorage\state.vscdb`
+    - MacOS: `~/Library/Application Support/Cursor/User/globalStorage/state.vscdb`
+    - Linux: `~/.config/Cursor/User/globalStorage/state.vscdb`
 
     For GitHub Copilot, it reads your local chat history directly from chat jsons:
 
-    * Windows: `%APPDATA%\Code\User\workspaceStorage\{hash}\chatSessions`
-
-    * MacOS: `~/Library/Application Support/Code/User/workspaceStorage/{hash}/chatSessions`
-
-    * Linux: `~/.config/Code/User/workspaceStorage/{hash}/chatSessions`
+    - Windows: `%APPDATA%\Code\User\workspaceStorage\{hash}\chatSessions`
+    - MacOS: `~/Library/Application Support/Code/User/workspaceStorage/{hash}/chatSessions`
+    - Linux: `~/.config/Code/User/workspaceStorage/{hash}/chatSessions`
 
     For Claude Code, the SpecStory CLI wrapper acts as a launcher that:
 
-    * Runs Claude Code while capturing your conversations
-    
-    * Reads session files from `~/.claude/projects/` (JSONL format)
-    
-    * Converts them to markdown and saves to `.specstory/history/` in your project
-    
-    * Works on macOS, Linux, and Windows
+    - Runs Claude Code while capturing your conversations
+    - Reads session files from `~/.claude/projects/` (JSONL format)
+    - Converts them to markdown and saves to `.specstory/history/` in your project
+    - Works on macOS, Linux, and Windows
 
     **BearClaude** is a standalone macOS application that provides a three-pane interface combining document management, markdown editing, and Claude Code integration. It automatically saves your Claude Code conversations to your project's `.specstory` folder.
 
     For more detail about each feature check out our feature pages. For insight into what data we collect and access look at [our data privacy page](/privacy).
   </Accordion>
-
   <Accordion title="If I need help how can I reach you?">
     Don't be shy: we'd absolutely love to hear from you and promise to be extra responsive!
 
     1. Drop us a line at [support@specstory.com](mailto:support@specstory.com).
-
     2. Join our [Slack community](https://join.slack.com/t/specstory/shared_invite/zt-2vq0274ck-MYS39rgOpDSmgfE1IeK9gg) and ping us directly
-
     3. File an [issue on github](https://github.com/specstoryai/getspecstory/issues).
   </Accordion>
-
   <Accordion title="Will you open source these tools?">
     Both tools are still in active development with rapid iterations. We've talked about this internally but have not made a decision.
 
     We do strive to be as open as possible in terms of how they work, what data is accessed and stored and [what our policy is](https://specstory.com/privacy).
   </Accordion>
-
   <Accordion title="Can I import my SpecStory history back into my editor?">
     Not today. We do not conduct write operations on the `state.vscdb` or the [Shadow Workspace](https://www.cursor.com/blog/shadow-workspace) Cursor maintains. We do not modify the `workspaceStorage` directory Copilot maintains.
 
