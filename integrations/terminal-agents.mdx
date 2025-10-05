@@ -1,14 +1,14 @@
 ---
-title: "Claude Code / Cursor CLI"
+title: "Terminal Agents"
 ---
 
-SpecStory complements [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and [Cursor CLI](https://cursor.com/cli), agentic AI coding tools that run in your terminal. These agents automate coding tasks like brainstorming, editing, testing, and PR creation. SpecStory adds the missing layer: **capturing the reasoning and decisions behind those sessions as clean Markdown**.
+SpecStory complements [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Cursor CLI](https://cursor.com/cli), and [Codex CLI](https://www.openai.com/codex/cli/), agentic AI coding tools that run in your terminal. These agents automate coding tasks like brainstorming, editing, testing, and PR creation. SpecStory adds the missing layer: **capturing the reasoning and decisions behind those sessions as clean Markdown**.
 
 With SpecStory, every interaction with an agent becomes a versioned, searchable, and shareable artifact you can keep alongside your code.
 
-## What are Claude Code and Cursor CLI?
+## What are terminal coding agents?
 
-Claude Code and Cursor CLI run in your terminal and understand your entire codebase via agentic AI (powered by foundation models such as  Sonnet 4, Opus 4.1 and GPT-5), enabling everything from full-stack edits to CI integration, all without context-switching. They support:
+Claude Code, Cursor CLI and Codex CLI run in your terminal and understand your entire codebase via agentic AI (powered by foundation models such as  Sonnet 4, Opus 4.1 and GPT-5), enabling everything from full-stack edits to CI integration, all without context-switching. They support:
 
 - Autonomous multi-file edits & PR creation
 - Intelligent file navigation and dependency awareness
@@ -56,6 +56,9 @@ specstory run claude
 
 # Launch Cursor CLI with automated capture
 specstory run cursor
+
+# Launch Codex CLI with automated capture
+specstory run codex
 ```
 
 Conversations will be stored in `.specstory/history/` as timestamped Markdown.
@@ -80,6 +83,8 @@ Exports _all_ Claude Code and Cursor CLI sessions into `.specstory/history/*.md`
 specstory sync claude -s <session-uuid>
 
 specstory sync cursor -s <session-uuid>
+
+specstory sync codex -s <session-uuid>
 ```
 
 Converts only one session by its ID.
@@ -115,8 +120,8 @@ Claude Code and Cursor CLI let you **act via AI** in your terminal. SpecStory en
 
 ## Troubleshooting
 
-- `specstory run` not capturing: Ensure `claude` and/or `cursor-agent` are in your PATH and that a session starts.
+- `specstory run` not capturing: Ensure `claude`, `cursor-agent` or `codex` are in your PATH and that a session starts.
 - `.specstory/history/` has no output: Run `specstory sync` to convert past sessions.
-- `specstory sync` shows nothing: Verify Claude Code has existing sessions.
+- `specstory sync` shows nothing: Verify the terminal agent has existing sessions in the current working directory.
 - **Permission issues on macOS/Linux**: Avoid running as root, check file permissions in your project folder.
 - **Need help**? File an issue on [GitHub](https://github.com/specstoryai/getspecstory/issues) or contact [support@specstory.com](mailto:support@specstory.com).
