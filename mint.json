@@ -60,8 +60,16 @@
       "group": "Integrations",
       "pages": [
         "integrations/cursor",
-        "integrations/vscode",
-        "integrations/terminal-coding-agents"
+        "integrations/vscode"
+      ]
+    },
+    {
+      "group": "Terminal Coding Agents",
+      "pages": [
+        "integrations/terminal-coding-agents",
+        "integrations/claude-code",
+        "integrations/cursor-cli",
+        "integrations/codex-cli"
       ]
     },
     {

@@ -1,127 +1,59 @@
 ---
-title: "Terminal Coding Agents"
+title: "Overview"
 ---
 
-SpecStory complements [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Cursor CLI](https://cursor.com/cli), and [Codex CLI](https://www.openai.com/codex/cli/), agentic AI coding tools that run in your terminal. These agents automate coding tasks like brainstorming, editing, testing, and PR creation. SpecStory adds the missing layer: **capturing the reasoning and decisions behind those sessions as clean Markdown**.
+SpecStory complements [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Cursor CLI](https://cursor.com/cli), and [Codex CLI](https://www.openai.com/codex/cli/), terminal-first AI coding agents that automate edits, testing, and PR workflows. SpecStory wraps these agents so every command, response, and decision becomes Markdown you can review and share.
 
-With SpecStory, every interaction with an agent becomes a versioned, searchable, and shareable artifact you can keep alongside your code.
+<CardGroup cols={3}>
+  <Card title="Claude Code" icon="sparkles" href="/integrations/claude-code">
+    Launch Claude Code through SpecStory to capture end-to-end terminal conversations as Markdown.
+  </Card>
+  <Card title="Cursor CLI" icon="cursor-arrow-rays" href="/integrations/cursor-cli">
+    Mirror Cursor’s agent in your terminal and archive collaborative reasoning with SpecStory.
+  </Card>
+  <Card title="Codex CLI" icon="cpu-chip" href="/integrations/codex-cli">
+    Pair Codex CLI with SpecStory to preserve GPT-powered coding sessions for later review.
+  </Card>
+</CardGroup>
 
-## What are terminal coding agents?
+## Why wrap terminal agents with SpecStory?
 
-Claude Code, Cursor CLI and Codex CLI run in your terminal and understand your entire codebase via agentic AI (powered by foundation models such as  Sonnet 4, Opus 4.1 and GPT-5), enabling everything from full-stack edits to CI integration, all without context-switching. They support:
-
-- Autonomous multi-file edits & PR creation
-- Intelligent file navigation and dependency awareness
-- Slash commands, GitHub CLI (`gh`), and external toolchain interoperability
+- **Portable reasoning**: Markdown transcripts travel with your repository, not a volatile terminal scrollback.
+- **Retroactive capture**: `specstory sync` converts past Claude, Cursor, or Codex sessions even if you forgot to wrap them.
+- **Team-friendly context**: Share the “why” behind automation-driven edits in pull requests and docs.
+- **CLI-first flexibility**: Keep your existing commands, aliases, and automations while SpecStory observes in the background.
 
 <Info>
-  Prefer a native macOS experience? Check out [BearClaude](/bearclaude/overview), our standalone app that integrates Claude Code with SpecStory out of the box.
+  Prefer a macOS-native experience? [BearClaude](/bearclaude/overview) ships with SpecStory support and Claude Code built in.
 </Info>
 
-## Install SpecStory CLI
-
-### macOS (via Homebrew)
+## Universal workflow
 
 ```bash
+# 1. Install or update the SpecStory CLI
 brew tap specstoryai/tap
 brew update
 brew install specstory
-specstory version
-specstory check
+
+# 2. Run your preferred agent through SpecStory
+specstory run <claude|cursor|codex>
+
+# 3. Optionally convert past sessions later
+specstory sync <claude|cursor|codex>
 ```
 
-### Linux / WSL
+Transcripts land in `.specstory/history/` with timestamps and metadata ready for code review or knowledge sharing.
 
-Download and install the latest binaries for your platform from [our GitHub releases](https://github.com/specstoryai/getspecstory/releases) and move it into your PATH:.
+## Tips for every agent
 
-```bash
-sudo mv specstory /usr/local/bin/
-chmod +x /usr/local/bin/specstory
-```
-
-Verify with:
-
-```bash
-specstory version
-specstory check
-```
-
-## Usage: Auto-save Your Coding Sessions
-
-Run your terminal agent via SpecStory to automatically capture your sessions:
-
-```bash
-# Launch Claude Code with automated capture
-specstory run claude
-
-# Launch Cursor CLI with automated capture
-specstory run cursor
-
-# Launch Codex CLI with automated capture
-specstory run codex
-```
-
-Conversations will be stored in `.specstory/history/` as timestamped Markdown.
-
-## Understanding `specstory sync`
-
-The `sync` command ensures you can **retroactively capture Claude Code history**, even if you didn’t start with `specstory run`.
-
-This makes `specstory sync` invaluable if you ever forget to wrap a session or want to batch-export past work.
-
-**Convert all sessions, from all agents**:
-
-```bash
-specstory sync
-```
-
-Exports _all_ Claude Code and Cursor CLI sessions into `.specstory/history/*.md`.
-
-**Sync a single session**:
-
-```bash
-specstory sync claude -s <session-uuid>
-
-specstory sync cursor -s <session-uuid>
-
-specstory sync codex -s <session-uuid>
-```
-
-Converts only one session by its ID.
-
-**Debug with log output**:
-
-```bash
-specstory sync --debug --log
-```
-
-## Enhancing AI Coding Workflows
-
-- **Full-history capture**: Each agent session is saved as clean Markdown.
-- **Reusable context**: Revisit and reuse design discussions without rerunning prompts.
-- **Portable reasoning**: Sessions history stay with your repo, not locked in a terminal buffer.
-- **CLI-first logic**: Ideal for developers who prefer terminal workflows and composability.
-
-## Pro Tips & Best Practices
-
-- **`Use /clear between tasks`**: Keeps new sessions focused and token-efficient.
-- **`Use !command for shell context`**: Great for feeding in outputs (`!ls`, `!grep`, etc.).
-- **Enable auto-mode carefully**: Allows unattended editing (`–dangerously-skip-permissions`), but only for trusted projects.
-- `Leverage /init to create a CLAUDE.md`: Gives Claude Code persistent project knowledge.
-- **Document custom tools**: Add context for custom scripts, CI helpers, or CLI tools via `CLAUDE.md` to guide Claude intelligently.
-
-## Why This Matters
-
-Claude Code and Cursor CLI let you **act via AI** in your terminal. SpecStory ensures you _understand why_ those actions happened. This combination delivers:
-
-- Better traceability for agentic edits
-- Historical context to aid collaboration and debates
-- Easily composable workflows via Markdown rather than closed UI prompts
+- Use `/clear` (or the agent’s reset command) between tasks to keep transcripts scoped.
+- Feed shell context with `!` commands so SpecStory captures inputs and outputs together.
+- Commit `.specstory/history/` alongside code to preserve design intent and debugging rationale.
+- Store persistent project notes (e.g., `CLAUDE.md`) so agents stay aligned across sessions.
 
 ## Troubleshooting
 
-- `specstory run` not capturing: Ensure `claude`, `cursor-agent` or `codex` are in your PATH and that a session starts.
-- `.specstory/history/` has no output: Run `specstory sync` to convert past sessions.
-- `specstory sync` shows nothing: Verify the terminal agent has existing sessions in the current working directory.
-- **Permission issues on macOS/Linux**: Avoid running as root, check file permissions in your project folder.
-- **Need help**? File an issue on [GitHub](https://github.com/specstoryai/getspecstory/issues) or contact [support@specstory.com](mailto:support@specstory.com).
+- `specstory run` shows nothing: confirm the agent binary (`claude`, `cursor-agent`, or `codex`) is installed and in your `PATH`.
+- No Markdown written: ensure you are inside a writable project folder when launching the wrapper.
+- Sync exports zero files: verify the agent has stored session history in the current working directory.
+- Need help? Email [support@specstory.com](mailto:support@specstory.com) or open an issue on [GitHub](https://github.com/specstoryai/getspecstory/issues).

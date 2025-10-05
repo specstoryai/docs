@@ -1,0 +1,61 @@
+---
+title: "Cursor CLI"
+---
+
+Cursor CLI mirrors the Cursor editor agent inside your terminal. Wrap it with SpecStory so the full discussion stays searchable and reviewable.
+
+## Install SpecStory CLI
+
+Grab the CLI or keep it current before launching Cursor through SpecStory.
+
+```bash
+brew tap specstoryai/tap
+brew update
+brew install specstory
+specstory version
+specstory check
+```
+
+<Info>
+  On Linux or WSL, download the latest release binary from [GitHub](https://github.com/specstoryai/getspecstory/releases), mark it executable, and move it into your `PATH`.
+</Info>
+
+## Run Cursor CLI with auto-save
+
+Capture a session by running Cursor CLI through the SpecStory wrapper.
+
+```bash
+specstory run cursor
+```
+
+SpecStory stores transcripts, tool invocations, and shell output in `.specstory/history/`. You keep the normal Cursor CLI flow while gaining reviewable context.
+
+## Sync existing Cursor sessions
+
+Cursor already logs prior chats locally. Convert them into Markdown after the fact with `specstory sync`.
+
+```bash
+# Export every Cursor CLI session
+specstory sync cursor
+
+# Only export one session (replace with its UUID)
+specstory sync cursor -s <session-uuid>
+
+# Watch log output during sync
+specstory sync cursor --console
+```
+
+Each export creates a Markdown file named with the session timestamp. Share them in PRs or hand them to teammates as design history.
+
+## Best practices
+
+- **Scope conversations**: Use `/clear` or start fresh sessions per task to simplify review.
+- **Pair with Editor history**: Combine Cursor CLI transcripts with `.specstory/history/` from the editor UI for an end-to-end record.
+- **Include transcripts in reviews**: Point code reviewers at the relevant Markdown when opening a PR.
+
+## Troubleshooting
+
+- `cursor-agent` not in `PATH`: Install the Cursor CLI and verify with `cursor-agent --help`.
+- No `.specstory/history/` files: Ensure you launched from inside a project folder with write permissions.
+- Sync returns zero sessions: Cursor must have local session files in the working directory.
+- Still stuck? Email [support@specstory.com](mailto:support@specstory.com) or open an issue on [GitHub](https://github.com/specstoryai/getspecstory/issues).
