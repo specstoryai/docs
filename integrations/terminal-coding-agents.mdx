@@ -8,10 +8,10 @@ SpecStory complements [Claude Code](https://docs.anthropic.com/en/docs/claude-co
   <Card title="Claude Code" icon="sparkles" href="/integrations/claude-code">
     Launch Claude Code through SpecStory to capture end-to-end terminal conversations as Markdown.
   </Card>
-  <Card title="Cursor CLI" icon="cursor-arrow-rays" href="/integrations/cursor-cli">
+  <Card title="Cursor CLI" icon="laptop-code" href="/integrations/cursor-cli">
     Mirror Cursor’s agent in your terminal and archive collaborative reasoning with SpecStory.
   </Card>
-  <Card title="Codex CLI" icon="cpu-chip" href="/integrations/codex-cli">
+  <Card title="Codex CLI" icon="code" href="/integrations/codex-cli">
     Pair Codex CLI with SpecStory to preserve GPT-powered coding sessions for later review.
   </Card>
 </CardGroup>
@@ -35,14 +35,25 @@ brew tap specstoryai/tap
 brew update
 brew install specstory
 
-# 2. Run your preferred agent through SpecStory
-specstory run <claude|cursor|codex>
+# 2. Run your preferred agent through SpecStory (choose one)
+specstory run claude   # or cursor / claude
 
-# 3. Optionally convert past sessions later
-specstory sync <claude|cursor|codex>
+# 3. Export past sessions (pick the agent you used)
+specstory sync claude  # or cursor / claude
 ```
 
 Transcripts land in `.specstory/history/` with timestamps and metadata ready for code review or knowledge sharing.
+
+## Understand `specstory sync`
+
+`specstory sync` retroactively exports chat history, making it useful when you forget to start with `specstory run` or want to convert older work.
+
+- `specstory sync`: export every available session (Claude, Cursor, Codex) for the current project.
+- `specstory sync claude -s <session-uuid>`: convert a specific Claude session by its UUID.
+- `specstory sync cursor --console`: watch verbose logging while exporting Cursor CLI sessions.
+- `specstory sync codex`: capture all stored Codex CLI conversations.
+
+All generated Markdown ends up in `.specstory/history/*.md`, grouped by timestamp and agent.
 
 ## Tips for every agent
 
