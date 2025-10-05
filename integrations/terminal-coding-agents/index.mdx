@@ -36,10 +36,10 @@ brew update
 brew install specstory
 
 # 2. Run your preferred agent through SpecStory (choose one)
-specstory run claude   # or cursor / claude
+specstory run claude   # or cursor / codex
 
 # 3. Export past sessions (pick the agent you used)
-specstory sync claude  # or cursor / claude
+specstory sync claude  # or cursor / codex
 ```
 
 Transcripts land in `.specstory/history/` with timestamps and metadata ready for code review or knowledge sharing.
@@ -61,6 +61,8 @@ All generated Markdown ends up in `.specstory/history/*.md`, grouped by timestam
 - Feed shell context with `!` commands so SpecStory captures inputs and outputs together.
 - Commit `.specstory/history/` alongside code to preserve design intent and debugging rationale.
 - Store persistent project notes (e.g., `CLAUDE.md`) so agents stay aligned across sessions.
+
+Need to adjust defaults or review flags? Visit the [Terminal Coding Agents settings](/integrations/terminal-coding-agents/settings).
 
 ## Troubleshooting
 

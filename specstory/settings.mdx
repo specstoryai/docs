@@ -3,105 +3,26 @@ title: "Settings"
 description: "Change how SpecStory works."
 ---
 
-<Tabs>
-  <Tab title="Cursor + VSCode">
-    ## Extension Settings
+## Extension Settings (Cursor and VS Code)
 
-    Configure SpecStory through VS Code Settings → User → Extensions → SpecStory:
+Configure SpecStory in the editor via **Settings → User → Extensions → SpecStory**.
 
-    - Toggle auto-save functionality
-    - Toggle Derived Rules
-      - Modify the `file headers` used as part of the system prompt to generate Derived Rules for you
-    - Opt out of product analytics
-    - Enable debug tools and logging
+- Enable or disable autosave.
+- Turn on Derived Rules and customize the headers used in rule files.
+- Opt out of product analytics.
+- Enable debug logging tools.
 
-    ### Available Settings
+### Available Settings
 
-    | Setting                  | Description                                 | Default        |
-    | ------------------------ | ------------------------------------------- | -------------- |
-    | `specstory.autoSave`     | Enable automatic saving of AI conversations | `true`         |
-    | `specstory.derivedRules` | Enable automatic rule generation            | `false`        |
-    | `specstory.fileHeaders`  | Custom headers for rule generation          | (see defaults) |
-    | `specstory.analytics`    | Enable anonymous usage analytics            | `true`         |
-    | `specstory.debug`        | Enable debug mode and verbose logging       | `false`        |
+| Setting                  | Description                                 | Default        |
+| ------------------------ | ------------------------------------------- | -------------- |
+| `specstory.autoSave`     | Enable automatic saving of AI conversations | `true`         |
+| `specstory.derivedRules` | Enable automatic rule generation            | `false`        |
+| `specstory.fileHeaders`  | Custom headers for rule generation          | (see defaults) |
+| `specstory.analytics`    | Enable anonymous usage analytics            | `true`         |
+| `specstory.debug`        | Enable debug mode and verbose logging       | `false`        |
 
-    ## Debugging
+### Debugging tools
 
-    - Browse, search, and copy the raw Workspace Storage and "Composer" Storage state in the left side (primary side bar) file explorer, in the VS CODE STATE panel.
-    - View the OUTPUT panel and select the "SpecStory" channel from the dropdown to see debug logs.
-  </Tab>
-  <Tab title="Terminal Coding Agents">
-    ## SpecStory CLI Configuration
-
-    The SpecStory CLI wrapper is designed to work out of the box with minimal configuration:
-
-    ### Available Commands
-
-    | Flag      | Description                                                                                                             | Examples                                                                      |
-    | :-------- | :---------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- |
-    | (default) | Show help information                                                                                                   | `specstory`                                                                   |
-    | `run`     | Run Claude Code, Cursor CLI or Codex CLI with auto-save to to local markdown files, and to SpecStory Cloud if logged in | `specstory run claude`<br />`specstory run cursor`<br />`specstory run codex` |
-    | `sync`    | Convert existing sessions to local markdown files, and sync them to SpecStory Cloud if logged in                        | `specstory sync`<br />`specstory sync -s <sessionId>`                         |
-    | `check`   | Terminal agent(s) are installed and accessible by SpecStory                                                             | `specstory check`                                                             |
-    | `login`   | Login to SpecStory Cloud                                                                                                | `specstory login`                                                             |
-    | `logout`  | Logout of SpecStory Cloud                                                                                               | `specstory logout`                                                            |
-    | `help`    | Show help information                                                                                                   | `specstory help`<br />`specstory help <command>`                              |
-    | `version` | Show version                                                                                                            | `specstory version`                                                           |
-
-    ### Available Flags
-
-    | Flag                   | Description                                                     | Usage                                                                             |
-    | ---------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-    | `-c, --command`        | Custom Claude Code command/args                                 | `specstory run claude -c "~/.claude/local/claude --dangerously-skip-permissions"` |
-    | `-s, --session`        | Sync a specific session to markdown                             | `specstory sync claude -s <sessionId>`                                            |
-    | `--console`            | Show log output to stdout                                       | `specstory sync --console`                                                        |
-    | `--log`                | Debug output to `./specstory/debug/debug.log`                   | `specstory sync --log`                                                            |
-    | `--debug`              | Enable debug level output for `--log` or `--console`            | `specstory sync --log --debug`                                                    |
-    | `--silent`             | Supress all non-error output                                    | `specstory sync --silent`                                                         |
-    | ` --no-cloud-sync`     | Disable cloud sync, even when logged in to SpecStory Cloud      | `specstory sync --no-cloud-sync`                                                  |
-    | `--no-usage-analytics` | Disable usage analytics                                         | `specstory run cursor --no-usage-analytics`                                       |
-    | `--no-version-check`   | Skip checking for newer version                                 | `specstory run codex --no-version-check`                                          |
-    | `--output-dir`         | Use a custom output directory for markdown from `run` or `sync` | `specstory sync --output-dir ~/my-claude-sessions`                                |
-    | `-h, --help`           | Show help information                                           | `specstory -h`                                                                    |
-    | `-v, --version`        | Show version                                                    | `specstory -v`                                                                    |
-
-    ### Default Behavior
-
-    - **Session Storage:** `.specstory/history/` in current directory
-    - **Cloud Sync:** Sessions synced to the SpecStory Cloud if logged in with `specstory login` and the `--no-cloud-sync` flag isn't specified
-    - **Session Files:** Read from `` ~/.claude/projects/ and `~/.cursor/chats/ ``
-    - **Output Format:** Markdown files with timestamps
-
-    ### Project Configuration
-
-    When you first run SpecStory in a project, it creates:
-
-    - `.specstory/` directory for storing conversations
-    - `.specstory/history/` for markdown files
-    - `.specstory/.project.json` for project tracking
-
-    <Info>
-      Unlike the VS Code/Cursor extensions which have extensive settings, the CLI wrapper follows a "convention over configuration" approach for simplicity.
-    </Info>
-    ## Debugging
-
-    Use console mode or logging to troubleshoot:
-
-    ```bash
-    # Run interactively with verbose output (noisy)
-    specstory run claude --console --debug
-    
-    # Run interactively with logging (quiet, just as helpful)
-    specstory run cursor --log
-    
-    # Check what sessions will be processed
-    specstory sync codex --console | grep "Parsing session"
-    ```
-
-    The console and log flags show:
-
-    - Which session files are being parsed
-    - Where markdown files are being written
-    - Any errors during processing
-  </Tab>
-</Tabs>
+- Browse, search, and copy the raw Workspace Storage and "Composer" Storage state in the left side (primary side bar) file explorer, in the VS CODE STATE panel.
+- View the **OUTPUT** panel and select the "SpecStory" channel from the dropdown to see debug logs.

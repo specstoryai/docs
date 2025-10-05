@@ -47,11 +47,62 @@ specstory sync claude --console
 
 Resulting Markdown files land in `.specstory/history/` alongside timestamps and command metadata.
 
+## Command reference
+
+Use the wrapper exactly as you would the native CLI while taking advantage of additional flags.
+
+```
+Usage: specstory [command] [--flags]
+
+Commands:
+  check        Verify Claude Code can be invoked and autosave is configured
+  run          Launch Claude Code with SpecStory capturing the session
+  sync         Convert stored Claude Code sessions to Markdown
+  version      Show SpecStory version information
+
+Common flags:
+  --console            Stream logs to stdout for easier debugging
+  --debug              Include verbose diagnostics (requires --console or --log)
+  --output-dir <path>  Write Markdown exports to a custom location
+  --no-version-check   Skip the update check
+  --silent             Reduce output to errors only
+```
+
+Typical workflows:
+
+```bash
+# Launch Claude Code with autosave enabled
+specstory run
+
+# Recreate any missing Markdown transcripts
+specstory sync
+
+# Convert a specific session by UUID
+specstory sync -u <session-uuid>
+
+# Mirror Claude logs in your terminal
+specstory sync --console
+
+# Use a custom Claude executable
+specstory run -c "claude --dangerously-skip-permissions"
+```
+
+## Turn transcripts into documentation
+
+SpecStory focuses on local Markdown output so you can share conversations using existing workflows:
+
+- Commit `.specstory/history/` to version control for review alongside code changes.
+- Send Markdown files directly to teammates or attach them to design docs.
+- Publish excerpts in knowledge bases or documentation portals.
+
+The generated files preserve timestamps, terminal output, and code blocks, creating a searchable log of every Claude Code session.
+
 ## Best practices
 
 - **Create `CLAUDE.md`**: Seed the assistant with project docs once, and re-use those instructions automatically.
 - **Keep sessions focused**: Use `/clear` between tasks so transcripts stay tight and portable.
 - **Commit your transcripts**: Include `.specstory/history/` in pull requests to explain why edits shipped.
+- **Annotate exports**: Because the transcripts are plain Markdown, you can add context before sharing or committing them.
 
 ## Troubleshooting
 

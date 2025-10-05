@@ -66,10 +66,11 @@
     {
       "group": "Terminal Coding Agents",
       "pages": [
-        "integrations/terminal-coding-agents",
+        "integrations/terminal-coding-agents/index",
         "integrations/claude-code",
         "integrations/cursor-cli",
-        "integrations/codex-cli"
+        "integrations/codex-cli",
+        "integrations/terminal-coding-agents/settings"
       ]
     },
     {
