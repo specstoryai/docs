@@ -30,23 +30,23 @@ description: "Change how SpecStory works."
     - Browse, search, and copy the raw Workspace Storage and "Composer" Storage state in the left side (primary side bar) file explorer, in the VS CODE STATE panel.
     - View the OUTPUT panel and select the "SpecStory" channel from the dropdown to see debug logs.
   </Tab>
-  <Tab title="Claude Code + Cursor CLI">
+  <Tab title="Terminal Coding Agents">
     ## SpecStory CLI Configuration
 
     The SpecStory CLI wrapper is designed to work out of the box with minimal configuration:
 
     ### Available Commands
 
-    | Flag      | Description                                                                                                  | Examples                                              |
-    | :-------- | :----------------------------------------------------------------------------------------------------------- | :---------------------------------------------------- |
-    | (default) | Show help information                                                                                        | `specstory`                                           |
-    | `run`     | Run Claude Code or Cursor CLI with auto-save to to local markdown files, and to SpecStory Cloud if logged in | `specstory run claude`<br />`specstory run cursor`    |
-    | `sync`    | Convert existing sessions to local markdown files, and sync them to SpecStory Cloud if logged in             | `specstory sync`<br />`specstory sync -s <sessionId>` |
-    | `check`   | Terminal agent(s) are installed and accessible by SpecStory                                                  | `specstory check`                                     |
-    | `login`   | Login to SpecStory Cloud                                                                                     | `specstory login`                                     |
-    | `logout`  | Logout of SpecStory Cloud                                                                                    | `specstory logout`                                    |
-    | `help`    | Show help information                                                                                        | `specstory help`<br />`specstory help <command>`      |
-    | `version` | Show version                                                                                                 | `specstory version`                                   |
+    | Flag      | Description                                                                                                  | Examples                                                                            |
+    | :-------- | :----------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
+    | (default) | Show help information                                                                                        | `specstory`                                                                         |
+    | `run`     | Run Claude Code or Cursor CLI with auto-save to to local markdown files, and to SpecStory Cloud if logged in | `specstory run claude`<br />`specstory run cursor`<br />`` `specstory run codex` `` |
+    | `sync`    | Convert existing sessions to local markdown files, and sync them to SpecStory Cloud if logged in             | `specstory sync`<br />`specstory sync -s <sessionId>`                               |
+    | `check`   | Terminal agent(s) are installed and accessible by SpecStory                                                  | `specstory check`                                                                   |
+    | `login`   | Login to SpecStory Cloud                                                                                     | `specstory login`                                                                   |
+    | `logout`  | Logout of SpecStory Cloud                                                                                    | `specstory logout`                                                                  |
+    | `help`    | Show help information                                                                                        | `specstory help`<br />`specstory help <command>`                                    |
+    | `version` | Show version                                                                                                 | `specstory version`                                                                 |
 
     ### Available Flags
 
