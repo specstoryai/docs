@@ -61,7 +61,7 @@
       "pages": [
         "integrations/cursor",
         "integrations/vscode",
-        "integrations/claude-code"
+        "integrations/terminal-coding-agents"
       ]
     },
     {
