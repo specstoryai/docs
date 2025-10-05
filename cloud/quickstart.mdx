@@ -2,8 +2,7 @@
 title: "Cloud Quickstart"
 ---
 
-SpecStory Cloud helps you move from **individual capture** to **shared, searchable context** across your team.
-This guide walks you through creating an account, syncing your first project, and running your first search.
+SpecStory Cloud helps you move from **individual capture** to **shared, searchable context** across your team. This guide walks you through creating an account, syncing your first project, and running your first search.
 
 ## 1. Create your SpecStory Cloud account
 
@@ -35,7 +34,7 @@ For detailed installation instructions, see our [Installation Guide](/specstory/
 
 Once installed, open any project folder, start an AI chat, and confirm that `.specstory/history/` appears in your repo with Markdown files.
 
-### Claude Code / Cursor CLI
+### Claude Code / Cursor CLI / Codex CLI
 
 Install the SpecStory CLI and capture terminal agent sessions locally.
 
@@ -49,6 +48,7 @@ specstory version
 specstory check
 specstory run claude # launches Claude Code and captures the session
 specstory run cursor # launches Cursor CLI and captures the session
+specstory run codex # launches Codex CLI and captures the session
 specstory sync # converts existing sessions to Markdown
 ```
 
@@ -63,6 +63,7 @@ specstory version
 specstory check
 specstory run claude # launches Claude Code and captures the session
 specstory run cursor # launches Cursor CLI and captures the session
+specstory run codex # launches Cursor CLI and captures the session
 specstory sync # converts existing sessions to Markdown
 ```
 
@@ -102,14 +103,14 @@ You control what (and when) to sync. Pick the path that matches your setup.
    - Optionally enable sync for all future projects
 4. Once configured, your sessions will sync automatically. Visit the Cloud dashboard to verify sessions appear.
 
-### B) From the CLI (Claude Code or cross‑project)
+### B) From the CLI
 
 ```bash
 # Sync all local sessions in the current repo/project
 specstory sync
 
 # Sync a single session by ID
-specstory sync -u <session-uuid>
+specstory sync claude -s <session-uuid>
 ```
 
 After sync, refresh [cloud.specstory.com](https://cloud.specstory.com), you should see the project and synced sessions.
