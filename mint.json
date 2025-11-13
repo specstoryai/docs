@@ -38,9 +38,9 @@
   "openapi": "openapi.json",
   "anchors": [
     {
-      "name": "Try BearClaude",
-      "icon": "desktop",
-      "url": "https://bearclaude.specstory.com/#download-section"
+      "name": "Discord",
+      "icon": "discord",
+      "url": "https://discord.com/invite/E47yQyEUd3"
     },
     {
       "name": "Email Support",
