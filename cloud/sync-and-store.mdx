@@ -6,7 +6,7 @@ Sync lets you move those conversation histories into the Cloud for centralized i
 
 ## How Sync Works
 
-1. **Local Capture:** Editors (Cursor, VS Code + Copilot, BearClaude) and the CLI (Claude Code) write Markdown histories into `.specstory/history/`.
+1. **Local Capture:** Editors (Cursor, VS Code + Copilot, BearClaude) and the CLI (Claude Code, Cursor CLI, Codex CLI, Gemini CLI) write Markdown histories into `.specstory/history/`.
 2. **Authentication:** You run `specstory login` once per machine to link your device with Cloud.
 3. **Manual Sync:** Sync is always explicit - run via the CLI or extension command.
 4. **Session Upload:** The CLI or extension uploads sessions one by one. For full-project sync, the CLI scans `.specstory/history/` and calls the API for each session file.
