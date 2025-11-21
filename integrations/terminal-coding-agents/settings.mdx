@@ -8,32 +8,32 @@ The SpecStory CLI wrapper works out of the box with minimal setup.
 
 ### Commands
 
-| Command   | Description                                                                                                             | Examples                                                                      |
-| :-------- | :---------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- |
-| `help`    | Show help information                                                                                                   | `specstory help`<br />`specstory help run`                                     |
-| `check`   | Verify that terminal agents are installed and accessible to SpecStory                                                   | `specstory check`                                                             |
-| `run`     | Launch Claude Code, Cursor CLI, or Codex CLI with autosave to local Markdown (and SpecStory Cloud if logged in)         | `specstory run claude`<br />`specstory run cursor`<br />`specstory run codex` |
-| `sync`    | Convert existing sessions to Markdown and optionally sync them to SpecStory Cloud                                        | `specstory sync`<br />`specstory sync -s <sessionId>`                         |
-| `login`   | Authenticate with SpecStory Cloud                                                                                        | `specstory login`                                                             |
-| `logout`  | Sign out of SpecStory Cloud                                                                                              | `specstory logout`                                                            |
-| `version` | Display the current SpecStory version                                                                                    | `specstory version`                                                           |
+| Command   | Description                                                                                                                | Examples                                                                                                  |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
+| `help`    | Show help information                                                                                                      | `specstory help`<br />`specstory help run`                                                                |
+| `check`   | Verify that terminal agents are installed and accessible to SpecStory                                                      | `specstory check`                                                                                         |
+| `run`     | Launch Claude Code, Cursor CLI, Codex CLI or Gemini CLI with autosave to local Markdown (and SpecStory Cloud if logged in) | `specstory run claude`<br />`specstory run cursor`<br />`specstory run codex`<br />`specstory run gemini` |
+| `sync`    | Convert existing sessions to Markdown and optionally sync them to SpecStory Cloud                                          | `specstory sync`<br />`specstory sync -s <sessionId>`                                                     |
+| `login`   | Authenticate with SpecStory Cloud                                                                                          | `specstory login`                                                                                         |
+| `logout`  | Sign out of SpecStory Cloud                                                                                                | `specstory logout`                                                                                        |
+| `version` | Display the current SpecStory version                                                                                      | `specstory version`                                                                                       |
 
 ### Flags
 
-| Flag                   | Description                                                     | Usage                                                                             |
-| ---------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `-c, --command`        | Use a custom terminal-agent command or args                     | `specstory run claude -c "claude --dangerously-skip-permissions"`                |
-| `-s, --session`        | Convert a specific session to Markdown                          | `specstory sync claude -s <sessionId>`                                            |
-| `--console`            | Stream log output to stdout                                     | `specstory sync --console`                                                        |
-| `--log`                | Write logs to `./specstory/debug/debug.log`                     | `specstory sync --log`                                                            |
-| `--debug`              | Include debug-level output (requires `--console` or `--log`)    | `specstory sync --log --debug`                                                    |
-| `--silent`             | Suppress non-error output                                       | `specstory sync --silent`                                                         |
-| `--no-cloud-sync`      | Disable cloud sync even when authenticated                      | `specstory sync --no-cloud-sync`                                                  |
-| `--no-usage-analytics` | Opt out of usage analytics                                      | `specstory run cursor --no-usage-analytics`                                       |
-| `--no-version-check`   | Skip the version check                                          | `specstory run codex --no-version-check`                                          |
-| `--output-dir`         | Write Markdown exports to a custom directory                    | `specstory sync --output-dir ~/my-agent-sessions`                                 |
-| `-h, --help`           | Show help information for a command                             | `specstory -h`                                                                    |
-| `-v, --version`        | Show the current SpecStory version                              | `specstory -v`                                                                    |
+| Flag                   | Description                                                  | Usage                                                             |
+| ---------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------- |
+| `-c, --command`        | Use a custom terminal-agent command or args                  | `specstory run claude -c "claude --dangerously-skip-permissions"` |
+| `-s, --session`        | Convert a specific session to Markdown                       | `specstory sync claude -s <sessionId>`                            |
+| `--console`            | Stream log output to stdout                                  | `specstory sync --console`                                        |
+| `--log`                | Write logs to `./specstory/debug/debug.log`                  | `specstory sync --log`                                            |
+| `--debug`              | Include debug-level output (requires `--console` or `--log`) | `specstory sync --log --debug`                                    |
+| `--silent`             | Suppress non-error output                                    | `specstory sync --silent`                                         |
+| `--no-cloud-sync`      | Disable cloud sync even when authenticated                   | `specstory sync --no-cloud-sync`                                  |
+| `--no-usage-analytics` | Opt out of usage analytics                                   | `specstory run cursor --no-usage-analytics`                       |
+| `--no-version-check`   | Skip the version check                                       | `specstory run codex --no-version-check`                          |
+| `--output-dir`         | Write Markdown exports to a custom directory                 | `specstory sync --output-dir ~/my-agent-sessions`                 |
+| `-h, --help`           | Show help information for a command                          | `specstory -h`                                                    |
+| `-v, --version`        | Show the current SpecStory version                           | `specstory -v`                                                    |
 
 ### Default behavior
 
