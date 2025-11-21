@@ -2,7 +2,6 @@
 title: "Sync & Store"
 ---
 
-
 Sync lets you move those conversation histories into the Cloud for centralized indexing and search.
 
 ## How Sync Works
@@ -17,7 +16,7 @@ Sync lets you move those conversation histories into the Cloud for centralized i
    - Both are preserved exactly as generated
 
 <Info>
-SpecStory Cloud never runs background uploads. Every sync requires explicit action from you.
+  SpecStory Cloud never runs background uploads. Every sync requires explicit action from you.
 </Info>
 
 ## Configuring Sync
@@ -29,7 +28,7 @@ SpecStory Cloud never runs background uploads. Every sync requires explicit acti
 - Run **`SpecStory: Sync with Cloud`**.
 - The extension authenticates, uploads session files, and shows a completion toast.
 
-### From the CLI (Claude Code or cross-project)
+### From the CLI (Terminal agents)
 
 ```bash
 # Authenticate device (run once)
@@ -43,18 +42,17 @@ specstory sync -u <session-uuid>
 ```
 
 <Note>
-Full-project sync happens because the CLI loops through all Markdown files and uploads them one by one. The Cloud API itself handles sessions individually.
+  Full-project sync happens because the CLI loops through all Markdown files and uploads them one by one. The Cloud API itself handles sessions individually.
 </Note>
 
 ## Verifying Your AI-conversations Sync
 
 After running sync:
 
-* Check the **CLI output** (or toast in extensions) for success.
-* Refresh [cloud.specstory.com](https://cloud.specstory.com).
-* You should see your project and sessions listed.
-* Open a session to confirm content matches your local Markdown.
-
+- Check the **CLI output** (or toast in extensions) for success.
+- Refresh [cloud.specstory.com](https://cloud.specstory.com).
+- You should see your project and sessions listed.
+- Open a session to confirm content matches your local Markdown.
 
 ## Next
 
@@ -63,4 +61,3 @@ After running sync:
     Learn how to filter and explore your synced sessions.
   </Card>
 </CardGroup>
-
