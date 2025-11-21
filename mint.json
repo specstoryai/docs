@@ -70,6 +70,7 @@
         "integrations/claude-code",
         "integrations/cursor-cli",
         "integrations/codex-cli",
+        "integrations/gemini-cli",
         "integrations/terminal-coding-agents/settings"
       ]
     },

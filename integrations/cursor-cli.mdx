@@ -6,7 +6,7 @@ Cursor CLI mirrors the Cursor editor agent inside your terminal. Wrap it with Sp
 
 ## Install SpecStory CLI
 
-Grab the CLI or keep it current before launching Cursor through SpecStory.
+Grab the CLI or keep it current before launching Cursor CLI through SpecStory.
 
 ```bash
 brew tap specstoryai/tap
@@ -39,9 +39,9 @@ specstory run cursor
 
 SpecStory stores transcripts, tool invocations, and shell output in `.specstory/history/`. You keep the normal Cursor CLI flow while gaining reviewable context.
 
-## Sync existing Cursor sessions
+## Sync existing Cursor CLI sessions
 
-Cursor already logs prior chats locally. Convert them into Markdown after the fact with `specstory sync`.
+Cursor CLI captures prior chats locally. Convert them into Markdown after the fact with `specstory sync`.
 
 ```bash
 # Export every Cursor CLI session
@@ -66,5 +66,5 @@ Each export creates a Markdown file named with the session timestamp. Share them
 
 - `cursor-agent` not in `PATH`: Install the Cursor CLI and verify with `cursor-agent --help`.
 - No `.specstory/history/` files: Ensure you launched from inside a project folder with write permissions.
-- Sync returns zero sessions: Cursor must have local session files in the working directory.
+- Sync returns zero sessions: Cursor CLI must have local session files in the working directory.
 - Still stuck? Email [support@specstory.com](mailto:support@specstory.com) or open an issue on [GitHub](https://github.com/specstoryai/getspecstory/issues).

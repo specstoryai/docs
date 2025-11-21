@@ -1,12 +1,12 @@
 ---
-title: "Codex CLI"
+title: "Gemini CLI"
 ---
 
-Codex CLI gives you GPT-powered code edits and reasoning straight from the terminal. Pair it with SpecStory to convert every session into reusable Markdown notes.
+Gemini CLI gives you Gemini-powered code edits and reasoning straight from the terminal. Pair it with SpecStory to convert every session into reusable Markdown notes.
 
 ## Install SpecStory CLI
 
-Install the SpecStory CLI once to wrap Codex CLI and manage your transcripts.
+Install the SpecStory CLI once to wrap the Gemini CLI and manage your transcripts.
 
 ```bash
 brew tap specstoryai/tap
@@ -29,42 +29,42 @@ specstory check
   Swap the archive name for the asset you downloaded and repeat when upgrading.
 </Info>
 
-## Run Codex CLI with auto-save
+## Run Gemini CLI with auto-save
 
-Launch Codex CLI through SpecStory to capture a Markdown history in `.specstory/history/`.
+Launch Gemini CLI through SpecStory to capture a Markdown history in `.specstory/history/`.
 
 ```bash
-specstory run codex
+specstory run gemini
 ```
 
-You can continue to use Codex CLI features such as multi-file diffs, auto PRs, and test runs while SpecStory records the conversation and shell context.
+You use Gemini CLI as normal while SpecStory records the entire conversation and context.
 
-## Sync older Codex CLI sessions
+## Sync older Gemini CLI sessions
 
-If you used Codex CLI before installing SpecStory, retroactively export existing sessions.
+If you used Gemini CLI before installing SpecStory, retroactively export existing sessions.
 
 ```bash
-# Convert every stored Codex CLI session
-specstory sync codex
+# Convert every stored Gemini CLI session
+specstory sync gemini
 
 # Convert a single session by UUID
-specstory sync codex -s <session-uuid>
+specstory sync gemini -s <session-uuid>
 
 # Watch the sync progress
-specstory sync codex --console
+specstory sync gemini --console
 ```
 
 The resulting Markdown files live under `.specstory/history/` with timestamps and metadata for easy sharing.
 
 ## Best practices
 
-- **Segment workstreams**: Use Codex CLI’s commands to start fresh sessions per task so transcripts stay focused.
+- **Segment workstreams**: Use Gemini CLI’s commands to start fresh sessions per task so transcripts stay focused.
 - **Document custom tooling**: Add notes about bespoke scripts or workflows to the Markdown files for teammate handoff.
 - **Archive transcripts**: Commit `.specstory/history/` alongside your code to preserve design intent.
 
 ## Troubleshooting
 
-- `codex` command missing: Confirm installation by running `codex --version` outside SpecStory.
+- `gemin` command missing: Confirm installation by running `gemini --version` outside SpecStory.
 - No Markdown output: Run inside a project directory that contains `.specstory/` and allows writing.
-- Sync returns nothing: Ensure Codex CLI has existing session logs in the current workspace.
+- Sync returns nothing: Ensure Gemini CLI has existing session logs in the current workspace.
 - Need assistance? Contact [support@specstory.com](mailto:support@specstory.com) or open a ticket on [GitHub](https://github.com/specstoryai/getspecstory/issues).
