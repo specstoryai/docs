@@ -93,17 +93,6 @@
       ]
     },
     {
-      "group": "BearClaude for macOS",
-      "pages": [
-        "bearclaude/overview",
-        "bearclaude/install",
-        "bearclaude/claudecode",
-        "bearclaude/quickstart",
-        "bearclaude/features",
-        "bearclaude/settings"
-      ]
-    },
-    {
       "group": "Guides",
       "pages": [
         "guides/specflow"
