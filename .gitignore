@@ -45,3 +45,5 @@ yarn-error.log*
 # Local preview
 .vercel
 .netlify 
+
+.intent/

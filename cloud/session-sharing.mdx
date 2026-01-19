@@ -1,0 +1,108 @@
+---
+title: "Session Sharing"
+---
+
+Session sharing lets you create public links to your AI coding sessions. Share problem-solving approaches, explain architectural decisions, or document debugging workflows with teammates, blog readers, or the community.
+
+## How Sharing Works
+
+SpecStory Cloud uses a **persistent sharing model**. When you share a session, you create a live link to that session—not a static snapshot. New exchanges added to the session automatically appear in the shared version.
+
+- **Share URL format**: `cloud.specstory.com/share/{sessionId}`
+- **Public access**: Viewers can access shared sessions without authentication
+- **Owner control**: You decide what's visible and can revoke access at any time
+
+<Info>
+  Shared sessions are read-only for viewers. Only you can edit, hide content, or delete the session.
+</Info>
+
+## Sharing a Session
+
+1. Open a session in [cloud.specstory.com](https://cloud.specstory.com).
+2. Click the **Share** button in the session header.
+3. In the share modal:
+   - Toggle **Public/Private** to enable or disable sharing.
+   - Copy the share link using the **Copy Link** button.
+   - Optionally hide specific exchanges (see below).
+   - Use **Preview as Viewer** to see exactly what viewers will see.
+
+When sharing is enabled, the share link becomes active. Setting the session back to **Private** makes the link return a 404 page.
+
+<Tip>
+  Use "Preview as Viewer" before making a session public to verify hidden content is properly excluded.
+</Tip>
+
+## Controlling Content Visibility
+
+Not every exchange needs to be public. You can selectively hide exchanges that contain sensitive information, tangential discussions, or content you don't want viewers to see.
+
+### Hiding Exchanges
+
+- Each exchange has a visibility toggle (eye icon).
+- Click the toggle to hide an exchange from the shared view.
+- Hidden exchanges remain visible to you but are excluded from the public view.
+- The share modal shows a summary: "You've hidden X exchanges."
+
+<Note>
+  Hidden exchanges are never sent to the public endpoint, ensuring sensitive content stays private at the network level.
+</Note>
+
+### What You Can Edit
+
+As the session owner, you can:
+
+- **Edit the session title** — Provide a clearer name for shared context.
+- **Hide/show exchanges** — Control which prompt-response pairs are visible.
+- **Delete exchanges** — Remove exchanges entirely from the session.
+
+## What Viewers See
+
+When someone opens your shared session link, they see:
+
+- **Session title** — The name you've given the session.
+- **Project info** — A small icon and project name for context.
+- **Author info** — Indicates who shared the session.
+- **Visible exchanges** — Only exchanges you haven't hidden.
+- **Table of contents** — Navigation through the session's exchanges.
+
+Viewers cannot:
+
+- Edit or delete content.
+- See hidden exchanges.
+- Access your other sessions or projects.
+- Download the original session data.
+
+## Privacy and Security
+
+Session sharing is designed with privacy as a priority:
+
+- **Opt-in only**: Sessions are private by default. Sharing requires explicit action.
+- **Database-level filtering**: Hidden exchanges are excluded from database queries for the public endpoint—they never leave the server.
+- **Revocable access**: Set a session back to Private at any time to disable the share link.
+- **No account required for viewers**: Public links work without authentication, but viewers have read-only access.
+
+<Info>
+  The public share endpoint (`/api/v1/share/{sessionId}`) is separate from authenticated endpoints. It only returns sessions marked as public and excludes hidden exchanges from the response.
+</Info>
+
+## One-Time Sync for Extension Users
+
+If you don't have auto-sync enabled in the SpecStory Extension, you can still share sessions:
+
+1. **Share** on a local session (Cmd/Ctrl-Shift-P, `SpecStory: Share AI Chat History`)
+2. SpecStory prompts you to log in if needed.
+3. A **one-time sync** uploads just that session to the cloud.
+4. The session becomes shareable without enabling global auto-sync.
+
+To update a shared session, re-share it to trigger another one-time sync.
+
+## Next
+
+<CardGroup>
+  <Card title="Sync & Store" icon="arrow-down-up-across-line" href="/cloud/sync-and-store">
+    Learn how sync works and verify your uploads.
+  </Card>
+  <Card title="Search & Organization" icon="magnifying-glass" href="/cloud/search-and-organization">
+    Find and organize your synced sessions.
+  </Card>
+</CardGroup>
